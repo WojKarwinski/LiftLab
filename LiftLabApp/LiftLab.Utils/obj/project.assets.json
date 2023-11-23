@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net7.0": {
       "Azure.Core/1.25.0": {
         "type": "package",
         "dependencies": {
@@ -714,7 +714,7 @@
       },
       "LiftLab.Domain/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v7.0",
         "compile": {
           "bin/placeholder/LiftLab.Domain.dll": {}
         },
@@ -724,7 +724,7 @@
       },
       "LiftLab.Persistence/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "LiftLab.Domain": "1.0.0",
           "Microsoft.Data.SqlClient": "5.1.2"
@@ -2032,50 +2032,44 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net7.0": [
       "LiftLab.Domain >= 1.0.0",
       "LiftLab.Persistence >= 1.0.0",
       "System.Configuration.ConfigurationManager >= 6.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wojci\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Wojte\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Utils\\LiftLab.Utils.csproj",
+      "projectUniqueName": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj",
       "projectName": "LiftLab.Utils",
-      "projectPath": "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Utils\\LiftLab.Utils.csproj",
-      "packagesPath": "C:\\Users\\wojci\\.nuget\\packages\\",
-      "outputPath": "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Utils\\obj\\",
+      "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj",
+      "packagesPath": "C:\\Users\\Wojte\\.nuget\\packages\\",
+      "outputPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\wojci\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Wojte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "Https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Domain\\LiftLab.Domain.csproj": {
-              "projectPath": "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Domain\\LiftLab.Domain.csproj"
+            "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj": {
+              "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj"
             },
-            "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Persistence\\LiftLab.Persistence.csproj": {
-              "projectPath": "C:\\School 2023-2024\\Graduaatsproef\\LiftLab\\LiftLab\\LiftLab.Persistence\\LiftLab.Persistence.csproj"
+            "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj": {
+              "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj"
             }
           }
         }
@@ -2087,8 +2081,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net7.0": {
+        "targetAlias": "net7.0",
         "dependencies": {
           "System.Configuration.ConfigurationManager": {
             "target": "Package",
@@ -2111,7 +2105,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

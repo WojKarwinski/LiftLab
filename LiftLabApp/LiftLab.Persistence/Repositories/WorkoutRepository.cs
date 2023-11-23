@@ -21,68 +21,62 @@ public class WorkoutRepository : IWorkoutsRepository
             connection.Open();
 
             string query = @"
-            SELECT 
-                W.Id AS WorkoutId, W.Date, W.Name AS WorkoutName, W.Note,
-                E.Id AS ExerciseId, E.[Order] AS ExerciseOrder, EL.Name AS ExerciseName, EL.MuscleGroup,
-                S.SetNumber, S.Reps, S.Weight, S.Rpe
-            FROM Workouts W
-            LEFT JOIN Exercises E ON W.Id = E.WorkoutId
-            LEFT JOIN Sets S ON E.Id = S.ExerciseId
-            LEFT JOIN ExerciseList EL ON E.ExerciseListId = EL.Id";
+        SELECT 
+            W.Id AS WorkoutId, W.Date, W.Name AS WorkoutName, W.Note,
+            E.Id AS ExerciseId, E.[Order] AS ExerciseOrder, EL.Name AS ExerciseName, EL.MuscleGroup,
+            S.SetNumber, S.Reps, S.Weight, S.Rpe
+        FROM Workouts W
+        LEFT JOIN Exercises E ON W.Id = E.WorkoutId
+        LEFT JOIN Sets S ON E.Id = S.ExerciseId
+        LEFT JOIN ExerciseList EL ON E.ExerciseListId = EL.Id";
 
             using(SqlCommand command = new(query, connection))
             {
                 using(SqlDataReader reader = command.ExecuteReader())
                 {
-                    int workoutIdOrdinal = reader.GetOrdinal("WorkoutId");
-                    int dateOrdinal = reader.GetOrdinal("Date");
-                    int nameOrdinal = reader.GetOrdinal("WorkoutName");
-                    int noteOrdinal = reader.GetOrdinal("Note");
-                    int exerciseIdOrdinal = reader.GetOrdinal("ExerciseId");
-                    int exerciseOrderOrdinal = reader.GetOrdinal("ExerciseOrder");
-                    int exerciseNameOrdinal = reader.GetOrdinal("ExerciseName");
-                    int setNumberOrdinal = reader.GetOrdinal("SetNumber");
-                    int repsOrdinal = reader.GetOrdinal("Reps");
-                    int weightOrdinal = reader.GetOrdinal("Weight");
-                    int rpeOrdinal = reader.GetOrdinal("Rpe");
-
                     while(reader.Read())
                     {
-                        Workout workout = workouts.FirstOrDefault(w => w.Id == reader.GetInt32(workoutIdOrdinal));
+                        Workout workout = workouts.FirstOrDefault(w => w.Id == reader.GetInt32(reader.GetOrdinal("WorkoutId")));
 
                         if(workout == null)
                         {
                             workout = new Workout
                             {
-                                Id = reader.GetInt32(workoutIdOrdinal),
-                                Date = reader.GetDateTime(dateOrdinal),
-                                Name = reader.GetString(nameOrdinal),
-                                Note = reader.IsDBNull(noteOrdinal) ? null : reader.GetString(noteOrdinal),
+                                Id = reader.GetInt32(reader.GetOrdinal("WorkoutId")),
+                                Date = reader.GetDateTime(reader.GetOrdinal("Date")),
+                                Name = reader.GetString(reader.GetOrdinal("WorkoutName")),
+                                Note = reader.IsDBNull(reader.GetOrdinal("Note")) ? null : reader.GetString(reader.GetOrdinal("Note")),
                                 Exercises = new List<Exercise>()
                             };
                             workouts.Add(workout);
                         }
 
-                        if(!reader.IsDBNull(exerciseIdOrdinal))
+                        if(!reader.IsDBNull(reader.GetOrdinal("ExerciseId")))
                         {
-                            Exercise exercise = new()
-                            {
-                                ExerciseId = reader.GetInt32(exerciseIdOrdinal),
-                                ExerciseOrder = reader.GetInt32(exerciseOrderOrdinal),
-                                Name = reader.GetString(exerciseNameOrdinal),
-                                Sets = new List<Set>()
-                            };
+                            Exercise exercise = workout.Exercises.FirstOrDefault(e => e.ExerciseId == reader.GetInt32(reader.GetOrdinal("ExerciseId")));
 
-                            Set set = new()
+                            if(exercise == null)
                             {
-                                SetNumber = reader.IsDBNull(setNumberOrdinal) ? 0 : reader.GetInt32(setNumberOrdinal),
-                                Reps = reader.IsDBNull(repsOrdinal) ? 0 : reader.GetInt32(repsOrdinal),
-                                Weight = reader.IsDBNull(weightOrdinal) ? 0 : reader.GetInt32(weightOrdinal),
-                                Rpe = reader.IsDBNull(rpeOrdinal) ? (int?)null : reader.GetInt32(rpeOrdinal)
+                                exercise = new Exercise
+                                {
+                                    ExerciseId = reader.GetInt32(reader.GetOrdinal("ExerciseId")),
+                                    ExerciseOrder = reader.GetInt32(reader.GetOrdinal("ExerciseOrder")),
+                                    Name = reader.GetString(reader.GetOrdinal("ExerciseName")),
+                                    Sets = new List<Set>()
+                                };
+
+                                workout.Exercises.Add(exercise);
+                            }
+
+                            Set set = new Set
+                            {
+                                SetNumber = reader.IsDBNull(reader.GetOrdinal("SetNumber")) ? 0 : reader.GetInt32(reader.GetOrdinal("SetNumber")),
+                                Reps = reader.IsDBNull(reader.GetOrdinal("Reps")) ? 0 : reader.GetInt32(reader.GetOrdinal("Reps")),
+                                Weight = reader.IsDBNull(reader.GetOrdinal("Weight")) ? 0 : reader.GetInt32(reader.GetOrdinal("Weight")),
+                                Rpe = reader.IsDBNull(reader.GetOrdinal("Rpe")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("Rpe"))
                             };
 
                             exercise.Sets.Add(set);
-                            workout.Exercises.Add(exercise);
                         }
                     }
                 }
@@ -91,6 +85,7 @@ public class WorkoutRepository : IWorkoutsRepository
 
         return workouts;
     }
+
 
 
     public Workout GetWorkoutById(int workoutId)

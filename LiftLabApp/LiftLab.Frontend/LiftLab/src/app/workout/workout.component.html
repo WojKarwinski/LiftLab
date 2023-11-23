@@ -1,0 +1,9 @@
+<div class="workout-container">
+    <h2>{{$ctrl.workout.name}}</h2>
+    <p>{{$ctrl.workout.date | date: 'shortTime'}}</p>
+    <textarea placeholder="Workout note" ng-model="$ctrl.workout.note"></textarea>
+    <div ng-repeat="exercise in $ctrl.workout.exercises">
+        <exercise-component exercise="exercise"></exercise-component>
+    </div>
+    <button ng-click="$ctrl.finishWorkout()">FINISH</button>
+</div>
