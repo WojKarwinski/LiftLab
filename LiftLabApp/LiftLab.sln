@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiftLab.Domain", "LiftLab.Domain\LiftLab.Domain.csproj", "{DF9FBCBC-410C-489C-92B9-69CA9B540DAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiftLab.Persistence", "LiftLab.Persistence\LiftLab.Persistence.csproj", "{F94BF6D2-83F9-45B1-88D1-3F2F925AC0B3}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularapp", "LiftLab.UI\angularapp\angularapp.esproj", "{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webapi", "LiftLab.UI\webapi\webapi.csproj", "{3AAE4647-CE89-450A-88E0-DCA71C2F3FB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiftLab.Utils", "LiftLab.Utils\LiftLab.Utils.csproj", "{AE87F79F-E832-48A9-9C19-9F96B9B603F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF9FBCBC-410C-489C-92B9-69CA9B540DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9FBCBC-410C-489C-92B9-69CA9B540DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9FBCBC-410C-489C-92B9-69CA9B540DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9FBCBC-410C-489C-92B9-69CA9B540DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94BF6D2-83F9-45B1-88D1-3F2F925AC0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94BF6D2-83F9-45B1-88D1-3F2F925AC0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94BF6D2-83F9-45B1-88D1-3F2F925AC0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94BF6D2-83F9-45B1-88D1-3F2F925AC0B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3BC756-4048-4834-B03E-1ACC00FD9D5A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3AAE4647-CE89-450A-88E0-DCA71C2F3FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AAE4647-CE89-450A-88E0-DCA71C2F3FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AAE4647-CE89-450A-88E0-DCA71C2F3FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AAE4647-CE89-450A-88E0-DCA71C2F3FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE87F79F-E832-48A9-9C19-9F96B9B603F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE87F79F-E832-48A9-9C19-9F96B9B603F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE87F79F-E832-48A9-9C19-9F96B9B603F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE87F79F-E832-48A9-9C19-9F96B9B603F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {575671A4-3602-45D3-BFD8-593A7C9FB9BA}
+	EndGlobalSection
+EndGlobal

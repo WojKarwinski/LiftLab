@@ -1,0 +1,107 @@
+Date;WorkoutName;ExerciseName;SetNumber;Weight;Reps;Notes;WorkoutNotes;WorkoutDuration
+2022-09-16 23:07:39;"Evening Workout";"Bench Press (Dumbbell)";1;21;10;;"Push";56m
+2022-09-16 23:07:39;"Evening Workout";"Bench Press (Dumbbell)";2;24;10;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Bench Press (Dumbbell)";3;30;6;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Bench Press (Dumbbell)";1;24;6;;;"Incline";56m
+2022-09-16 23:07:39;"Evening Workout";"Bench Press (Dumbbell)";2;26;4;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Bench Press (Dumbbell)";3;22;10;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Chest Fly (Band)";1;14;15;;;"Flat";56m
+2022-09-16 23:07:39;"Evening Workout";"Chest Fly (Band)";2;18;14;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Chest Fly (Band)";3;20;12;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Triceps Pushdown (Cable - Straight Bar)";1;27;15;;;"Flat";56m
+2022-09-16 23:07:39;"Evening Workout";"Triceps Pushdown (Cable - Straight Bar)";2;36;15;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Triceps Pushdown (Cable - Straight Bar)";3;59;8;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Triceps Extension";1;27;15;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Triceps Extension";2;27;10;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Triceps Extension";3;18;15;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Hammer Curl (Cable)";1;23;12;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Hammer Curl (Cable)";2;23;20;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Bicep Curl (Cable)";1;36;12;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Bicep Curl (Cable)";2;36;12;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Shoulder Press (Machine)";1;27;12;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Shoulder Press (Machine)";2;32;12;;;56m
+2022-09-16 23:07:39;"Evening Workout";"Shoulder Press (Machine)";3;32;12;;;56m
+2022-10-06 15:08:36;"Chest + Shoulders";"Bench Press (Dumbbell)";1;24;8;;;"Flat";39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Bench Press (Dumbbell)";2;24;8;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Bench Press (Dumbbell)";3;24;6;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Bench Press (Dumbbell)";1;20;8;;;"Flat";39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Bench Press (Dumbbell)";2;20;8;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Bench Press (Dumbbell)";3;20;8;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Chest Fly (Band)";1;7.9;12;;;"Flat";39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Chest Fly (Band)";2;7.9;12;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Chest Fly (Band)";3;10.2;12;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Shoulder Press (Machine)";1;27;12;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Shoulder Press (Machine)";2;32;12;;;39m
+2022-10-06 15:08:36;"Chest + Shoulders";"Shoulder Press (Machine)";3;36;12;;;39m
+2023-01-05 22:59:37;"New workout template";"Seated Overhead Press (Dumbbell)";1;12;12;;;"Shoulders/arms";38m
+2023-01-05 22:59:37;"New workout template";"Seated Overhead Press (Dumbbell)";2;14;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Seated Overhead Press (Dumbbell)";3;18;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Lu Raises";1;2.5;10;;;"Shoulders";38m
+2023-01-05 22:59:37;"New workout template";"Lu Raises";2;2.5;10;;;38m
+2023-01-05 22:59:37;"New workout template";"Lu Raises";3;2.5;10;;;38m
+2023-01-05 22:59:37;"New workout template";"Shoulder Press (Machine)";1;32;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Shoulder Press (Machine)";2;36;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Shoulder Press (Machine)";3;41;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Bicep Curl (Barbell)";1;20;10;;;38m
+2023-01-05 22:59:37;"New workout template";"Bicep Curl (Barbell)";2;20;10;;;38m
+2023-01-05 22:59:37;"New workout template";"Bicep Curl (Barbell)";3;20;10;;;38m
+2023-01-05 22:59:37;"New workout template";"Single Arm Bicep Curl (cable)";1;14;10;;;"Arms";38m
+2023-01-05 22:59:37;"New workout template";"Single Arm Bicep Curl (cable)";2;14;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Single Arm Bicep Curl (cable)";3;14;12;;;38m
+2023-01-05 22:59:37;"New workout template";"Triceps Extension";1;27;15;;;38m
+2023-01-05 22:59:37;"New workout template";"Triceps Extension";2;32;15;;;38m
+2023-01-05 22:59:37;"New workout template";"Triceps Extension";3;32;15;;;38m
+2023-01-05 22:59:37;"New workout template";"Triceps Extension (Cable)";1;18;15;;;38m
+2023-01-05 22:59:37;"New workout template";"Triceps Extension (Cable)";2;23;20;;;38m
+2023-01-05 22:59:37;"New workout template";"Triceps Extension (Cable)";3;23;15;;;38m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Bench Press (Dumbbell)";1;20;12;;;"Flat";;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Bench Press (Dumbbell)";2;22;12;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Bench Press (Dumbbell)";3;24;12;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Bench Press (Dumbbell)";1;24;12;;;"Flat";;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Bench Press (Dumbbell)";2;24;12;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Chest Press (Machine)";1;32;12;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Chest Press (Machine)";2;39;12;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Chest Press (Machine)";3;52;10;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Triceps Extension";1;32;15;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Triceps Extension";2;32;10;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Triceps Extension";3;32;10;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Lateral Raise (Dumbbell)";1;7;10;;;"Shoulders";36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Lateral Raise (Dumbbell)";2;7;10;;;36m
+2023-01-06 22:33:22;"Chest + Tricep & Shoulders";"Lateral Raise (Dumbbell)";3;6;12;;;36m
+2023-01-08 21:57:42;"Pull";"Bent Over Row (Barbell)";1;12;20;;;"Back";1h 10m
+2023-01-08 21:57:42;"Pull";"Bent Over Row (Barbell)";2;40;12;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Bent Over Row (Barbell)";3;60;8;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Bent Over Row (Barbell)";4;65;6;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Lat Pulldown (Machine)";1;60;12;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Lat Pulldown (Machine)";2;80;10;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Lat Pulldown (Machine)";3;100;10;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Seated Row (Cable)";1;32;12;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Seated Row (Cable)";2;39;10;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Seated Row (Cable)";3;45;12;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Face Pull (Cable)";1;18;15;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Face Pull (Cable)";2;18;15;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Face Pull (Cable)";3;18;12;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Single Arm Bicep Curl (cable)";1;14;10;;;"Arms";1h 10m
+2023-01-08 21:57:42;"Pull";"Single Arm Bicep Curl (cable)";2;18;10;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Single Arm Bicep Curl (cable)";3;14;12;;;1h 10m
+2023-01-08 21:57:42;"Pull";"Bicep Curl (Barbell)";1;30;8;;;1h 10m
+2023-01-09 22:20:36;"Legs";"Lying Leg Curl (Machine)";1;41;10;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Lying Leg Curl (Machine)";2;50;10;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Lying Leg Curl (Machine)";3;54;8;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Standing Calf Raise (Machine)";1;45;15;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Standing Calf Raise (Machine)";2;52;15;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Standing Calf Raise (Machine)";3;45;15;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Squat (Barbell)";1;20;15;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Squat (Barbell)";2;60;8;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Squat (Barbell)";3;80;6;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Squat (Barbell)";4;95;5;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Squat (Barbell)";5;70;8;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Glute Ham Raise";1;10;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Glute Ham Raise";2;10;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Glute Ham Raise";3;10;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Romanian Deadlift (Dumbbell)";1;32;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Romanian Deadlift (Dumbbell)";2;36;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Romanian Deadlift (Dumbbell)";3;40;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Leg Extension (Machine)";1;39;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Leg Extension (Machine)";2;52;12;;;1h 19m
+2023-01-09 22:20:36;"Legs";"Leg Extension (Machine)";3;52;10;;;1h 19m

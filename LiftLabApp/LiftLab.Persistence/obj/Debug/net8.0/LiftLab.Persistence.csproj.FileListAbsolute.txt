@@ -1,0 +1,15 @@
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\bin\Debug\net8.0\LiftLab.Persistence.deps.json
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\bin\Debug\net8.0\LiftLab.Persistence.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\bin\Debug\net8.0\LiftLab.Persistence.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.csproj.AssemblyReference.cache
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.AssemblyInfoInputs.cache
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.AssemblyInfo.cs
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.csproj.CoreCompileInputs.cache
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\refint\LiftLab.Persistence.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\ref\LiftLab.Persistence.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\bin\Debug\net8.0\LiftLab.Domain.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\bin\Debug\net8.0\LiftLab.Domain.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Persistence\obj\Debug\net8.0\LiftLab.Persistence.csproj.CopyComplete

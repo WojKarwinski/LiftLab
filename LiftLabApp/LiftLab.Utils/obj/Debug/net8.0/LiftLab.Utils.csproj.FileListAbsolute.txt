@@ -1,0 +1,17 @@
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Utils.deps.json
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Utils.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Utils.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Domain.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Persistence.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Domain.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\bin\Debug\net8.0\LiftLab.Persistence.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.csproj.AssemblyReference.cache
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.AssemblyInfoInputs.cache
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.AssemblyInfo.cs
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.csproj.CoreCompileInputs.cache
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.csproj.CopyComplete
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\refint\LiftLab.Utils.dll
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\LiftLab.Utils.pdb
+C:\School 2023-2024\Graduaatsproef\LiftLab\LiftLab\LiftLab.Utils\obj\Debug\net8.0\ref\LiftLab.Utils.dll

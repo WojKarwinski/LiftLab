@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx run angularapp:ng",
+    "startTime": "2023-11-18T20:06:00.475Z",
+    "endTime": "2023-11-18T20:06:02.866Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "angularapp:ng",
+      "target": "ng",
+      "projectName": "angularapp",
+      "hash": "16926882534671027203",
+      "startTime": "2023-11-18T20:06:00.480Z",
+      "endTime": "2023-11-18T20:06:02.861Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}
