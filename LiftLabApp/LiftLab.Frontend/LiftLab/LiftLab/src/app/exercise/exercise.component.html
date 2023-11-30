@@ -1,0 +1,16 @@
+<div class="exercise-container">
+    <h2>{{ exercise.name }}</h2>
+    <div class="sets-header">
+        <span>SET</span>
+        <span>KG</span>
+        <span>REPS</span>
+        <span>RPE</span>
+        <span></span>
+    </div>
+    <div *ngFor="let set of exercise.sets; let i = index">
+        <app-set [set]="set" [setNumber]="i+1"></app-set>
+    </div>
+    <div class="button-container">
+        <button (click)="addSet()">Add Set</button>
+    </div>
+</div>

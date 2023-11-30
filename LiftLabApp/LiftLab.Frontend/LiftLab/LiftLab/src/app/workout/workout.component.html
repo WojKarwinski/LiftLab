@@ -1,0 +1,36 @@
+<div class="workout-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#timerModal">
+                <!-- Replace with an actual icon if available -->
+                <span class="timer-icon">&#9200;</span> <!-- This is a placeholder for a clock icon -->
+                <span class="timer">{{ timerDisplay }}</span>
+            </button>
+        </div>
+        <div>
+            <button class="btn btn-success" (click)="finishWorkout()">FINISH</button>
+        </div>
+    </div>
+    <div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="timerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="timerModalLabel">Choose Timer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(60); closeModal()">1:00</button>
+                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(120); closeModal()">2:00</button>
+                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(180); closeModal()">3:00</button>
+                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(240); closeModal()">4:00</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="workout-title">{{ workoutData.name }}</h1>
+    <!-- Iterate over the exercises -->
+    <div *ngFor="let exercise of workoutData.exercises">
+        <app-exercise [exercise]="exercise"></app-exercise>
+    </div>
+</div>

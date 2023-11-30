@@ -1,0 +1,32 @@
+.workout-container {
+  background-color: #222831; /* Adjust to the color you want */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.header-actions {
+  margin-bottom: 20px;
+}
+
+.timer-icon {
+  /* Use a real icon and adjust the styling as necessary */
+  margin-right: 5px;
+}
+
+.btn-outline-light {
+  color: #fff; /* White text for timer button */
+  border-color: #fff; /* White border for timer button */
+  background-color: transparent;
+}
+
+.btn-success {
+  background-color: #5cb85c; /* Bootstrap success color */
+  border-color: #4cae4c; /* Darken border color for better contrast */
+}
+
+.workout-title {
+  font-size: 1.5rem; /* Adjust size as necessary */
+  margin-bottom: 20px; /* Space between title and first exercise */
+  text-align: center; /* Center the title */
+}

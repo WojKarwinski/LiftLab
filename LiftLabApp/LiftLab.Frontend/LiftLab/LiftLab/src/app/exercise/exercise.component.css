@@ -1,0 +1,47 @@
+.exercise-container {
+  background-color: #393e46;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.exercise-container h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.exercise-container .button {
+  background-color: #00adb5;
+}
+.sets-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-weight: bold;
+  border-bottom: 1px solid #555; /* add a line to distinguish the header */
+}
+
+.sets-header span {
+  flex-basis: 33.33%; /* Divide the space equally between SET, KG, and REPS */
+  text-align: left;
+}
+
+/* Adjust the .set-container style to match the header layout */
+.set-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  /* ... other styles ... */
+}
+
+.set-container input {
+  text-align: center; /* Align the text to center for inputs */
+  /* ... other styles ... */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; /* Add some space above the button */
+}

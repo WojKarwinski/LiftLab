@@ -1,0 +1,21 @@
+<div class="set-container">
+  <span class="setNumber">{{ setNumber }}</span>
+  <input type="number" [(ngModel)]="set.weight" />
+  <input type="number" [(ngModel)]="set.reps" />
+
+  <!-- Slider and Value Display -->
+  <p-slider
+    (touchstart)="showSliderValue($event)"
+    (touchend)="hideSliderValue()"
+    [(ngModel)]="value"
+    [min]="1"
+    [max]="10"
+    [step]="1"
+  ></p-slider>
+  <span *ngIf="showValue" id="slider-tooltip" class="slider-value">{{
+    value
+  }}</span>
+
+  <input class="checkBox" type="checkbox" />
+  <!-- Add your confirm button and any other controls you need -->
+</div>

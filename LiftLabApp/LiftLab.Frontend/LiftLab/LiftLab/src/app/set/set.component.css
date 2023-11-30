@@ -1,0 +1,50 @@
+.set-container {
+  padding: 10px;
+  background-color: #222831;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.set-container span {
+  margin-right: 5px;
+}
+
+.set-container input {
+  background-color: #393e46;
+  border: 1px solid #393e46;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+  margin-right: 5px;
+  width: 60px;
+  text-align: center;
+}
+
+.set-container input:focus {
+  outline: none;
+  border-color: #00adb5;
+}
+
+.setNumber {
+  color: rgb(53, 157, 192);
+  padding-right: 5vw;
+}
+
+p-slider {
+  width: 15vw;
+}
+.checkBox {
+  size: 150% !important;
+}
+.slider-value {
+  position: fixed;
+
+  color: rgb(15, 97, 138); /* White text */
+  text-align: center;
+  font-size: 70px; /* Adjust as needed */
+  z-index: 100;
+  transform: translateX(-50%); /* Center horizontally relative to touch point */
+}
