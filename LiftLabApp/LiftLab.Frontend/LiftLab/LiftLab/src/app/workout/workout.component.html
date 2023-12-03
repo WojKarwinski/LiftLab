@@ -84,12 +84,19 @@
     <button (click)="saveNote()">Save Note</button>
     <button (click)="cancelNote()">Cancel</button>
   </div>
+  <div>
+    <div *ngIf="workoutData.note">
+      <p>{{ workoutData.note }}</p>
+    </div>
+  </div>
 
   <!-- Iterate over the exercises -->
   <div *ngFor="let exercise of workoutData.exercises">
     <app-exercise
       [exercise]="exercise"
       (removeSetEvent)="removeSetFromExercise($event)"
-    ></app-exercise>
+      (addSetEvent)="addSetToExercise($event)"
+    >
+    </app-exercise>
   </div>
 </div>

@@ -43,8 +43,4 @@ export class SetComponent implements OnInit {
   toggleCheckbox(set: any): void {
     set.checked = !set.checked;
   }
-  removeSet(): void {
-    console.log('HERLLO');
-    this.removeSetEvent.emit();
-  }
 }

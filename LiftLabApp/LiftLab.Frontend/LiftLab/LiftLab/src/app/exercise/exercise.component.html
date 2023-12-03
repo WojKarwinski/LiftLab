@@ -12,7 +12,6 @@
     <div
       appSwipe
       (swiping)="handleSwipe($event, setIndex)"
-      (swipeLeft)="removeSet(setIndex)"
       (swipeEnd)="resetSwipeStyle(setIndex)"
       [ngStyle]="swipeStyles[setIndex]"
     >

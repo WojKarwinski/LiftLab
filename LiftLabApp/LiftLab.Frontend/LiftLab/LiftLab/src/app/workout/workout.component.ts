@@ -91,7 +91,6 @@ export class WorkoutComponent implements OnInit {
 
   cancelNote(): void {
     this.noteMode = false;
-    // Optionally reset the note to original if edit is canceled
   }
 
   addSetToExercise(exerciseId: number): void {
@@ -100,7 +99,7 @@ export class WorkoutComponent implements OnInit {
     );
     if (exercise) {
       const newSetNumber = exercise.sets.length + 1;
-      const newSet = { setNumber: newSetNumber, reps: 0, weight: 0 }; // default values
+      const newSet = { setNumber: newSetNumber, reps: 0, weight: 0 };
       exercise.sets.push(newSet);
     }
   }

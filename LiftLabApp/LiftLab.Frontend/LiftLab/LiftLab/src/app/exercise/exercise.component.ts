@@ -26,15 +26,18 @@ export class ExerciseComponent implements OnInit {
         opacity: 1 - Math.min(distance / 100, 1),
       };
     }
-  }
-
-  removeSet(setIndex: number): void {
-    this.exercise.sets.splice(setIndex, 1);
-    this.swipeStyles.splice(setIndex, 1); // Remove the style for the removed set
+    if (distance > 100) {
+      this.removeSetEvent.emit({
+        exerciseId: this.exercise.exerciseId,
+        setIndex,
+      });
+      this.swipeStyles.splice(setIndex, 1);
+    }
   }
 
   resetSwipeStyle(setIndex: number): void {
     this.swipeStyles[setIndex] = {};
   }
+
   constructor() {}
 }
