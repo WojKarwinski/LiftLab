@@ -1,0 +1,274 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.UI\\webapi\\webapi.csproj": {}
+  },
+  "projects": {
+    "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj",
+        "projectName": "LiftLab.Domain",
+        "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj",
+        "packagesPath": "C:\\Users\\Wojte\\.nuget\\packages\\",
+        "outputPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Wojte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj",
+        "projectName": "LiftLab.Persistence",
+        "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj",
+        "packagesPath": "C:\\Users\\Wojte\\.nuget\\packages\\",
+        "outputPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Wojte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj": {
+                "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.UI\\webapi\\webapi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.UI\\webapi\\webapi.csproj",
+        "projectName": "webapi",
+        "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.UI\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\Wojte\\.nuget\\packages\\",
+        "outputPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.UI\\webapi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Wojte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj": {
+                "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj"
+              },
+              "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj": {
+                "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj"
+              },
+              "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj": {
+                "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj",
+        "projectName": "LiftLab.Utils",
+        "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\LiftLab.Utils.csproj",
+        "packagesPath": "C:\\Users\\Wojte\\.nuget\\packages\\",
+        "outputPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Utils\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Wojte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj": {
+                "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Domain\\LiftLab.Domain.csproj"
+              },
+              "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj": {
+                "projectPath": "D:\\School 2023-2024\\LiftLab\\LiftLabApp\\LiftLab.Persistence\\LiftLab.Persistence.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,36 +1,95 @@
 <div class="workout-container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#timerModal">
-                <!-- Replace with an actual icon if available -->
-                <span class="timer-icon">&#9200;</span> <!-- This is a placeholder for a clock icon -->
-                <span class="timer">{{ timerDisplay }}</span>
-            </button>
-        </div>
-        <div>
-            <button class="btn btn-success" (click)="finishWorkout()">FINISH</button>
-        </div>
+  <!-- Timer button and Finish workout button -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Timer button -->
+    <div>
+      <button class="btn btn-outline-light" (click)="open(timerModal)">
+        <fa-icon [icon]="faHourglass3"></fa-icon>
+        <span class="timer">{{ timerDisplay }}</span>
+      </button>
     </div>
-    <div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="timerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="timerModalLabel">Choose Timer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(60); closeModal()">1:00</button>
-                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(120); closeModal()">2:00</button>
-                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(180); closeModal()">3:00</button>
-                    <button class="btn btn-primary w-100 mb-2" (click)="setTimer(240); closeModal()">4:00</button>
-                </div>
-            </div>
-        </div>
+    <!-- Finish workout button -->
+    <div>
+      <button class="btn btn-success" (click)="finishWorkout()">FINISH</button>
     </div>
+  </div>
 
-    <h1 class="workout-title">{{ workoutData.name }}</h1>
-    <!-- Iterate over the exercises -->
-    <div *ngFor="let exercise of workoutData.exercises">
-        <app-exercise [exercise]="exercise"></app-exercise>
+  <!-- Modal definition -->
+  <ng-template #timerModal let-modal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="timerModalLabel">Choose Timer</h5>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+          ></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- Timer options -->
+          <button
+            class="btn btn-primary w-100 mb-2"
+            (click)="setTimer(60); modal.close()"
+          >
+            1:00
+          </button>
+          <button
+            class="btn btn-primary w-100 mb-2"
+            (click)="setTimer(120); modal.close()"
+          >
+            2:00
+          </button>
+          <button
+            class="btn btn-primary w-100 mb-2"
+            (click)="setTimer(180); modal.close()"
+          >
+            3:00
+          </button>
+          <button
+            class="btn btn-primary w-100 mb-2"
+            (click)="setTimer(240); modal.close()"
+          >
+            4:00
+          </button>
+        </div>
+      </div>
     </div>
+  </ng-template>
+
+  <!-- Workout title and dropdown menu for edit options -->
+  <div class="workout-title-container">
+    <ng-container *ngIf="!editMode; else editField">
+      <h1 class="workout-title">{{ workoutData.name }}</h1>
+      <div class="menu-icon" (click)="toggleDropdownMenu()">⋮</div>
+    </ng-container>
+    <ng-template #editField>
+      <input type="text" [(ngModel)]="workoutData.name" class="form-control" />
+      <button (click)="saveName()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </ng-template>
+
+    <div class="dropdown-menu" *ngIf="showDropdownMenu">
+      <div (click)="toggleEditMode()">Edit Name</div>
+      <div (click)="toggleNoteMode()">Add/Edit Note</div>
+    </div>
+  </div>
+
+  <!-- Note Input -->
+  <div *ngIf="noteMode">
+    <textarea [(ngModel)]="workoutData.note" class="form-control"></textarea>
+    <button (click)="saveNote()">Save Note</button>
+    <button (click)="cancelNote()">Cancel</button>
+  </div>
+
+  <!-- Iterate over the exercises -->
+  <div *ngFor="let exercise of workoutData.exercises">
+    <app-exercise
+      [exercise]="exercise"
+      (removeSetEvent)="removeSetFromExercise($event)"
+    ></app-exercise>
+  </div>
 </div>

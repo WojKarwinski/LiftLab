@@ -1,17 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TimerService } from '../services/timer.service';
-declare var bootstrap: any;
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
-  styleUrls: ['./workout.component.css']
+  styleUrls: ['./workout.component.css'],
 })
 export class WorkoutComponent implements OnInit {
-   @Input() workoutData: any; // Add your workout data structure here
-  timerDisplay: string = '00:00';
+  @Input() faHourglass3: any;
+  @Input() workoutData: any; // Include your workout data structure here
 
-  constructor(private timerService: TimerService) {}
+  timerDisplay: string = '00:00';
+  editMode: boolean = false;
+  noteMode: boolean = false;
+  showDropdownMenu: boolean = false;
+
+  constructor(
+    private timerService: TimerService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.timerService.timerValue$.subscribe((value: number) => {
@@ -19,10 +27,8 @@ export class WorkoutComponent implements OnInit {
     });
   }
 
-  updateTimerDisplay(value: number): void {
-    const minutes: number = Math.floor(value / 60);
-    const seconds: number = value - minutes * 60;
-    this.timerDisplay = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  open(content: any): void {
+    this.modalService.open(content);
   }
 
   setTimer(seconds: number): void {
@@ -30,14 +36,80 @@ export class WorkoutComponent implements OnInit {
     this.timerService.startTimer();
   }
 
-  // Call this method when the FINISH button is clicked
   finishWorkout(): void {
     this.timerService.stopTimer();
     // Additional logic to handle the completion of the workout
   }
 
   closeModal(): void {
-    const timerModal = bootstrap.Modal.getInstance(document.getElementById('timerModal'));
-    timerModal.hide();
+    this.modalService.dismissAll();
+  }
+
+  updateTimerDisplay(value: number): void {
+    const minutes: number = Math.floor(value / 60);
+    const seconds: number = value % 60;
+    this.timerDisplay = `${minutes < 10 ? '0' : ''}${minutes}:${
+      seconds < 10 ? '0' : ''
+    }${seconds}`;
+  }
+
+  toggleDropdownMenu(): void {
+    console.log('Toggling dropdown menu');
+    this.showDropdownMenu = !this.showDropdownMenu;
+  }
+
+  toggleEditMode(): void {
+    this.editMode = !this.editMode;
+    this.showDropdownMenu = false;
+    this.noteMode = false; // Close note mode if open
+  }
+
+  toggleNoteMode(): void {
+    this.noteMode = !this.noteMode;
+    this.showDropdownMenu = false;
+    this.editMode = false; // Close edit mode if open
+  }
+
+  saveName(): void {
+    if (this.workoutData.name.trim().length > 0) {
+      // Save or process the edited name
+    }
+    this.editMode = false;
+  }
+
+  saveNote(): void {
+    if (this.workoutData.note.trim().length > 0) {
+      // Save or process the note
+    }
+    this.noteMode = false;
+  }
+
+  cancelEdit(): void {
+    this.editMode = false;
+    // Optionally reset the name to original if edit is canceled
+  }
+
+  cancelNote(): void {
+    this.noteMode = false;
+    // Optionally reset the note to original if edit is canceled
+  }
+
+  addSetToExercise(exerciseId: number): void {
+    const exercise = this.workoutData.exercises.find(
+      (e: any) => e.exerciseId === exerciseId
+    );
+    if (exercise) {
+      const newSetNumber = exercise.sets.length + 1;
+      const newSet = { setNumber: newSetNumber, reps: 0, weight: 0 }; // default values
+      exercise.sets.push(newSet);
+    }
+  }
+  removeSetFromExercise(event: { exerciseId: number; setIndex: number }): void {
+    const exercise = this.workoutData.exercises.find(
+      (e: any) => e.exerciseId === event.exerciseId
+    );
+    if (exercise) {
+      exercise.sets.splice(event.setIndex, 1);
+    }
   }
 }

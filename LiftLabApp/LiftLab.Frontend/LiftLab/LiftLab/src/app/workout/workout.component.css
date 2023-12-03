@@ -1,32 +1,110 @@
 .workout-container {
-  background-color: #222831; /* Adjust to the color you want */
-  color: white;
-  padding: 15px;
-  border-radius: 5px;
+  background-color: #222831; /* Dark background for better contrast */
+  color: white; /* White text for readability */
+  padding: 20px 5px 20px 5px; /* Increased padding for touch interactions */
+  border-radius: 10px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .header-actions {
-  margin-bottom: 20px;
+  margin-bottom: 25px; /* Increased margin for better spacing */
+  display: flex; /* Using flexbox for better alignment */
+  justify-content: space-between; /* Spacing out actions evenly */
 }
 
 .timer-icon {
-  /* Use a real icon and adjust the styling as necessary */
-  margin-right: 5px;
+  /* Assuming you're using an icon font like FontAwesome */
+  font-size: 1.2em; /* Larger icon for easy interaction */
+  margin-right: 10px; /* More space for touch friendliness */
 }
 
 .btn-outline-light {
-  color: #fff; /* White text for timer button */
-  border-color: #fff; /* White border for timer button */
+  color: #fff; /* White text for clarity */
+  border-color: #fff; /* White border for consistency */
   background-color: transparent;
+  padding: 10px 15px; /* Bigger button for easier interaction */
+  border-radius: 5px; /* Rounded corners */
 }
 
 .btn-success {
   background-color: #5cb85c; /* Bootstrap success color */
-  border-color: #4cae4c; /* Darken border color for better contrast */
+  border-color: #4cae4c; /* Darken border color for contrast */
+  padding: 10px 15px; /* Consistent button sizing */
+  border-radius: 5px; /* Rounded corners */
 }
 
 .workout-title {
-  font-size: 1.5rem; /* Adjust size as necessary */
-  margin-bottom: 20px; /* Space between title and first exercise */
+  font-size: 1.8rem; /* Slightly larger for emphasis */
+  margin-bottom: 25px; /* More spacing for better layout */
   text-align: center; /* Center the title */
+  font-weight: bold; /* Bold for better visibility */
+}
+
+.workout-title-container {
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 15px; /* Adjust as needed */
+  text-align: left;
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 1.5rem; /* Adjust the size as needed */
+  margin-left: 10px;
+}
+.dropdown-menu {
+  display: block;
+  top: 15%; /* Position it just below the parent container */
+  left: 10%;
+}
+
+/* Modal Dialog */
+.modal-dialog {
+  background-color: #222831; /* Dark background for the modal */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text for readability */
+  border: none; /* Remove default borders */
+}
+
+/* Modal Header */
+.modal-header {
+  border-bottom: 1px solid #393e46; /* Subtle separator */
+  padding: 15px; /* Padding for spacing */
+}
+
+/* Modal Title */
+.modal-title {
+  font-size: 1.5rem; /* Slightly larger for emphasis */
+  font-weight: bold; /* Bold for better visibility */
+}
+
+/* Close Button */
+.btn-close {
+  color: white; /* White color for the close button */
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px; /* Consistent padding */
+}
+
+/* Timer Option Buttons */
+.modal-body .btn {
+  background-color: #235eff; /* A shade of teal for primary buttons */
+  border-color: #007bff; /* Border color slightly darker than background */
+  padding: 12px 0; /* Padding for touch friendliness */
+  margin-bottom: 15px; /* Spacing between buttons */
+  border-radius: 5px; /* Rounded corners for the buttons */
+  font-size: 1.2rem; /* Larger font size for readability */
+}
+
+.modal-body .btn:hover {
+  background-color: #029dbb; /* Slightly lighter on hover */
 }

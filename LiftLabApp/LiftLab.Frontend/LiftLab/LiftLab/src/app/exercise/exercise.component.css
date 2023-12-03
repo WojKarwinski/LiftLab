@@ -16,7 +16,7 @@
 .sets-header {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 10px;
   font-weight: bold;
   border-bottom: 1px solid #555; /* add a line to distinguish the header */
 }
@@ -32,7 +32,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  /* ... other styles ... */
 }
 
 .set-container input {
@@ -44,4 +43,9 @@
   display: flex;
   justify-content: center;
   margin-top: 10px; /* Add some space above the button */
+}
+
+.addSetButton {
+  background-color: #5cb85c; /* Bootstrap success color */
+  border-color: #4cae4c; /* Darken border color for better contrast */
 }

@@ -8,20 +8,25 @@ import { WorkoutComponent } from './workout/workout.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { SetComponent } from './set/set.component';
 import { SliderModule } from 'primeng/slider';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SwipeDirective } from '../app/lib/swipe.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     WorkoutComponent,
     ExerciseComponent,
-    SetComponent
+    SetComponent,
+    SwipeDirective,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     SliderModule,
+    FontAwesomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

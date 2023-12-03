@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-set',
@@ -8,6 +8,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 export class SetComponent implements OnInit {
   @Input() set!: any;
   @Input() setNumber!: number;
+  @Output() removeSetEvent = new EventEmitter<void>();
   value!: number;
   showValue: boolean = false; // Flag to show/hide the value
   ngAfterViewInit(): void {
@@ -38,5 +39,12 @@ export class SetComponent implements OnInit {
   }
   hideSliderValue(): void {
     this.showValue = false;
+  }
+  toggleCheckbox(set: any): void {
+    set.checked = !set.checked;
+  }
+  removeSet(): void {
+    console.log('HERLLO');
+    this.removeSetEvent.emit();
   }
 }

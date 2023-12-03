@@ -36,9 +36,7 @@
 p-slider {
   width: 15vw;
 }
-.checkBox {
-  size: 150% !important;
-}
+
 .slider-value {
   position: fixed;
 
@@ -47,4 +45,54 @@ p-slider {
   font-size: 70px; /* Adjust as needed */
   z-index: 100;
   transform: translateX(-50%); /* Center horizontally relative to touch point */
+}
+
+.checkBox {
+  display: none; /* Hide the default checkbox */
+}
+
+.custom-checkbox {
+  /* Create a custom box */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Style for when the custom checkbox is checked */
+.custom-checkbox.checked {
+  background: #037031; /* Bootstrap primary color, for example */
+}
+
+.custom-checkbox.checked::after {
+  /* Add a checkmark inside the custom checkbox */
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox {
+  /* Create a custom box */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.set-container.glowing {
+  box-shadow: 0 0 10px #31a24c; /* Adjust the color and size as needed */
 }
