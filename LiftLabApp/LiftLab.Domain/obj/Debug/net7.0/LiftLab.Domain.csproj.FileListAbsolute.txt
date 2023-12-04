@@ -1,0 +1,12 @@
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\bin\Debug\net7.0\LiftLab.Domain.deps.json
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\bin\Debug\net7.0\LiftLab.Domain.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\bin\Debug\net7.0\LiftLab.Domain.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.csproj.AssemblyReference.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.AssemblyInfoInputs.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.AssemblyInfo.cs
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.csproj.CoreCompileInputs.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\refint\LiftLab.Domain.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\LiftLab.Domain.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Domain\obj\Debug\net7.0\ref\LiftLab.Domain.dll

@@ -1,21 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { TimerService } from '../services/timer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { faHourglass3 } from '@fortawesome/free-solid-svg-icons';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
   styleUrls: ['./workout.component.css'],
 })
 export class WorkoutComponent implements OnInit {
-  @Input() faHourglass3: any;
   @Input() workoutData: any; // Include your workout data structure here
-
+  @Input() allExercises: any[] = [];
+  @ViewChild('exerciseModal', { static: true }) exerciseModal: any;
+  searchTerm: string = '';
+  selectedMuscleGroup: string = 'All';
+  muscleGroups: string[] = ['All', 'Chest', 'Back', 'Legs', 'Arms', 'Core'];
+  faHourglass3 = faHourglass3;
   timerDisplay: string = '00:00';
   editMode: boolean = false;
   noteMode: boolean = false;
   showDropdownMenu: boolean = false;
-
+  showMuscleGroupDropdown: boolean = false;
   constructor(
     private timerService: TimerService,
     private modalService: NgbModal
@@ -104,11 +109,58 @@ export class WorkoutComponent implements OnInit {
     }
   }
   removeSetFromExercise(event: { exerciseId: number; setIndex: number }): void {
-    const exercise = this.workoutData.exercises.find(
+    const exerciseIndex = this.workoutData.exercises.findIndex(
       (e: any) => e.exerciseId === event.exerciseId
     );
-    if (exercise) {
+    if (exerciseIndex !== -1) {
+      const exercise = this.workoutData.exercises[exerciseIndex];
       exercise.sets.splice(event.setIndex, 1);
+
+      // Check if there are no sets left in the exercise
+      if (exercise.sets.length === 0) {
+        // Remove the exercise itself
+        this.workoutData.exercises.splice(exerciseIndex, 1);
+      }
     }
+  }
+  removeExercise(exerciseId: number): void {
+    const exerciseIndex = this.workoutData.exercises.findIndex(
+      (e: any) => e.exerciseId === exerciseId
+    );
+    if (exerciseIndex !== -1) {
+      this.workoutData.exercises.splice(exerciseIndex, 1);
+    }
+  }
+  openExerciseModal(): void {
+    this.modalService.open(this.exerciseModal);
+  }
+
+  addExerciseToWorkout(selectedExercise: any): void {
+    const newExercise = {
+      exerciseId: selectedExercise.id,
+      name: selectedExercise.name,
+      sets: [0], // Initialize one eet
+      // ... any other initial exercise properties
+    };
+
+    this.workoutData.exercises.push(newExercise);
+    this.modalService.dismissAll();
+  }
+  get filteredExercises(): any[] {
+    return this.allExercises.filter((exercise) => {
+      return (
+        exercise.name.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
+        (this.selectedMuscleGroup === 'All' ||
+          exercise.muscleGroup === this.selectedMuscleGroup)
+      );
+    });
+  }
+
+  selectMuscleGroup(group: string): void {
+    this.selectedMuscleGroup = group;
+  }
+
+  toggleMuscleGroupDropdown(): void {
+    this.showMuscleGroupDropdown = !this.showMuscleGroupDropdown;
   }
 }

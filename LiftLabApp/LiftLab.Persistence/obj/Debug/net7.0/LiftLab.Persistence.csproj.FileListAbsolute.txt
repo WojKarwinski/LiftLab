@@ -1,0 +1,15 @@
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\bin\Debug\net7.0\LiftLab.Persistence.deps.json
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\bin\Debug\net7.0\LiftLab.Persistence.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\bin\Debug\net7.0\LiftLab.Persistence.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\bin\Debug\net7.0\LiftLab.Domain.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\bin\Debug\net7.0\LiftLab.Domain.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.csproj.AssemblyReference.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.AssemblyInfoInputs.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.AssemblyInfo.cs
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.csproj.CoreCompileInputs.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.csproj.CopyComplete
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\refint\LiftLab.Persistence.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\LiftLab.Persistence.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Persistence\obj\Debug\net7.0\ref\LiftLab.Persistence.dll

@@ -69,5 +69,10 @@ namespace LiftLab.Domain
         {
             _workoutsRepository.AddExerciseSet(workoutId, exerciseNumber, set);
         }
+
+        public List<ExerciseList> GetAllExercises()
+        {
+            return _workoutsRepository.GetAllExercises();
+        }
     }
 }

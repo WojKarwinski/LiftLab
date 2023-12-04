@@ -1,51 +1,95 @@
+/* Exercise Container Styles */
 .exercise-container {
-  background-color: #393e46;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  background-color: #282828; /* dark background */
+  color: #ffffff; /* white text color */
   padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
 }
 
-.exercise-container h2 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.exercise-container .button {
-  background-color: #00adb5;
-}
-.sets-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  font-weight: bold;
-  border-bottom: 1px solid #555; /* add a line to distinguish the header */
-}
-
-.sets-header span {
-  flex-basis: 33.33%; /* Divide the space equally between SET, KG, and REPS */
-  text-align: left;
-}
-
-/* Adjust the .set-container style to match the header layout */
-.set-container {
+/* Exercise Header */
+.exercise-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  margin-bottom: 15px;
 }
 
-.set-container input {
-  text-align: center; /* Align the text to center for inputs */
-  /* ... other styles ... */
+.exercise-header h2 {
+  font-size: 1.5rem;
+  color: #ff6b6b; /* light red for exercise title */
 }
 
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  background: transparent;
+  border: none;
+  color: #ffffff; /* white color for the dropdown icon */
+}
+
+.dropdown-menu {
+  background-color: #2c2c2c; /* light dark background */
+  border: none;
+}
+
+.dropdown-item {
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #ff6b6b; /* light red hover effect */
+}
+
+/* Sets Header */
+.sets-header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Adjust according to your layout */
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Set Items */
+.app-set {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Adjust as per your content */
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #ffffff; /* white border for separation */
+}
+
+/* Add Set Button */
 .button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px; /* Add some space above the button */
+  text-align: center;
+  margin-top: 20px;
 }
 
 .addSetButton {
-  background-color: #5cb85c; /* Bootstrap success color */
-  border-color: #4cae4c; /* Darken border color for better contrast */
+  background-image: linear-gradient(
+    to right,
+    #ff6b6b,
+    #ff8787
+  ); /* light red gradient */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.addSetButton:hover {
+  background-image: linear-gradient(
+    to right,
+    #ff5050,
+    #ff7070
+  ); /* slightly darker gradient on hover */
+}
+
+/* Swipe Styles */
+[appSwipe] {
+  transition: transform 0.3s ease-in-out;
 }

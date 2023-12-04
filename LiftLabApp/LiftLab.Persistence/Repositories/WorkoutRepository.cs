@@ -1,4 +1,5 @@
-﻿using LiftLab.Domain.Interfaces;
+﻿using LiftLab.Domain;
+using LiftLab.Domain.Interfaces;
 using LiftLab.Domain.Model;
 using Microsoft.Data.SqlClient;
 
@@ -167,8 +168,6 @@ public class WorkoutRepository : IWorkoutsRepository
         }
     }
 
-
-
     public void AddSet(int workoutId, Set set)
     {
         throw new NotImplementedException();
@@ -202,5 +201,32 @@ public class WorkoutRepository : IWorkoutsRepository
     public void AddExerciseSet(int workoutId, int exerciseNumber, Set set)
     {
         throw new NotImplementedException();
+    }
+
+    public List<ExerciseList> GetAllExercises()
+    {
+        List<ExerciseList> exerciseList = new();
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM ExerciseList";
+            using(SqlCommand command = new(query, connection))
+            {
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        ExerciseList exercise = new()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            MuscleGroup = reader.GetString(reader.GetOrdinal("MuscleGroup"))
+                        };
+                        exerciseList.Add(exercise);
+                    }
+                }
+            }
+        }
+        return exerciseList;
     }
 }

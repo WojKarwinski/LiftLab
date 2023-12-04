@@ -20,5 +20,6 @@ namespace LiftLab.Domain.Interfaces
         void UpdateExercise(int workoutId, Exercise exercise);
         void DeleteExercise(int workoutId, int exerciseNumber);
         void AddExerciseSet(int workoutId, int exerciseNumber, Set set);
+        List<ExerciseList> GetAllExercises();
     }
 }

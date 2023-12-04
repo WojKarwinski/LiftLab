@@ -10,6 +10,8 @@ import { SetComponent } from './set/set.component';
 import { SliderModule } from 'primeng/slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwipeDirective } from '../app/lib/swipe.directive';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { SwipeDirective } from '../app/lib/swipe.directive';
     AppRoutingModule,
     SliderModule,
     FontAwesomeModule,
+    NgbModalModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

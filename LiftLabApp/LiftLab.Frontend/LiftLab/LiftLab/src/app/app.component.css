@@ -1,0 +1,6 @@
+/* Global Styles */
+body {
+  background-color: #393e46 !important; /* dark background */
+  color: #ffffff; /* white text color */
+  font-family: "Roboto", sans-serif; /* modern, readable font */
+}

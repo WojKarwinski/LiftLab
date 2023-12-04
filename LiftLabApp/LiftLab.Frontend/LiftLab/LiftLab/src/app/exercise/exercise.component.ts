@@ -1,13 +1,15 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrls: ['./exercise.component.css'],
 })
 export class ExerciseComponent implements OnInit {
+  faEllipsisV = faEllipsisV;
   @Input() exercise: any; // The exercise data passed in should be typed correctly
   @Output() addSetEvent = new EventEmitter<number>(); // Emitting exercise ID
+  @Output() removeExerciseEvent = new EventEmitter<number>();
   @Output() removeSetEvent = new EventEmitter<{
     exerciseId: any;
     setIndex: number;
@@ -37,6 +39,9 @@ export class ExerciseComponent implements OnInit {
 
   resetSwipeStyle(setIndex: number): void {
     this.swipeStyles[setIndex] = {};
+  }
+  removeExercise(): void {
+    this.removeExerciseEvent.emit(this.exercise.exerciseId);
   }
 
   constructor() {}

@@ -1,5 +1,18 @@
 <div class="exercise-container">
-  <h2>{{ exercise.name }}</h2>
+  <div class="exercise-header">
+    <h2>{{ exercise.name }}</h2>
+    <div class="dropdown">
+      <button id="dropdownMenuButton" data-bs-toggle="dropdown">
+        <fa-icon [icon]="faEllipsisV" aria-hidden="true"></fa-icon>
+        <!-- Using Font Awesome for the three dots icon -->
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button class="dropdown-item" (click)="removeExercise()">
+          Remove Exercise
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="sets-header">
     <span>SET</span>
     <span>KG</span>

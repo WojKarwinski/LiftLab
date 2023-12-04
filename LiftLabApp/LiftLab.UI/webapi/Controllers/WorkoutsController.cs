@@ -18,5 +18,11 @@ namespace webapi.Controllers
         {
             return Ok(_workoutsManager.GetAllWorkouts());
         }
+        // get list of all exercises
+        [HttpGet("exercises")]
+        public IActionResult GetAllExercises()
+        {
+            return Ok(_workoutsManager.GetAllExercises());
+        }
     }
 }

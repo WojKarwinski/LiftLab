@@ -1,6 +1,6 @@
 .set-container {
   padding: 10px;
-  background-color: #222831;
+  background-color: #282828; /* Dark background */
   margin-bottom: 10px;
   border-radius: 8px;
   display: flex;
@@ -10,13 +10,14 @@
 
 .set-container span {
   margin-right: 5px;
+  color: #ff6b6b; /* Light red accent for text */
 }
 
 .set-container input {
-  background-color: #393e46;
-  border: 1px solid #393e46;
+  background-color: #393e46; /* Dark grey background for input */
+  border: 1px solid #ff6b6b; /* Light red border */
   border-radius: 4px;
-  color: white;
+  color: white; /* White text for contrast */
   padding: 5px;
   margin-right: 5px;
   width: 60px;
@@ -25,22 +26,22 @@
 
 .set-container input:focus {
   outline: none;
-  border-color: #00adb5;
+  border-color: #ff6b6b; /* Light red focus border */
 }
 
 .setNumber {
-  color: rgb(53, 157, 192);
+  color: #ff6b6b; /* Light red color for set number */
   padding-right: 5vw;
 }
 
 p-slider {
-  width: 15vw;
+  width: 15vw; /* Slider width */
+  /* Additional styling for the slider may be required */
 }
 
 .slider-value {
   position: fixed;
-
-  color: rgb(15, 97, 138); /* White text */
+  color: #ff6b6b; /* Light red text */
   text-align: center;
   font-size: 70px; /* Adjust as needed */
   z-index: 100;
@@ -52,24 +53,21 @@ p-slider {
 }
 
 .custom-checkbox {
-  /* Create a custom box */
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: white;
+  background: #393e46;
   border-radius: 5px;
   position: relative;
-  border: 1px solid #ccc;
+  border: 1px solid #ff6b6b; /* Light red border */
   cursor: pointer;
 }
 
-/* Style for when the custom checkbox is checked */
 .custom-checkbox.checked {
-  background: #037031; /* Bootstrap primary color, for example */
+  background: #ff6b6b; /* Light red background when checked */
 }
 
 .custom-checkbox.checked::after {
-  /* Add a checkmark inside the custom checkbox */
   content: "";
   position: absolute;
   left: 6px;
@@ -81,18 +79,12 @@ p-slider {
   transform: rotate(45deg);
 }
 
-.custom-checkbox {
-  /* Create a custom box */
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 5px;
-  position: relative;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
 .set-container.glowing {
-  box-shadow: 0 0 10px #31a24c; /* Adjust the color and size as needed */
+  box-shadow: 0 0 10px #ff6b6b; /* Glowing effect in light red */
+}
+:host ::ng-deep .p-slider-handle {
+  border-color: #f14c4c;
+}
+:host ::ng-deep .p-slider-range {
+  background-color: #f14c4c;
 }
