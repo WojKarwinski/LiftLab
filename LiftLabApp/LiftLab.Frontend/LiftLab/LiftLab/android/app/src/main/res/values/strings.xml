@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">LiftLab</string>
+    <string name="title_activity_main">LiftLab</string>
+    <string name="package_name">LiftLab.com</string>
+    <string name="custom_url_scheme">LiftLab.com</string>
+</resources>

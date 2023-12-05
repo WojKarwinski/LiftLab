@@ -7,12 +7,12 @@
 .btn-outline-light {
   background-color: transparent;
   border-color: #ffffff; /* white border */
-  margin: 10px;
+  margin: 20px;
 }
 
 .btn-success,
 .btn-primary {
-  margin: 10px;
+  margin: 20px;
   background-image: linear-gradient(
     to right,
     #ff6b6b,
