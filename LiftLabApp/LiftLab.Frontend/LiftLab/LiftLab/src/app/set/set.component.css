@@ -1,6 +1,6 @@
 .set-container {
   padding: 10px;
-  background-color: #282828; /* Dark background */
+  background-color: transparent; /* Dark background */
   margin-bottom: 10px;
   border-radius: 8px;
   display: flex;
@@ -73,6 +73,9 @@ p-slider {
 }
 :host ::ng-deep .p-slider-handle {
   border-color: #f14c4c;
+  height: 0px;
+  width: 0;
+  transform: translateX(175%);
 }
 :host ::ng-deep .p-slider-range {
   background-color: #f14c4c;

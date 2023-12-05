@@ -1,6 +1,6 @@
 /* Exercise Container Styles */
 .exercise-container {
-  background-color: #282828; /* dark background */
+  background-color: transparent; /* dark background */
   color: #ffffff; /* white text color */
   padding: 15px;
   margin-bottom: 20px;

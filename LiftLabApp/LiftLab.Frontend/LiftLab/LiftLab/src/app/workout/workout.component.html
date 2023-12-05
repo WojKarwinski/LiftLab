@@ -110,29 +110,28 @@
       <h5 class="modal-title">Select an Exercise</h5>
       <button
         type="button"
-        class="close"
+        class="btn-close"
         aria-label="Close"
         (click)="modal.dismiss('Cross click')"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
+      ></button>
     </div>
     <div class="modal-body">
-      <input
-        type="text"
-        class="form-control mb-2"
-        placeholder="Search by name..."
-        [(ngModel)]="searchTerm"
-      />
+      <div class="selectExerciseModal">
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Search by name..."
+          [(ngModel)]="searchTerm"
+        />
 
-      <!-- Button to show dropdown -->
-      <button
-        class="btn btn-secondary mb-2"
-        (click)="toggleMuscleGroupDropdown()"
-      >
-        Select Muscle Group
-      </button>
-
+        <!-- Button to show dropdown -->
+        <button
+          class="btn btn-secondary mb-2"
+          (click)="toggleMuscleGroupDropdown()"
+        >
+          Select Muscle Group
+        </button>
+      </div>
       <!-- Dropdown for muscle group selection -->
       <div class="dropdown mb-2" *ngIf="showMuscleGroupDropdown">
         <div class="dropdown-menu show">

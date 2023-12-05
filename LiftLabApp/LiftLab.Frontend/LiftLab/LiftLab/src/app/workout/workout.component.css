@@ -27,8 +27,23 @@
 
 /* Modal Styles */
 .modal-content {
-  background-color: #1e1e1e; /* slightly lighter dark background */
+  max-height: 50vh; /* 50% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  background-color: #1e1e1e !important; /* slightly lighter dark background */
   color: #ffffff;
+}
+.modal-header {
+  background-color: #1e1e1e !important;
+}
+.modal-body {
+  max-height: calc(
+    50vh - 100px
+  ); /* Adjust the height to account for header/footer */
+  overflow-y: scroll; /* Enable scrolling inside the body */
+  background-color: #1e1e1e !important;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-header .modal-title {
@@ -36,7 +51,8 @@
 }
 
 .btn-close {
-  color: #ff6b6b; /* light red close button */
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
 }
 
 /* Workout Title and Dropdown Menu */
@@ -53,6 +69,7 @@
   display: block;
   top: 15%; /* Position it just below the parent container */
   left: 10%;
+  --bs-dropdown-link-color: white;
   color: white;
   padding: 10px;
 }
@@ -85,3 +102,10 @@
 }
 /* Additional Styles */
 /* Add any additional specific styles you need here */
+.selectExerciseModal {
+  background-color: #1e1e1e;
+  display: flex;
+}
+.selectExerciseModal > * {
+  flex: 1;
+}
