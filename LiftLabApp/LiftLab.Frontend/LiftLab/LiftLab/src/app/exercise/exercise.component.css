@@ -88,8 +88,3 @@
     #ff7070
   ); /* slightly darker gradient on hover */
 }
-
-/* Swipe Styles */
-[appSwipe] {
-  transition: transform 0.3s ease-in-out;
-}

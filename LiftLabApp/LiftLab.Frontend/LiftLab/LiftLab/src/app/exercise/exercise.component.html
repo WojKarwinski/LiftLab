@@ -28,7 +28,12 @@
       (swipeEnd)="resetSwipeStyle(setIndex)"
       [ngStyle]="swipeStyles[setIndex]"
     >
-      <app-set [set]="set" [setNumber]="setIndex + 1"></app-set>
+      <app-set
+        [set]="set"
+        [setNumber]="setIndex + 1"
+        (rpeSliderActive)="handleRpeSliderActive($event)"
+      >
+      </app-set>
     </div>
   </div>
 

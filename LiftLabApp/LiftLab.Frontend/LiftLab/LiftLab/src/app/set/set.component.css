@@ -7,12 +7,10 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .set-container span {
   margin-right: 5px;
   color: #ff6b6b; /* Light red accent for text */
 }
-
 .set-container input {
   background-color: #393e46; /* Dark grey background for input */
   border: 1px solid #ff6b6b; /* Light red border */
@@ -23,22 +21,18 @@
   width: 60px;
   text-align: center;
 }
-
 .set-container input:focus {
   outline: none;
   border-color: #ff6b6b; /* Light red focus border */
 }
-
 .setNumber {
   color: #ff6b6b; /* Light red color for set number */
   padding-right: 5vw;
 }
-
 p-slider {
   width: 15vw; /* Slider width */
   /* Additional styling for the slider may be required */
 }
-
 .slider-value {
   position: fixed;
   color: #ff6b6b; /* Light red text */
@@ -47,11 +41,9 @@ p-slider {
   z-index: 100;
   transform: translateX(-50%); /* Center horizontally relative to touch point */
 }
-
 .checkBox {
   display: none; /* Hide the default checkbox */
 }
-
 .custom-checkbox {
   display: inline-block;
   width: 20px;
@@ -62,11 +54,9 @@ p-slider {
   border: 1px solid #ff6b6b; /* Light red border */
   cursor: pointer;
 }
-
 .custom-checkbox.checked {
   background: #ff6b6b; /* Light red background when checked */
 }
-
 .custom-checkbox.checked::after {
   content: "";
   position: absolute;
@@ -78,7 +68,6 @@ p-slider {
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
-
 .set-container.glowing {
   box-shadow: 0 0 10px #ff6b6b; /* Glowing effect in light red */
 }

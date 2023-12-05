@@ -7,6 +7,11 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 })
 export class ExerciseComponent implements OnInit {
   faEllipsisV = faEllipsisV;
+  isRpeSliderActive: boolean = false;
+
+  handleRpeSliderActive(active: boolean): void {
+    this.isRpeSliderActive = active;
+  }
   @Input() exercise: any; // The exercise data passed in should be typed correctly
   @Output() addSetEvent = new EventEmitter<number>(); // Emitting exercise ID
   @Output() removeExerciseEvent = new EventEmitter<number>();
@@ -22,18 +27,20 @@ export class ExerciseComponent implements OnInit {
     this.addSetEvent.emit(this.exercise.exerciseId);
   }
   handleSwipe(distance: number, setIndex: number): void {
-    if (distance > 0) {
-      this.swipeStyles[setIndex] = {
-        transform: `translateX(-${distance}px)`,
-        opacity: 1 - Math.min(distance / 100, 1),
-      };
-    }
-    if (distance > 100) {
-      this.removeSetEvent.emit({
-        exerciseId: this.exercise.exerciseId,
-        setIndex,
-      });
-      this.swipeStyles.splice(setIndex, 1);
+    if (!this.isRpeSliderActive) {
+      if (distance > 0) {
+        this.swipeStyles[setIndex] = {
+          transform: `translateX(-${distance}px)`,
+          opacity: 1 - Math.min(distance / 100, 1),
+        };
+      }
+      if (distance > 150) {
+        this.removeSetEvent.emit({
+          exerciseId: this.exercise.exerciseId,
+          setIndex,
+        });
+        this.swipeStyles.splice(setIndex, 1);
+      }
     }
   }
 

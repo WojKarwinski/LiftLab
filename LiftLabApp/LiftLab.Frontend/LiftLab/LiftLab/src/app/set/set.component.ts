@@ -9,6 +9,7 @@ export class SetComponent implements OnInit {
   @Input() set!: any;
   @Input() setNumber!: number;
   @Output() removeSetEvent = new EventEmitter<void>();
+  @Output() rpeSliderActive = new EventEmitter<boolean>();
   value!: number;
   showValue: boolean = false; // Flag to show/hide the value
   ngAfterViewInit(): void {
@@ -19,6 +20,7 @@ export class SetComponent implements OnInit {
   ngOnInit(): void {}
 
   showSliderValue(event: TouchEvent): void {
+    this.rpeSliderActive.emit(true);
     this.showValue = true;
     setTimeout(() => {
       const slider = event.target as HTMLElement;
@@ -38,6 +40,7 @@ export class SetComponent implements OnInit {
     });
   }
   hideSliderValue(): void {
+    this.rpeSliderActive.emit(false);
     this.showValue = false;
   }
   toggleCheckbox(set: any): void {
