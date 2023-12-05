@@ -116,45 +116,47 @@
       ></button>
     </div>
     <div class="modal-body">
-      <div class="selectExerciseModal">
-        <input
-          type="text"
-          class="form-control mb-2"
-          placeholder="Search by name..."
-          [(ngModel)]="searchTerm"
-        />
+      <div class="modal-body-inner">
+        <div class="selectExerciseModal">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Search by name..."
+            [(ngModel)]="searchTerm"
+          />
 
-        <!-- Button to show dropdown -->
-        <button
-          class="btn btn-secondary mb-2"
-          (click)="toggleMuscleGroupDropdown()"
-        >
-          Select Muscle Group
-        </button>
-      </div>
-      <!-- Dropdown for muscle group selection -->
-      <div class="dropdown mb-2" *ngIf="showMuscleGroupDropdown">
-        <div class="dropdown-menu show">
+          <!-- Button to show dropdown -->
           <button
-            class="dropdown-item"
-            *ngFor="let group of muscleGroups"
-            (click)="selectMuscleGroup(group)"
+            class="btn btn-secondary mb-2"
+            (click)="toggleMuscleGroupDropdown()"
           >
-            {{ group }}
+            Select Muscle Group
           </button>
         </div>
-      </div>
+        <!-- Dropdown for muscle group selection -->
+        <div class="dropdown mb-2" *ngIf="showMuscleGroupDropdown">
+          <div class="dropdown-menu show">
+            <button
+              class="dropdown-item"
+              *ngFor="let group of muscleGroups"
+              (click)="selectMuscleGroup(group)"
+            >
+              {{ group }}
+            </button>
+          </div>
+        </div>
 
-      <!-- List of exercises -->
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let exercise of filteredExercises"
-          (click)="addExerciseToWorkout(exercise)"
-        >
-          {{ exercise.name }} ({{ exercise.muscleGroup }})
-        </li>
-      </ul>
+        <!-- List of exercises -->
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let exercise of filteredExercises"
+            (click)="addExerciseToWorkout(exercise)"
+          >
+            {{ exercise.name }} ({{ exercise.muscleGroup }})
+          </li>
+        </ul>
+      </div>
     </div>
   </ng-template>
 </div>

@@ -27,7 +27,7 @@
 
 /* Modal Styles */
 .modal-content {
-  max-height: 50vh; /* 50% of the viewport height */
+  max-height: 60vh; /* 50% of the viewport height */
   overflow-y: auto; /* Enable vertical scrolling */
   background-color: #1e1e1e !important; /* slightly lighter dark background */
   color: #ffffff;
@@ -36,16 +36,36 @@
   background-color: #1e1e1e !important;
 }
 .modal-body {
+  position: relative;
   max-height: calc(
-    50vh - 100px
+    60vh - 100px
   ); /* Adjust the height to account for header/footer */
-  overflow-y: scroll; /* Enable scrolling inside the body */
+  overflow: hidden; /* Enable scrolling inside the body */
   background-color: #1e1e1e !important;
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding-bottom: 0px;
+}
+.modal-body-inner {
+  max-height: 100%;
+  overflow-y: auto; /* Scrollable content */
+  /* Add any additional styles needed for the inner content */
 }
 
+.modal-body::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px; /* Height of the fade effect */
+  background: linear-gradient(
+    transparent,
+    #1e1e1e
+  ); /* Adjust to your modal's background color */
+  pointer-events: none; /* Ensures click events pass through */
+}
 .modal-header .modal-title {
   color: #ff6b6b; /* light red header */
 }
