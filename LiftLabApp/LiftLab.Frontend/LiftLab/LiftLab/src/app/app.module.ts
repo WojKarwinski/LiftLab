@@ -13,7 +13,6 @@ import { SwipeDirective } from '../app/lib/swipe.directive';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HttpClientModule } from '@angular/common/http';
-import { HeatmapComponent } from './heatmap/heatmap.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
     ExerciseComponent,
     SetComponent,
     SwipeDirective,
-    HeatmapComponent,
   ],
   imports: [
     FormsModule,
