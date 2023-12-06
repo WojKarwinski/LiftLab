@@ -12,6 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwipeDirective } from '../app/lib/swipe.directive';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HttpClientModule } from '@angular/common/http';
+import { HeatmapComponent } from './heatmap/heatmap.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ExerciseComponent,
     SetComponent,
     SwipeDirective,
+    HeatmapComponent,
   ],
   imports: [
     FormsModule,
@@ -29,6 +32,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     FontAwesomeModule,
     NgbModalModule,
     BsDropdownModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

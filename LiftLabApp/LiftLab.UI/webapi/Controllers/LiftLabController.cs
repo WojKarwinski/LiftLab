@@ -5,10 +5,10 @@ namespace webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WorkoutsController : ControllerBase
+    public class LiftLabController : ControllerBase
     {
         private readonly WorkoutsManager _workoutsManager;
-        public WorkoutsController(WorkoutsManager workoutsManager)
+        public LiftLabController(WorkoutsManager workoutsManager)
         {
             _workoutsManager = workoutsManager;
         }
