@@ -20,6 +20,11 @@
   ); /* light red gradient */
   border: none;
 }
+.btn-danger {
+  margin: 20px;
+
+  border: none;
+}
 
 .fa-icon {
   color: #ffffff; /* white icons */
@@ -53,7 +58,7 @@
   /* Add any additional styles needed for the inner content */
 }
 
-.modal-body::after {
+.modal-body-group::after {
   content: "";
   position: absolute;
   left: 0;
@@ -87,8 +92,8 @@
 .dropdown-menu {
   background-color: #2c2c2c; /* light dark background */
   display: block;
-  top: 15%; /* Position it just below the parent container */
-  left: 10%;
+  top: 18%; /* Position it just below the parent container */
+  left: 20%;
   --bs-dropdown-link-color: white;
   color: white;
   padding: 10px;
@@ -128,4 +133,11 @@
 }
 .selectExerciseModal > * {
   flex: 1;
+}
+.menu-icon {
+  font-size: 30px;
+}
+
+.dropdown-menu-group {
+  left: 33%;
 }

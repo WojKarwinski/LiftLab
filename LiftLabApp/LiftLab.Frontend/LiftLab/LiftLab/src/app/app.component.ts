@@ -17,7 +17,7 @@ export class AppComponent {
       {
         exerciseId: 1,
         exerciseOrder: 1,
-        name: 'Push-up',
+        name: 'Glute Spread',
         sets: [
           {
             setNumber: 1,

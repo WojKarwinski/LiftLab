@@ -33,7 +33,6 @@
 
 .dropdown-menu {
   background-color: #2c2c2c; /* light dark background */
-  border: none;
 }
 
 .dropdown-item {
@@ -87,4 +86,8 @@
     #ff5050,
     #ff7070
   ); /* slightly darker gradient on hover */
+}
+.dropdownMenuButton {
+  top: 80%;
+  right: 35%;
 }

@@ -2,11 +2,18 @@
   <div class="exercise-header">
     <h2>{{ exercise.name }}</h2>
     <div class="dropdown">
-      <button id="dropdownMenuButton" data-bs-toggle="dropdown">
+      <button
+        id="dropdownMenuButton"
+        (click)="toggleDropdown()"
+        [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'"
+      >
         <fa-icon [icon]="faEllipsisV" aria-hidden="true"></fa-icon>
-        <!-- Using Font Awesome for the three dots icon -->
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div
+        class="dropdown-menu dropdownMenuButton"
+        [class.show]="isDropdownOpen"
+        aria-labelledby="dropdownMenuButton"
+      >
         <button class="dropdown-item" (click)="removeExercise()">
           Remove Exercise
         </button>

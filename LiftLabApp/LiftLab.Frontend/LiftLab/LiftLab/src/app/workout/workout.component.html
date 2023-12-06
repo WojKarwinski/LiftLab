@@ -100,9 +100,12 @@
     >
     </app-exercise>
   </div>
-  <button class="btn btn-primary" (click)="openExerciseModal()">
-    Add Exercise
-  </button>
+  <div class="d-flex justify-content-center flex-column">
+    <button class="btn btn-primary mb-2" (click)="openExerciseModal()">
+      Add Exercise
+    </button>
+    <button class="btn btn-danger">Cancel Workout</button>
+  </div>
 
   <!-- Exercise Modal -->
   <ng-template #exerciseModal let-modal>
@@ -115,7 +118,7 @@
         (click)="modal.dismiss('Cross click')"
       ></button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body modal-body-group">
       <div class="modal-body-inner">
         <div class="selectExerciseModal">
           <input
@@ -134,7 +137,10 @@
           </button>
         </div>
         <!-- Dropdown for muscle group selection -->
-        <div class="dropdown mb-2" *ngIf="showMuscleGroupDropdown">
+        <div
+          class="dropdown mb-2 dropdown-menu-group"
+          *ngIf="showMuscleGroupDropdown"
+        >
           <div class="dropdown-menu show">
             <button
               class="dropdown-item"

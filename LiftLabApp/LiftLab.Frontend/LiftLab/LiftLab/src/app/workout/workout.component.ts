@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  HostListener,
+} from '@angular/core';
 import { TimerService } from '../services/timer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faHourglass3 } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +30,8 @@ export class WorkoutComponent implements OnInit {
   showMuscleGroupDropdown: boolean = false;
   constructor(
     private timerService: TimerService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private eRef: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -158,6 +166,7 @@ export class WorkoutComponent implements OnInit {
 
   selectMuscleGroup(group: string): void {
     this.selectedMuscleGroup = group;
+    this.showMuscleGroupDropdown = !this.showMuscleGroupDropdown;
   }
 
   toggleMuscleGroupDropdown(): void {

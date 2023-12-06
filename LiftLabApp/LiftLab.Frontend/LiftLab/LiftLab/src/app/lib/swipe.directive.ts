@@ -9,7 +9,7 @@ export class SwipeDirective {
   @Output() swipeEnd = new EventEmitter<void>(); // Emit when swipe ends
 
   private touchStartX: number = 0;
-  private swipeThreshold: number = 100; // Threshold for a successful swipe
+  private swipeThreshold: number = 150; // Threshold for a successful swipe
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: TouchEvent): void {
