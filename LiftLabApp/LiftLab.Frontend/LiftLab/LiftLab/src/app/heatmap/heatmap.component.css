@@ -1,0 +1,25 @@
+.heatmap-grid div {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 2px;
+}
+
+.workout-day {
+  background-color: green;
+}
+
+.rest-day {
+  background-color: transparent;
+  border: 1px solid #ddd;
+}
+/* Add responsive styles for mobile screens */
+@media (max-width: 767px) {
+  /* Adjust heatmap styles for mobile */
+  /* You can add specific styles for mobile screens here */
+
+  /* Example: Reduce the font size for day names */
+  .day-name {
+    font-size: 12px;
+  }
+}

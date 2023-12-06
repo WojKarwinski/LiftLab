@@ -13,9 +13,10 @@ export class LiftLabService {
   getAllExercises(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/api/LiftLab/exercises`);
   }
+
   getWorkoutDays(): Observable<Set<string>> {
     return this.http
-      .get<any[]>(`${this.apiUrl}/workouts`)
+      .get<any[]>(`${this.apiUrl}/api/LiftLab`)
       .pipe(
         map(
           (workouts: any) =>
