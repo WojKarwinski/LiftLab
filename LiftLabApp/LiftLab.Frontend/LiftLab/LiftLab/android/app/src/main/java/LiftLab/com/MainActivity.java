@@ -7,12 +7,18 @@ import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import androidx.appcompat.app.AppCompatActivity;
 import com.getcapacitor.BridgeActivity;
+import com.getcapacitor.Plugin;
+
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import com.getcapacitor.BridgeWebViewClient;
+
+import java.util.ArrayList;
 
 public class MainActivity extends BridgeActivity {
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    // Note: setContentView(R.layout.activity_main); is not needed for Capacitor
 
     // Hide both the navigation bar and the status bar.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -31,6 +37,12 @@ public class MainActivity extends BridgeActivity {
           | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
           | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
           | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    // After calling super.onCreate(savedInstanceState);
+    WebView webView = this.getBridge().getWebView();
+    if (webView != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+      webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
     }
   }
 }

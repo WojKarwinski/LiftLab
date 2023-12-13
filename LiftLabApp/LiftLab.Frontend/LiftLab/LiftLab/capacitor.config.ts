@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'LiftLab',
   webDir: 'dist/lift-lab/browser',
   server: {
-    androidScheme: 'https',
+    androidScheme: 'http',
   },
 };
 
