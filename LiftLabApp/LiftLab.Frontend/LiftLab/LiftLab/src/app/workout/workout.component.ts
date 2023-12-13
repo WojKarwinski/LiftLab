@@ -38,6 +38,121 @@ export class WorkoutComponent implements OnInit {
     this.timerService.timerValue$.subscribe((value: number) => {
       this.updateTimerDisplay(value);
     });
+    this.workoutData = {
+      id: 1,
+      date: '2022-09-16T23:07:39',
+      name: 'Ass Workout',
+      note: '',
+      exercises: [
+        {
+          exerciseId: 1,
+          exerciseOrder: 1,
+          name: 'Glute Spread',
+          sets: [
+            {
+              setNumber: 1,
+              reps: 12,
+              weight: 100,
+              rpe: 2,
+            },
+            {
+              setNumber: 2,
+              reps: 12,
+              weight: 120,
+              rpe: 5,
+            },
+            {
+              setNumber: 3,
+              reps: 12,
+              weight: 140,
+              rpe: 8,
+            },
+          ],
+        },
+        {
+          exerciseId: 2,
+          exerciseOrder: 2,
+          name: 'Pull-up',
+          sets: [
+            {
+              setNumber: 1,
+              reps: 10,
+              weight: 150,
+              rpe: null,
+            },
+            {
+              setNumber: 2,
+              reps: 8,
+              weight: 170,
+              rpe: null,
+            },
+            {
+              setNumber: 3,
+              reps: 6,
+              weight: 200,
+              rpe: null,
+            },
+          ],
+        },
+        {
+          exerciseId: 3,
+          exerciseOrder: 3,
+          name: 'Squat',
+          sets: [
+            {
+              setNumber: 1,
+              reps: 10,
+              weight: 200,
+              rpe: null,
+            },
+            {
+              setNumber: 2,
+              reps: 10,
+              weight: 200,
+              rpe: null,
+            },
+          ],
+        },
+        {
+          exerciseId: 4,
+          exerciseOrder: 4,
+          name: 'Deadlift',
+          sets: [
+            {
+              setNumber: 3,
+              reps: 10,
+              weight: 200,
+              rpe: null,
+            },
+            {
+              setNumber: 1,
+              reps: 12,
+              weight: 80,
+              rpe: null,
+            },
+          ],
+        },
+        {
+          exerciseId: 5,
+          exerciseOrder: 5,
+          name: 'Bench press',
+          sets: [
+            {
+              setNumber: 2,
+              reps: 10,
+              weight: 100,
+              rpe: null,
+            },
+            {
+              setNumber: 3,
+              reps: 8,
+              weight: 80,
+              rpe: null,
+            },
+          ],
+        },
+      ],
+    };
   }
 
   open(content: any): void {

@@ -86,7 +86,7 @@ export class AppComponent {
       {
         exerciseId: 4,
         exerciseOrder: 4,
-        name: 'Bicep Curl',
+        name: 'Deadlift',
         sets: [
           {
             setNumber: 3,
@@ -105,7 +105,7 @@ export class AppComponent {
       {
         exerciseId: 5,
         exerciseOrder: 5,
-        name: 'Plank',
+        name: 'Bench press',
         sets: [
           {
             setNumber: 2,

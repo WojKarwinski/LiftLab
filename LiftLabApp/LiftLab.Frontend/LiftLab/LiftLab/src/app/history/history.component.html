@@ -1,0 +1,25 @@
+<div class="workout-list">
+  <h2 class="historyHeader">History</h2>
+  <div *ngFor="let workout of workoutData" class="workout-history">
+    <div class="nameDate">
+      <h2>{{ workout.name }}</h2>
+      <p>{{ workout.date | date : "mediumDate" }}</p>
+    </div>
+    <div class="exerciseWeight">
+      <p>Exercise</p>
+      <p>Best set</p>
+    </div>
+    <div class="exercises">
+      <div *ngFor="let exercise of workout.exercises" class="exercise">
+        <div class="setDiv">
+          <div class="amountExercise">
+            <p>{{ exercise.sets.length }}x</p>
+            <p>&nbsp;{{ exercise.name }}</p>
+          </div>
+
+          <p>{{ findBestSet(exercise.sets) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

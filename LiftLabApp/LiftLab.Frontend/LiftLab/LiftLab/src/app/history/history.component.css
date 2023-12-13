@@ -1,0 +1,42 @@
+.workout-list {
+  padding: 10px;
+  padding-bottom: 6vh;
+}
+
+.workout-history {
+  font-family: Arial, sans-serif;
+  border: 2px solid gray;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  max-height: 40vh; /* Control the size of each workout component */
+  overflow-y: auto; /* Allow internal scrolling if content is too long */
+}
+
+h2,
+h3 {
+}
+
+.exercise {
+  border-radius: 5px;
+}
+
+.setDiv {
+  display: flex;
+  justify-content: space-between;
+}
+.amountExercise {
+  display: flex;
+  justify-content: space-between;
+}
+.exerciseWeight {
+  display: flex;
+  justify-content: space-between;
+  height: 25px;
+  align-items: baseline;
+  border-bottom: 1px solid #ffffff;
+}
+.nameDate {
+  display: flex;
+  justify-content: space-between;
+}

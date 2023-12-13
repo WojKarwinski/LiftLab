@@ -1,0 +1,17 @@
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Utils.deps.json
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Utils.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Utils.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Domain.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Persistence.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Domain.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\bin\Release\net7.0\LiftLab.Persistence.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.csproj.AssemblyReference.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.GeneratedMSBuildEditorConfig.editorconfig
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.AssemblyInfoInputs.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.AssemblyInfo.cs
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.csproj.CoreCompileInputs.cache
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.csproj.CopyComplete
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\refint\LiftLab.Utils.dll
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\LiftLab.Utils.pdb
+D:\School 2023-2024\LiftLab\LiftLabApp\LiftLab.Utils\obj\Release\net7.0\ref\LiftLab.Utils.dll

@@ -1,0 +1,17 @@
+<!-- Workout Frequency Chart -->
+<div class="profile">
+  <!-- Weight Progression Charts -->
+  <div *ngFor="let chartData of lineChartData">
+    <p>
+      Max Lifted Weight for {{ chartData.label || "N/A" }}:
+      {{ getMaxWeight(chartData.label || "") }} kg
+    </p>
+    <canvas
+      baseChart
+      [datasets]="[chartData]"
+      [options]="lineChartOptions"
+      [labels]="lineChartLabels"
+      chartType="line"
+    ></canvas>
+  </div>
+</div>

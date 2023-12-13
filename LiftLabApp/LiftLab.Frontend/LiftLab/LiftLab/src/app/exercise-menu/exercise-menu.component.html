@@ -1,0 +1,13 @@
+<div class="exercise-list">
+  <h2>List of Exercises</h2>
+  <ul>
+    <li class="exercise-item" *ngFor="let exercise of exercises">
+      <div class="exercise-info">
+        <strong class="exercise-name">{{ exercise.name }}</strong>
+        <span class="muscle-group"
+          >(Muscle Group: {{ exercise.muscleGroup }})</span
+        >
+      </div>
+    </li>
+  </ul>
+</div>

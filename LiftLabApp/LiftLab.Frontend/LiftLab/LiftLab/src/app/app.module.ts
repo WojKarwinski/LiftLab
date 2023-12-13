@@ -13,7 +13,13 @@ import { SwipeDirective } from '../app/lib/swipe.directive';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HttpClientModule } from '@angular/common/http';
-import { HeatmapComponent } from './heatmap/heatmap.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HistoryComponent } from './history/history.component';
+import { WorkoutMenuComponent } from './workout-menu/workout-menu.component';
+import { ExerciseMenuComponent } from './exercise-menu/exercise-menu.component';
+import { GraphsComponent } from './graphs/graphs.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,12 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
     ExerciseComponent,
     SetComponent,
     SwipeDirective,
-    HeatmapComponent,
+    ProfileComponent,
+    HistoryComponent,
+    WorkoutMenuComponent,
+    ExerciseMenuComponent,
+    GraphsComponent,
+    MainPageComponent,
   ],
   imports: [
     FormsModule,
@@ -33,6 +44,7 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
     NgbModalModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

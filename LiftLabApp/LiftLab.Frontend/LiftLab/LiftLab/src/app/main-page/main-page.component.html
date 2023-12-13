@@ -1,0 +1,23 @@
+<div class="main-page">
+  <!-- Main content area -->
+  <header class="main-header">LiftLab</header>
+  <router-outlet></router-outlet>
+  <!-- Navigation bar -->
+  <nav class="navigation-bar">
+    <button (click)="navigate('/profile')">
+      <fa-icon [icon]="faUser"></fa-icon> Profile
+    </button>
+    <button (click)="navigate('/history')">
+      <fa-icon [icon]="faHistory"></fa-icon> History
+    </button>
+    <button (click)="navigate('/workoutmenu')">
+      <fa-icon [icon]="faPlusCircle"></fa-icon> Workout
+    </button>
+    <button (click)="navigate('/exercisemenu')">
+      <fa-icon [icon]="faDumbbell"></fa-icon> Exercises
+    </button>
+    <button (click)="navigate('/graphs')">
+      <fa-icon [icon]="faChartLine"></fa-icon> Graphs
+    </button>
+  </nav>
+</div>

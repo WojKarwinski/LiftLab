@@ -6,16 +6,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class LiftLabService {
-  private apiUrl = 'http://localhost:5132';
+  private apiUrl = 'https://192.168.1.2:5132';
 
-  constructor(private http: HttpClient) {}
+  constructor(private https: HttpClient) {}
 
   getAllExercises(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/LiftLab/exercises`);
+    return this.https.get<any>(`${this.apiUrl}/api/LiftLab/exercises`);
   }
 
   getWorkoutDays(): Observable<Set<string>> {
-    return this.http
+    return this.https
       .get<any[]>(`${this.apiUrl}/api/LiftLab`)
       .pipe(
         map(
@@ -23,5 +23,12 @@ export class LiftLabService {
             new Set(workouts.map((w: any) => w.date.split('T')[0]))
         )
       );
+  }
+  // get all workouts
+  getAllWorkouts(): Observable<any> {
+    console.log('start fetch');
+    let rere = this.https.get<any>(`${this.apiUrl}/api/LiftLab`);
+    console.log('rere');
+    return rere;
   }
 }
