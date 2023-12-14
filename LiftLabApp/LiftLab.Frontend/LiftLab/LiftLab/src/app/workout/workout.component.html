@@ -84,7 +84,7 @@
     <button (click)="saveNote()">Save Note</button>
     <button (click)="cancelNote()">Cancel</button>
   </div>
-  <div>
+  <div *ngIf="workoutData.note">
     <div>
       <p class="workoutNote">{{ workoutData.note }}</p>
     </div>

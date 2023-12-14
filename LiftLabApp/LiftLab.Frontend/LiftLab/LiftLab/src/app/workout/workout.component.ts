@@ -9,7 +9,7 @@ import {
 import { TimerService } from '../services/timer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faHourglass3 } from '@fortawesome/free-solid-svg-icons';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
@@ -31,7 +31,7 @@ export class WorkoutComponent implements OnInit {
   constructor(
     private timerService: TimerService,
     private modalService: NgbModal,
-    private eRef: ElementRef
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -41,8 +41,8 @@ export class WorkoutComponent implements OnInit {
     this.workoutData = {
       id: 1,
       date: '2022-09-16T23:07:39',
-      name: 'Ass Workout',
-      note: '',
+      name: 'Leg Day',
+      note: 'Achieve failure',
       exercises: [
         {
           exerciseId: 1,
@@ -72,7 +72,7 @@ export class WorkoutComponent implements OnInit {
         {
           exerciseId: 2,
           exerciseOrder: 2,
-          name: 'Pull-up',
+          name: 'Leg extension',
           sets: [
             {
               setNumber: 1,
@@ -101,14 +101,26 @@ export class WorkoutComponent implements OnInit {
           sets: [
             {
               setNumber: 1,
-              reps: 10,
+              reps: 30,
               weight: 200,
               rpe: null,
             },
             {
               setNumber: 2,
-              reps: 10,
+              reps: 35,
               weight: 200,
+              rpe: null,
+            },
+            {
+              setNumber: 3,
+              reps: 25,
+              weight: 200,
+              rpe: null,
+            },
+            {
+              setNumber: 4,
+              reps: 20,
+              weight: 250,
               rpe: null,
             },
           ],
@@ -135,7 +147,7 @@ export class WorkoutComponent implements OnInit {
         {
           exerciseId: 5,
           exerciseOrder: 5,
-          name: 'Bench press',
+          name: 'Leg Extension',
           sets: [
             {
               setNumber: 2,
@@ -153,6 +165,12 @@ export class WorkoutComponent implements OnInit {
         },
       ],
     };
+    this.route.paramMap.subscribe((params) => {
+      const workoutId = params.get('id');
+      if (workoutId) {
+        console.log(workoutId);
+      }
+    });
   }
 
   open(content: any): void {

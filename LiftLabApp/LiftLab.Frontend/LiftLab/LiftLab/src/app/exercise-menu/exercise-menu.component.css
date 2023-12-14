@@ -18,7 +18,6 @@
 h2 {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #333; /* Adjust text color as needed */
 }
 
 ul {
@@ -28,7 +27,6 @@ ul {
 
 li {
   margin-bottom: 5px;
-  color: #555; /* Adjust text color as needed */
 }
 
 /* Style the exercise name and muscle group */
@@ -36,7 +34,6 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f0f0f0; /* Background color for exercise info */
   padding: 8px;
   border-radius: 3px;
 }
@@ -47,12 +44,6 @@ li {
 
 .muscle-group {
   font-style: italic;
-}
-
-/* Style the exercise list item on hover */
-.exercise-item:hover {
-  background-color: #e0e0e0; /* Background color on hover */
-  cursor: pointer;
 }
 
 /* Add a box shadow on hover for a subtle effect */

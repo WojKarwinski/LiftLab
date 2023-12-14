@@ -37,7 +37,7 @@ namespace LiftLab.Domain
 
         public void AddSet(int workoutId, Set set)
         {
-            _workoutsRepository.AddSet(workoutId, set);
+            //_workoutsRepository.AddSet(workoutId, set);
         }
 
         public void UpdateSet(int workoutId, Set set)
@@ -73,6 +73,16 @@ namespace LiftLab.Domain
         public List<ExerciseList> GetAllExercises()
         {
             return _workoutsRepository.GetAllExercises();
+        }
+
+        public List<WorkoutTemplate> GetAllWorkoutTemplates()
+        {
+            return _workoutsRepository.GetAllWorkoutTemplates();
+        }
+
+        public Workout CreateWorkoutFromTemplate(WorkoutTemplate template)
+        {
+            return _workoutsRepository.CreateWorkoutFromTemplate(template);
         }
     }
 }

@@ -31,4 +31,15 @@ export class LiftLabService {
     console.log('rere');
     return rere;
   }
+
+  getAllTemplates(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/LiftLab/templates`);
+  }
+
+  createWorkoutFromTemplate(templateId: number): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/api/LiftLab/workouts/from-template`,
+      { templateId }
+    );
+  }
 }

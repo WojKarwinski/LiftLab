@@ -1,4 +1,5 @@
 ﻿using LiftLab.Domain;
+using LiftLab.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace webapi.Controllers
@@ -23,6 +24,18 @@ namespace webapi.Controllers
         public IActionResult GetAllExercises()
         {
             return Ok(_workoutsManager.GetAllExercises());
+        }
+
+        [HttpGet("templates")]
+        public IActionResult GetAllWorkoutTemplates()
+        {
+            return Ok(_workoutsManager.GetAllWorkoutTemplates());
+        }
+
+        [HttpPost("/workouts/from-template")]
+        public IActionResult CreateWorkoutFromTemplate([FromBody] WorkoutTemplate template)
+        {
+            return Ok(_workoutsManager.CreateWorkoutFromTemplate(template));
         }
     }
 }

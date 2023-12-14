@@ -1,1 +1,13 @@
-<app-workout></app-workout>
+<div class="workoutList">
+  <div
+    *ngFor="let template of templates"
+    class="workout-history"
+    (click)="startWorkoutFromMenu(template.id)"
+  >
+    <h2>{{ template.name }}</h2>
+    <p>{{ template.description }}</p>
+    <div class="exercise" *ngFor="let exercise of template.exercises">
+      <span>{{ exercise.sets }}x {{ exercise.exerciseName }}</span>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     // Configure your chart options here
   };
+
   public barChartLabels = [
     'Sunday',
     'Monday',
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   public lineChartOptions: ChartOptions = {
     // Define your line chart options here
   };
+
   public lineChartLabels: string[] = ['Top 4', 'Top 3', 'Top 2', 'Top 1'];
 
   // Example workout data (replace with your actual data fetching logic)
@@ -472,9 +474,27 @@ export class ProfileComponent implements OnInit {
   }
   updateChartData(): void {
     this.lineChartData = [
-      { data: this.getWeightProgression('Bench Press'), label: 'Bench Press' },
-      { data: this.getWeightProgression('Deadlift'), label: 'Deadlift' },
-      { data: this.getWeightProgression('Squat'), label: 'Squat' },
+      {
+        data: this.getWeightProgression('Bench Press'),
+        label: 'Bench Press',
+        borderColor: 'rgba(255, 99, 132, 1)', // Example color for Bench Press
+        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Translucent background (area fill)
+        borderWidth: 2,
+      },
+      {
+        data: this.getWeightProgression('Deadlift'),
+        label: 'Deadlift',
+        borderColor: 'rgba(54, 162, 235, 1)', // Example color for Deadlift
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderWidth: 2,
+      },
+      {
+        data: this.getWeightProgression('Squat'),
+        label: 'Squat',
+        borderColor: 'rgba(75, 192, 192, 1)', // Example color for Squat
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 2,
+      },
     ];
 
     this.changeDetector.detectChanges();

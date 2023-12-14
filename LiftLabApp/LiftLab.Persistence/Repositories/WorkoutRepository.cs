@@ -168,9 +168,25 @@ public class WorkoutRepository : IWorkoutsRepository
         }
     }
 
-    public void AddSet(int workoutId, Set set)
+    public void AddSet(int workoutId,int exerciseId, Set set)
     {
-        throw new NotImplementedException();
+        // add set to the db
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = "INSERT INTO Sets (ExerciseId,WorkoutId, SetNumber, Reps, Weight, Rpe) VALUES (@ExerciseId,@WorkoutId, @SetNumber, @Reps, @Weight, @Rpe)";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@ExerciseId", exerciseId);
+                command.Parameters.AddWithValue("@WorkoutId", workoutId);
+                command.Parameters.AddWithValue("@SetNumber", set.SetNumber);
+                command.Parameters.AddWithValue("@Reps", set.Reps);
+                command.Parameters.AddWithValue("@Weight", set.Weight);
+                command.Parameters.AddWithValue("@Rpe", set.Rpe);
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 
     public void UpdateSet(int workoutId, Set set)
@@ -185,7 +201,19 @@ public class WorkoutRepository : IWorkoutsRepository
 
     public void AddExercise(int workoutId, Exercise exercise)
     {
-        throw new NotImplementedException();
+        // add exercise to the db
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = "INSERT INTO Exercises (WorkoutId, ExerciseListId, ExerciseOrder) VALUES (@WorkoutId, @ExerciseListId, @ExerciseOrder)";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@WorkoutId", workoutId);
+                command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
+                command.Parameters.AddWithValue("@ExerciseOrder", exercise.ExerciseOrder);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 
     public void UpdateExercise(int workoutId, Exercise exercise)
@@ -228,5 +256,95 @@ public class WorkoutRepository : IWorkoutsRepository
             }
         }
         return exerciseList;
+    }
+
+    public List<WorkoutTemplate> GetAllWorkoutTemplates()
+    {
+        List<WorkoutTemplate> workoutTemplates = new();
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = @"
+            SELECT wt.Id, wt.Name, wt.Description, 
+                   wte.ExerciseListId, el.Name as ExerciseName, wte.Sets
+            FROM WorkoutTemplate wt
+            LEFT JOIN WorkoutTemplateExercises wte ON wt.Id = wte.WorkoutTemplateId
+            LEFT JOIN ExerciseList el ON wte.ExerciseListId = el.Id
+            ORDER BY wt.Id, wte.ExerciseListId";
+
+            using(SqlCommand command = new(query, connection))
+            {
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    WorkoutTemplate currentTemplate = null;
+                    int currentTemplateId = -1;
+
+                    while(reader.Read())
+                    {
+                        int workoutTemplateId = reader.GetInt32(reader.GetOrdinal("Id"));
+                        if(currentTemplate == null || workoutTemplateId != currentTemplateId)
+                        {
+                            currentTemplate = new WorkoutTemplate
+                            {
+                                Id = workoutTemplateId,
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Description = reader.GetString(reader.GetOrdinal("Description")),
+                                Exercises = new List<WorkoutTemplateExerciseDetail>()
+                            };
+                            workoutTemplates.Add(currentTemplate);
+                            currentTemplateId = workoutTemplateId;
+                        }
+
+                        if(!reader.IsDBNull(reader.GetOrdinal("ExerciseListId")))
+                        {
+                            currentTemplate.Exercises.Add(new WorkoutTemplateExerciseDetail
+                            {
+                                ExerciseListId = reader.GetInt32(reader.GetOrdinal("ExerciseListId")),
+                                ExerciseName = reader.GetString(reader.GetOrdinal("ExerciseName")),
+                                Sets = reader.GetInt32(reader.GetOrdinal("Sets"))
+                            });
+                        }
+                    }
+                }
+            }
+        }
+        return workoutTemplates;
+    }
+
+    public Workout CreateWorkoutFromTemplate(WorkoutTemplate template)
+    {
+        Workout workout = new()
+        {
+            Date = DateTime.Now,
+            Name = template.Name,
+            Note = template.Description,
+            Exercises = new List<Exercise>()
+        };
+        foreach(WorkoutTemplateExerciseDetail exercise in template.Exercises)
+        {
+            Exercise newExercise = new()
+            {
+                ExerciseListId = exercise.ExerciseListId,
+                Name = exercise.ExerciseName,
+                Sets = new List<Set>()
+            };
+            for(int i = 0; i < exercise.Sets; i++)
+            {
+                newExercise.Sets.Add(new Set());
+            }
+            workout.Exercises.Add(newExercise);
+        }
+        //inser the data into the database
+        AddWorkout(workout);
+        foreach(Exercise exercise in workout.Exercises)
+        {
+            AddExercise(workout.Id, exercise);
+            foreach(Set set in exercise.Sets)
+            {
+                AddSet(workout.Id,workout.Id, set);
+            }
+        }
+        return workout;
+        
     }
 }
