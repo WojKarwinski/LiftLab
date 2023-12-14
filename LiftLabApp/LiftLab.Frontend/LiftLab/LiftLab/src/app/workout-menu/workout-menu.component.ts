@@ -18,7 +18,7 @@ export class WorkoutMenuComponent {
     this.liftLabService
       .createWorkoutFromTemplate(templateId)
       .subscribe((workout) => {
-        this.router.navigate(['/workout', workout.id]); // Assuming the response contains the new workout's ID
+        this.router.navigate(['/workout', workout.id]);
       });
   }
 
