@@ -9,5 +9,7 @@
   <ItemGroup>
     <Folder Include="Exceptions\" />
   </ItemGroup>
-
+	<PropertyGroup>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
 </Project>

@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'workoutmenu', component: WorkoutMenuComponent },
   { path: 'exercisemenu', component: ExerciseMenuComponent },
   { path: 'graphs', component: GraphsComponent },
-  { path: 'workout/:id', component: WorkoutComponent },
+  { path: 'workout/start/:id', component: WorkoutComponent },
   { path: '', redirectTo: '/profile', pathMatch: 'full' },
 ];
 

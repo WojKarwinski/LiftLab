@@ -14,5 +14,7 @@
     <ProjectReference Include="..\LiftLab.Domain\LiftLab.Domain.csproj" />
     <ProjectReference Include="..\LiftLab.Persistence\LiftLab.Persistence.csproj" />
   </ItemGroup>
-
+	<PropertyGroup>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
 </Project>

@@ -10,6 +10,7 @@ import { TimerService } from '../services/timer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faHourglass3 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
+import { LiftLabService } from '../services/LiftLab.service';
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
@@ -31,13 +32,23 @@ export class WorkoutComponent implements OnInit {
   constructor(
     private timerService: TimerService,
     private modalService: NgbModal,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private liftLabService: LiftLabService
   ) {}
 
   ngOnInit(): void {
     this.timerService.timerValue$.subscribe((value: number) => {
       this.updateTimerDisplay(value);
     });
+    this.route.paramMap.subscribe((params) => {
+      const workoutId = Number(params.get('id')); // Convert workoutId to a number
+      if (workoutId) {
+        this.liftLabService.getWorkoutById(workoutId).subscribe((data) => {
+          this.workoutData = data;
+        });
+      }
+    });
+
     this.workoutData = {
       id: 1,
       date: '2022-09-16T23:07:39',
@@ -165,6 +176,7 @@ export class WorkoutComponent implements OnInit {
         },
       ],
     };
+
     this.allExercises = [
       {
         id: 21,
@@ -1867,6 +1879,7 @@ export class WorkoutComponent implements OnInit {
         muscleGroup: 'Shoulders',
       },
     ];
+
     this.route.paramMap.subscribe((params) => {
       const workoutId = params.get('id');
       if (workoutId) {
@@ -1982,13 +1995,15 @@ export class WorkoutComponent implements OnInit {
     const newExercise = {
       exerciseId: selectedExercise.id,
       name: selectedExercise.name,
-      sets: [0], // Initialize one eet
-      // ... any other initial exercise properties
+      sets: [
+        { setNumber: 1, reps: 0, weight: 0, rpe: null }, // Initial set with default values
+      ],
     };
 
     this.workoutData.exercises.push(newExercise);
     this.modalService.dismissAll();
   }
+
   get filteredExercises(): any[] {
     return this.allExercises.filter((exercise) => {
       return (

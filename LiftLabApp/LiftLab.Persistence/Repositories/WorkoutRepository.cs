@@ -61,7 +61,7 @@ public class WorkoutRepository : IWorkoutsRepository
                                 exercise = new Exercise
                                 {
                                     ExerciseId = reader.GetInt32(reader.GetOrdinal("ExerciseId")),
-                                    ExerciseOrder = reader.GetInt32(reader.GetOrdinal("ExerciseOrder")),
+                                    Order = reader.GetInt32(reader.GetOrdinal("ExerciseOrder")),
                                     Name = reader.GetString(reader.GetOrdinal("ExerciseName")),
                                     Sets = new List<Set>()
                                 };
@@ -87,31 +87,67 @@ public class WorkoutRepository : IWorkoutsRepository
         return workouts;
     }
 
-
-
     public Workout GetWorkoutById(int workoutId)
     {
-        Workout workout = null;
-
-        //using(SqlConnection connection = new(_connectionString))
-        //{
-        //    connection.Open();
-
-        //    string query = "SELECT * FROM Workouts WHERE Id = @WorkoutId";
-        //    using(SqlCommand command = new(query, connection))
-        //    {
-        //        command.Parameters.AddWithValue("@WorkoutId", workoutId);
-
-        //        using(SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            if(reader.Read())
-        //            {
-        //                workout = MapToWorkout(reader);
-        //            }
-        //        }
-        //    }
-        //}
-
+        Workout workout = new();
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = @"
+        SELECT 
+            W.Id AS WorkoutId, W.Date, W.Name AS WorkoutName, W.Note,
+            E.Id AS ExerciseId, E.[Order] AS ExerciseOrder, EL.Name AS ExerciseName, EL.MuscleGroup,
+            S.SetNumber, S.Reps, S.Weight, S.Rpe
+        FROM Workouts W
+        LEFT JOIN Exercises E ON W.Id = E.WorkoutId
+        LEFT JOIN Sets S ON E.Id = S.ExerciseId
+        LEFT JOIN ExerciseList EL ON E.ExerciseListId = EL.Id
+        WHERE W.Id = @WorkoutId";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@WorkoutId", workoutId);
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        if(workout.Id == 0)
+                        {
+                            workout = new Workout
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("WorkoutId")),
+                                Date = reader.GetDateTime(reader.GetOrdinal("Date")),
+                                Name = reader.GetString(reader.GetOrdinal("WorkoutName")),
+                                Note = reader.IsDBNull(reader.GetOrdinal("Note")) ? null : reader.GetString(reader.GetOrdinal("Note")),
+                                Exercises = new List<Exercise>()
+                            };
+                        }
+                        if(!reader.IsDBNull(reader.GetOrdinal("ExerciseId")))
+                        {
+                            Exercise exercise = workout.Exercises.FirstOrDefault(e => e.ExerciseId == reader.GetInt32(reader.GetOrdinal("ExerciseId")));
+                            if(exercise == null)
+                            {
+                                exercise = new Exercise
+                                {
+                                    ExerciseId = reader.GetInt32(reader.GetOrdinal("ExerciseId")),
+                                    Order = reader.GetInt32(reader.GetOrdinal("ExerciseOrder")),
+                                    Name = reader.GetString(reader.GetOrdinal("ExerciseName")),
+                                    Sets = new List<Set>()
+                                };
+                                workout.Exercises.Add(exercise);
+                            }
+                            Set set = new Set
+                            {
+                                SetNumber = reader.IsDBNull(reader.GetOrdinal("SetNumber")) ? 0 : reader.GetInt32(reader.GetOrdinal("SetNumber")),
+                                Reps = reader.IsDBNull(reader.GetOrdinal("Reps")) ? 0 : reader.GetInt32(reader.GetOrdinal("Reps")),
+                                Weight = reader.IsDBNull(reader.GetOrdinal("Weight")) ? 0 : reader.GetInt32(reader.GetOrdinal("Weight")),
+                                Rpe = reader.IsDBNull(reader.GetOrdinal("Rpe")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("Rpe"))
+                            };
+                            exercise.Sets.Add(set);
+                        }
+                    }
+                }
+            }
+        }
         return workout;
     }
 
@@ -210,7 +246,7 @@ public class WorkoutRepository : IWorkoutsRepository
             {
                 command.Parameters.AddWithValue("@WorkoutId", workoutId);
                 command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
-                command.Parameters.AddWithValue("@ExerciseOrder", exercise.ExerciseOrder);
+                command.Parameters.AddWithValue("@ExerciseOrder", exercise.Order);
                 command.ExecuteNonQuery();
             }
         }
@@ -334,17 +370,44 @@ public class WorkoutRepository : IWorkoutsRepository
             }
             workout.Exercises.Add(newExercise);
         }
-        //inser the data into the database
-        AddWorkout(workout);
-        foreach(Exercise exercise in workout.Exercises)
+        //do this in a sql query using transactions, so that if one fails, they all fail, don't use methods above
+        using(SqlConnection connection = new(_connectionString))
         {
-            AddExercise(workout.Id, exercise);
-            foreach(Set set in exercise.Sets)
+            connection.Open();
+            string query = "INSERT INTO Workouts (Name, Date, Note) VALUES (@Name, @Date, @Note); SELECT SCOPE_IDENTITY()";
+            using(SqlCommand command = new(query, connection))
             {
-                AddSet(workout.Id,workout.Id, set);
+                command.Parameters.AddWithValue("@Name", workout.Name);
+                command.Parameters.AddWithValue("@Date", workout.Date);
+                command.Parameters.AddWithValue("@Note", workout.Note);
+                workout.Id = Convert.ToInt32(command.ExecuteScalar());
             }
+            foreach(Exercise exercise in workout.Exercises)
+            {
+                query = "INSERT INTO Exercises (WorkoutId, ExerciseListId, [Order]) VALUES (@WorkoutId, @ExerciseListId, @Order); SELECT SCOPE_IDENTITY()";
+                using(SqlCommand command = new(query, connection))
+                {
+                    command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                    command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
+                    command.Parameters.AddWithValue("@Order", exercise.Order);
+                    exercise.ExerciseId = Convert.ToInt32(command.ExecuteScalar());
+                }
+                foreach(Set set in exercise.Sets)
+                {
+                    query = "INSERT INTO Sets (ExerciseId, WorkoutId, SetNumber, Reps, Weight, Rpe) VALUES (@ExerciseId, @WorkoutId, @SetNumber, @Reps, @Weight, @Rpe)";
+                    using(SqlCommand command = new(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ExerciseId", exercise.ExerciseId);
+                        command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                        command.Parameters.AddWithValue("@SetNumber", set.SetNumber);
+                        command.Parameters.AddWithValue("@Reps", set.Reps);
+                        command.Parameters.AddWithValue("@Weight", set.Weight);
+                        command.Parameters.AddWithValue("@Rpe", set.Rpe);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            return workout;
         }
-        return workout;
-        
     }
 }

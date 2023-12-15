@@ -1,9 +1,9 @@
 <div class="main-page">
   <!-- Main content area -->
-  <header class="main-header">LiftLab</header>
+  <header *ngIf="!workoutStarted" class="main-header">LiftLab</header>
   <router-outlet></router-outlet>
   <!-- Navigation bar -->
-  <nav class="navigation-bar">
+  <nav *ngIf="!workoutStarted" class="navigation-bar">
     <button (click)="navigate('/profile')">
       <fa-icon [icon]="faUser"></fa-icon> Profile
     </button>

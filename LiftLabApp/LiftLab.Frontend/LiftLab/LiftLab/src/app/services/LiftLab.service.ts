@@ -14,6 +14,10 @@ export class LiftLabService {
     return this.http.get<any>(`${this.apiUrl}/api/LiftLab/exercises`);
   }
 
+  getWorkoutById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts/${id}`);
+  }
+
   getWorkoutDays(): Observable<Set<string>> {
     return this.http
       .get<any[]>(`${this.apiUrl}/api/LiftLab`)
@@ -36,10 +40,10 @@ export class LiftLabService {
     return this.http.get<any>(`${this.apiUrl}/api/LiftLab/templates`);
   }
 
-  createWorkoutFromTemplate(templateId: number): Observable<any> {
+  createWorkoutFromTemplate(template: any): Observable<any> {
     return this.http.post<any>(
       `${this.apiUrl}/api/LiftLab/workouts/from-template`,
-      { templateId }
+      template
     );
   }
 }

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { LiftLabService } from '../services/LiftLab.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LiftLabService } from '../services/LiftLab.service';
+import { WorkoutStateService } from '../services/workout-state.service';
+
 @Component({
   selector: 'app-workout-menu',
   templateUrl: './workout-menu.component.html',
@@ -9,16 +11,22 @@ import { Router } from '@angular/router';
     './workout-menu.component.css',
   ],
 })
-export class WorkoutMenuComponent {
+export class WorkoutMenuComponent implements OnInit {
   templates: any[] = [];
 
-  constructor(private liftLabService: LiftLabService, private router: Router) {}
+  constructor(
+    private liftLabService: LiftLabService,
+    private router: Router,
+    private workoutStateService: WorkoutStateService // Injecting the service
+  ) {}
 
-  startWorkoutFromMenu(templateId: number) {
+  startWorkoutFromMenu(template: any) {
     this.liftLabService
-      .createWorkoutFromTemplate(templateId)
-      .subscribe((workout) => {
-        this.router.navigate(['/workout', workout.id]);
+      .createWorkoutFromTemplate(template)
+      .subscribe((response) => {
+        // Update workout state to active
+        this.workoutStateService.setWorkoutActive(true);
+        this.router.navigate(['/workout/start', response.id]);
       });
   }
 

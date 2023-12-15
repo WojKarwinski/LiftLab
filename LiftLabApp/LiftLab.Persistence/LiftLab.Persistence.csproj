@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net7.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
+	<Folder Include="Exceptions\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiftLab.Domain\LiftLab.Domain.csproj" />
+	<ProjectReference Include="..\LiftLab.Domain\LiftLab.Domain.csproj" />
   </ItemGroup>
-
+	<PropertyGroup>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
 </Project>

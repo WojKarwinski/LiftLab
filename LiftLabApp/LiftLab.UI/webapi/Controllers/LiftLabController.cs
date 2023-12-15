@@ -19,6 +19,12 @@ namespace webapi.Controllers
         {
             return Ok(_workoutsManager.GetAllWorkouts());
         }
+        [HttpGet("workouts/{id}")]
+        public IActionResult GetWorkout(int id)
+        {
+            return Ok(_workoutsManager.GetWorkoutById(id));
+        }
+
         // get list of all exercises
         [HttpGet("exercises")]
         public IActionResult GetAllExercises()
@@ -32,10 +38,11 @@ namespace webapi.Controllers
             return Ok(_workoutsManager.GetAllWorkoutTemplates());
         }
 
-        [HttpPost("/workouts/from-template")]
+        [HttpPost("workouts/from-template")]
         public IActionResult CreateWorkoutFromTemplate([FromBody] WorkoutTemplate template)
         {
             return Ok(_workoutsManager.CreateWorkoutFromTemplate(template));
         }
+
     }
 }
