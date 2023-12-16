@@ -20,9 +20,17 @@ namespace LiftLab.Domain
             return _workoutsRepository.GetWorkoutById(workoutId);
         }
 
-        public void AddWorkout(Workout workout)
+        public void CreateWorkout(Workout workout)
         {
-            _workoutsRepository.AddWorkout(workout);
+            try
+            {
+                _workoutsRepository.CreateWorkout(workout);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public void UpdateWorkout(Workout workout)

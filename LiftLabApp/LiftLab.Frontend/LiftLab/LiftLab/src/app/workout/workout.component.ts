@@ -18,7 +18,12 @@ import {
   styleUrls: ['./workout.component.css'],
 })
 export class WorkoutComponent implements OnInit {
-  @Input() workoutData: WorkoutData = {} as WorkoutData; // Define a more specific type if possible
+  @Input() workoutData: WorkoutData = {
+    id: 0,
+    date: new Date().toISOString(),
+    name: 'New Workout',
+    note: 'Empty Workout',
+  } as WorkoutData;
   allExercises: any[] = []; // Define a more specific type if possible
   @ViewChild('exerciseModal', { static: true }) exerciseModal: any; // Define a more specific type if possible
 
@@ -81,16 +86,29 @@ export class WorkoutComponent implements OnInit {
 
   finishWorkout(): void {
     this.timerService.stopTimer();
-    this.liftLabService
-      .createWorkout(this.workoutData.id, this.workoutData)
-      .subscribe(
+    if (this.workoutData.id === 0) {
+      this.liftLabService.createWorkout(this.workoutData).subscribe(
         (response) => {
-          console.log(response);
+          this.workoutStateService.setWorkoutActive(false);
+          this.router.navigate(['/history']);
         },
         (error) => {
-          // Handle errors here, e.g., show an error message
+          // Handle error
         }
       );
+    } else {
+      this.liftLabService
+        .updateWorkout(this.workoutData.id, this.workoutData)
+        .subscribe(
+          (response) => {
+            this.workoutStateService.setWorkoutActive(false);
+            this.router.navigate(['/history']);
+          },
+          (error) => {
+            // Handle errors here, e.g., show an error message
+          }
+        );
+    }
   }
   cancelWorkout(id: number): void {
     // Set the service property to false to show the workout menu again
@@ -205,6 +223,9 @@ export class WorkoutComponent implements OnInit {
   }
 
   addExerciseToWorkout(selectedExercise: any): void {
+    if (!this.workoutData.exercises) {
+      this.workoutData.exercises = [];
+    }
     const exerciseOrder = this.workoutData.exercises.length + 1;
     const newExercise: Exercise = {
       exerciseId: this.workoutData.exercises.length + 1,

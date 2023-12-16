@@ -8,7 +8,7 @@ namespace LiftLab.Domain.Interfaces
 
         Workout GetWorkoutById(int workoutId);
 
-        void AddWorkout(Workout workout);
+        void CreateWorkout(Workout workout);
 
         void UpdateWorkout(Workout workout);
 

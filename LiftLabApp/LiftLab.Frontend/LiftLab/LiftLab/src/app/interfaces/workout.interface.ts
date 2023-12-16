@@ -26,3 +26,17 @@ export interface ExerciseList {
   name: string;
   muscleGroup: string;
 }
+
+export interface Template {
+  id: 0;
+  name: 'string';
+  description: 'string';
+  exercises: [
+    {
+      exerciseListId: 0;
+      exerciseName: 'string';
+      sets: 0;
+      order: 0;
+    }
+  ];
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LiftLabService } from '../services/LiftLab.service';
 import { WorkoutStateService } from '../services/workout-state.service';
+import { Template } from '../interfaces/workout.interface';
 
 @Component({
   selector: 'app-workout-menu',
@@ -12,7 +13,7 @@ import { WorkoutStateService } from '../services/workout-state.service';
   ],
 })
 export class WorkoutMenuComponent implements OnInit {
-  templates: any[] = [];
+  templates: Template[] = [];
 
   constructor(
     private liftLabService: LiftLabService,
@@ -24,21 +25,19 @@ export class WorkoutMenuComponent implements OnInit {
     this.liftLabService
       .createWorkoutFromTemplate(template)
       .subscribe((response) => {
-        // Update workout state to active
         this.workoutStateService.setWorkoutActive(true);
         this.router.navigate(['/workout/start', response.id]);
       });
   }
 
   startEmptyWorkout() {
-    // Logic to start an empty workout
-    // For example, navigate to a new workout route
     this.router.navigate(['/workout/start', 'new']);
   }
 
   ngOnInit() {
     this.liftLabService.getAllTemplates().subscribe((data) => {
       this.templates = data;
+      console.log(data);
     });
   }
 }

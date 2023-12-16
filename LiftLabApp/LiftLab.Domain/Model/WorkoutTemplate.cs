@@ -11,8 +11,6 @@ namespace LiftLab.Domain.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
-        // A collection to hold exercises and their sets
         public List<WorkoutTemplateExerciseDetail> Exercises { get; set; }
     }
 }

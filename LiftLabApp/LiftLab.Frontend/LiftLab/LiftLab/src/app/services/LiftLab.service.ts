@@ -51,8 +51,15 @@ export class LiftLabService {
     );
   }
 
-  createWorkout(id: number, workout: WorkoutData): Observable<any> {
+  updateWorkout(id: number, workout: WorkoutData): Observable<any> {
     return this.http.put(`${this.apiUrl}/api/LiftLab/workouts/${id}`, workout);
+  }
+
+  createWorkout(workout: WorkoutData): Observable<WorkoutData> {
+    return this.http.post<WorkoutData>(
+      `${this.apiUrl}/api/LiftLab/workouts`,
+      workout
+    );
   }
 
   deleteWorkout(id: number): Observable<any> {

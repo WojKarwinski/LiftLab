@@ -11,6 +11,7 @@ namespace LiftLab.Domain.Model
         public int ExerciseListId { get; set; }
         public string ExerciseName { get; set; }
         public int Sets { get; set; }
+        public int Order { get; set; } // Optional order field
 
     }
 }

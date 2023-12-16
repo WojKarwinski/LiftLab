@@ -51,6 +51,14 @@ namespace webapi.Controllers
             return Ok();
         }
 
+        [HttpPost("workouts")]
+        public IActionResult CreateWorkout([FromBody] Workout workout)
+        {
+            _workoutsManager.CreateWorkout(workout); // Implement logic to add the workout to the database
+            return Ok(workout); // Return the created workout, including the generated ID
+        }
+
+
         [HttpPut("workouts/{id}")]
         public IActionResult UpdateWorkout(int id, [FromBody] Workout workout)
         {

@@ -153,20 +153,43 @@ public class WorkoutRepository : IWorkoutsRepository
         return workout;
     }
 
-    public void AddWorkout(Workout workout)
+    public void CreateWorkout(Workout workout)
     {
         using(SqlConnection connection = new(_connectionString))
         {
             connection.Open();
-
-            string query = "INSERT INTO Workouts (Date, Name, Note) VALUES (@Date, @Name, @Note)";
+            string query = "INSERT INTO Workouts (Date, Name, Note) VALUES (@Date, @Name, @Note); SELECT SCOPE_IDENTITY();";
             using(SqlCommand command = new(query, connection))
             {
                 command.Parameters.AddWithValue("@Date", workout.Date);
                 command.Parameters.AddWithValue("@Name", workout.Name);
                 command.Parameters.AddWithValue("@Note", workout.Note);
-
-                command.ExecuteNonQuery();
+                workout.Id = Convert.ToInt32(command.ExecuteScalar());
+            }
+            foreach(Exercise exercise in workout.Exercises)
+            {
+                query = "INSERT INTO Exercises (WorkoutId, ExerciseListId, [Order]) VALUES (@WorkoutId, @ExerciseListId, @Order); SELECT SCOPE_IDENTITY();";
+                using(SqlCommand command = new(query, connection))
+                {
+                    command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                    command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
+                    command.Parameters.AddWithValue("@Order", exercise.Order);
+                    exercise.ExerciseId = Convert.ToInt32(command.ExecuteScalar());
+                }
+                foreach(Set set in exercise.Sets)
+                {
+                    query = "INSERT INTO Sets (ExerciseId,WorkoutId, SetNumber, Reps, Weight, Rpe) VALUES (@ExerciseId,@WorkoutId, @SetNumber, @Reps, @Weight, @Rpe)";
+                    using(SqlCommand command = new(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ExerciseId", exercise.ExerciseId);
+                        command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                        command.Parameters.AddWithValue("@SetNumber", set.SetNumber);
+                        command.Parameters.AddWithValue("@Reps", set.Reps);
+                        command.Parameters.AddWithValue("@Weight", set.Weight);
+                        command.Parameters.AddWithValue("@Rpe", set.Rpe);
+                        command.ExecuteNonQuery();
+                    }
+                }
             }
         }
     }
@@ -198,15 +221,18 @@ public class WorkoutRepository : IWorkoutsRepository
                 command.Parameters.AddWithValue("@WorkoutId", workout.Id);
                 command.ExecuteNonQuery();
             }
+            int i = 1;
             foreach(Exercise exercise in workout.Exercises)
             {
+               
                 query = "INSERT INTO Exercises (WorkoutId, ExerciseListId, [Order]) VALUES (@WorkoutId, @ExerciseListId, @Order); SELECT SCOPE_IDENTITY()";
                 using(SqlCommand command = new(query, connection))
                 {
                     command.Parameters.AddWithValue("@WorkoutId", workout.Id);
                     command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
-                    command.Parameters.AddWithValue("@Order", exercise.Order);
+                    command.Parameters.AddWithValue("@Order", i);
                     exercise.ExerciseId = Convert.ToInt32(command.ExecuteScalar());
+                    i++;
                 }
                 foreach(Set set in exercise.Sets)
                 {
@@ -351,11 +377,11 @@ public class WorkoutRepository : IWorkoutsRepository
             connection.Open();
             string query = @"
             SELECT wt.Id, wt.Name, wt.Description, 
-                   wte.ExerciseListId, el.Name as ExerciseName, wte.Sets
+                   wte.ExerciseListId, el.Name as ExerciseName, wte.Sets, wte.[Order]
             FROM WorkoutTemplate wt
             LEFT JOIN WorkoutTemplateExercises wte ON wt.Id = wte.WorkoutTemplateId
             LEFT JOIN ExerciseList el ON wte.ExerciseListId = el.Id
-            ORDER BY wt.Id, wte.ExerciseListId";
+            ORDER BY wt.Id, wte.[Order], wte.ExerciseListId";
 
             using(SqlCommand command = new(query, connection))
             {
@@ -386,7 +412,8 @@ public class WorkoutRepository : IWorkoutsRepository
                             {
                                 ExerciseListId = reader.GetInt32(reader.GetOrdinal("ExerciseListId")),
                                 ExerciseName = reader.GetString(reader.GetOrdinal("ExerciseName")),
-                                Sets = reader.GetInt32(reader.GetOrdinal("Sets"))
+                                Sets = reader.GetInt32(reader.GetOrdinal("Sets")),
+                                Order = reader.GetInt32(reader.GetOrdinal("Order"))
                             });
                         }
                     }
@@ -411,6 +438,7 @@ public class WorkoutRepository : IWorkoutsRepository
             {
                 ExerciseListId = exercise.ExerciseListId,
                 Name = exercise.ExerciseName,
+                Order = exercise.Order,
                 Sets = new List<Set>()
             };
             for(int i = 0; i < exercise.Sets; i++)
