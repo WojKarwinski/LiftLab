@@ -30,6 +30,12 @@ export class WorkoutMenuComponent implements OnInit {
       });
   }
 
+  startEmptyWorkout() {
+    // Logic to start an empty workout
+    // For example, navigate to a new workout route
+    this.router.navigate(['/workout/start', 'new']);
+  }
+
   ngOnInit() {
     this.liftLabService.getAllTemplates().subscribe((data) => {
       this.templates = data;

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { WorkoutData } from '../interfaces/workout.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,11 +12,14 @@ export class LiftLabService {
   constructor(private http: HttpClient) {}
 
   getAllExercises(): Observable<any> {
+    console.log('start fetch exercises');
     return this.http.get<any>(`${this.apiUrl}/api/LiftLab/exercises`);
   }
 
   getWorkoutById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts/${id}`);
+    let rere = this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts/${id}`);
+    console.log(rere);
+    return rere;
   }
 
   getWorkoutDays(): Observable<Set<string>> {
@@ -31,7 +35,7 @@ export class LiftLabService {
   // get all workouts
   getAllWorkouts(): Observable<any> {
     console.log('start fetch');
-    let rere = this.http.get<any>(`${this.apiUrl}/api/LiftLab`);
+    let rere = this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts`);
     console.log('rere');
     return rere;
   }
@@ -45,5 +49,13 @@ export class LiftLabService {
       `${this.apiUrl}/api/LiftLab/workouts/from-template`,
       template
     );
+  }
+
+  createWorkout(id: number, workout: WorkoutData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/api/LiftLab/workouts/${id}`, workout);
+  }
+
+  deleteWorkout(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/api/LiftLab/workouts/${id}`);
   }
 }

@@ -8,6 +8,7 @@ export interface WorkoutData {
 
 export interface Exercise {
   exerciseId: number;
+  exerciseListId: number;
   exerciseOrder: number;
   name: string;
   sets: ExerciseSet[];

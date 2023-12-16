@@ -104,7 +104,9 @@
     <button class="btn btn-primary mb-2" (click)="openExerciseModal()">
       Add Exercise
     </button>
-    <button class="btn btn-danger">Cancel Workout</button>
+    <button class="btn btn-danger" (click)="cancelWorkout(this.workoutData.id)">
+      Cancel Workout
+    </button>
   </div>
 
   <!-- Exercise Modal -->

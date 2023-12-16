@@ -14,7 +14,7 @@ namespace webapi.Controllers
             _workoutsManager = workoutsManager;
         }
 
-        [HttpGet]
+        [HttpGet("workouts")]
         public IActionResult GetAllWorkouts()
         {
             return Ok(_workoutsManager.GetAllWorkouts());
@@ -42,6 +42,26 @@ namespace webapi.Controllers
         public IActionResult CreateWorkoutFromTemplate([FromBody] WorkoutTemplate template)
         {
             return Ok(_workoutsManager.CreateWorkoutFromTemplate(template));
+        }
+
+        [HttpDelete("workouts/{id}")]
+        public IActionResult DeleteWorkout(int id)
+        {
+            _workoutsManager.DeleteWorkout(id);
+            return Ok();
+        }
+
+        [HttpPut("workouts/{id}")]
+        public IActionResult UpdateWorkout(int id, [FromBody] Workout workout)
+        {
+            // check if id matches workout.Id
+            if (id != workout.Id)
+            {
+                return BadRequest();
+            }
+            _workoutsManager.UpdateWorkout(workout);
+            return Ok();
+            
         }
 
     }

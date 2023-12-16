@@ -95,9 +95,10 @@ public class WorkoutRepository : IWorkoutsRepository
             connection.Open();
             string query = @"
         SELECT 
-            W.Id AS WorkoutId, W.Date, W.Name AS WorkoutName, W.Note,
-            E.Id AS ExerciseId, E.[Order] AS ExerciseOrder, EL.Name AS ExerciseName, EL.MuscleGroup,
-            S.SetNumber, S.Reps, S.Weight, S.Rpe
+             W.Id AS WorkoutId, W.Date, W.Name AS WorkoutName, W.Note,
+             E.Id AS ExerciseId, E.[Order] AS ExerciseOrder, EL.Id AS ExerciseListId, EL.Name AS ExerciseName, EL.MuscleGroup,
+             S.SetNumber, S.Reps, S.Weight, S.Rpe
+
         FROM Workouts W
         LEFT JOIN Exercises E ON W.Id = E.WorkoutId
         LEFT JOIN Sets S ON E.Id = S.ExerciseId
@@ -130,6 +131,7 @@ public class WorkoutRepository : IWorkoutsRepository
                                 {
                                     ExerciseId = reader.GetInt32(reader.GetOrdinal("ExerciseId")),
                                     Order = reader.GetInt32(reader.GetOrdinal("ExerciseOrder")),
+                                    ExerciseListId = reader.GetInt32(reader.GetOrdinal("ExerciseListId")),
                                     Name = reader.GetString(reader.GetOrdinal("ExerciseName")),
                                     Sets = new List<Set>()
                                 };
@@ -171,34 +173,81 @@ public class WorkoutRepository : IWorkoutsRepository
 
     public void UpdateWorkout(Workout workout)
     {
+        // first update the workout, then delete all exercises and sets, then add them back
         using(SqlConnection connection = new(_connectionString))
         {
             connection.Open();
-
             string query = "UPDATE Workouts SET Date = @Date, Name = @Name, Note = @Note WHERE Id = @WorkoutId";
             using(SqlCommand command = new(query, connection))
             {
-                command.Parameters.AddWithValue("@WorkoutId", workout.Id);
                 command.Parameters.AddWithValue("@Date", workout.Date);
                 command.Parameters.AddWithValue("@Name", workout.Name);
                 command.Parameters.AddWithValue("@Note", workout.Note);
-
+                command.Parameters.AddWithValue("@WorkoutId", workout.Id);
                 command.ExecuteNonQuery();
+            }
+            query = "DELETE FROM Sets WHERE ExerciseId IN (SELECT Id FROM Exercises WHERE WorkoutId = @WorkoutId)";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                command.ExecuteNonQuery();
+            }
+            query = "DELETE FROM Exercises WHERE WorkoutId = @WorkoutId";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                command.ExecuteNonQuery();
+            }
+            foreach(Exercise exercise in workout.Exercises)
+            {
+                query = "INSERT INTO Exercises (WorkoutId, ExerciseListId, [Order]) VALUES (@WorkoutId, @ExerciseListId, @Order); SELECT SCOPE_IDENTITY()";
+                using(SqlCommand command = new(query, connection))
+                {
+                    command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                    command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
+                    command.Parameters.AddWithValue("@Order", exercise.Order);
+                    exercise.ExerciseId = Convert.ToInt32(command.ExecuteScalar());
+                }
+                foreach(Set set in exercise.Sets)
+                {
+                    query = "INSERT INTO Sets (ExerciseId, WorkoutId, SetNumber, Reps, Weight, Rpe) VALUES (@ExerciseId, @WorkoutId, @SetNumber, @Reps, @Weight, @Rpe)";
+                    using(SqlCommand command = new(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ExerciseId", exercise.ExerciseId);
+                        command.Parameters.AddWithValue("@WorkoutId", workout.Id);
+                        command.Parameters.AddWithValue("@SetNumber", set.SetNumber);
+                        command.Parameters.AddWithValue("@Reps", set.Reps);
+                        command.Parameters.AddWithValue("@Weight", set.Weight);
+                        command.Parameters.AddWithValue("@Rpe", set.Rpe);
+                        command.ExecuteNonQuery();
+                    }
+                }
             }
         }
     }
 
     public void DeleteWorkout(int workoutId)
     {
+        //first delete the sets, then exercises, then workout
         using(SqlConnection connection = new(_connectionString))
         {
             connection.Open();
-
-            string query = "DELETE FROM Workouts WHERE Id = @WorkoutId";
+            string query = "DELETE FROM Sets WHERE ExerciseId IN (SELECT Id FROM Exercises WHERE WorkoutId = @WorkoutId)";
             using(SqlCommand command = new(query, connection))
             {
                 command.Parameters.AddWithValue("@WorkoutId", workoutId);
-
+                command.ExecuteNonQuery();
+            }
+            query = "DELETE FROM Exercises WHERE WorkoutId = @WorkoutId";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@WorkoutId", workoutId);
+                command.ExecuteNonQuery();
+            }
+            query = "DELETE FROM Workouts WHERE Id = @WorkoutId";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@WorkoutId", workoutId);
                 command.ExecuteNonQuery();
             }
         }
