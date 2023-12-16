@@ -12,7 +12,12 @@
   max-height: 40vh; /* Control the size of each workout component */
   overflow-y: auto; /* Allow internal scrolling if content is too long */
 }
-
+.shortTime {
+  display: flex;
+  justify-content: right;
+  margin: 0;
+  padding: 0;
+}
 h2,
 h3 {
 }
@@ -39,4 +44,7 @@ h3 {
 .nameDate {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
