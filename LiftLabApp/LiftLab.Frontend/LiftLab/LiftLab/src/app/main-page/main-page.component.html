@@ -1,6 +1,9 @@
 <div class="main-page">
   <!-- Main content area -->
-  <header *ngIf="!workoutStarted" class="main-header">LiftLab</header>
+  <div *ngIf="!workoutStarted" class="titleImage">
+    <img class="mainImage" src="../../assets/bee.png" />
+    <header class="main-header">LiftLab</header>
+  </div>
   <router-outlet></router-outlet>
   <!-- Navigation bar -->
   <nav *ngIf="!workoutStarted" class="navigation-bar">

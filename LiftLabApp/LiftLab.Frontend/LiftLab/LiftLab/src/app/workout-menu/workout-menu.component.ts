@@ -33,6 +33,7 @@ export class WorkoutMenuComponent implements OnInit {
   }
 
   startEmptyWorkout() {
+    this.workoutStateService.setWorkoutActive(true);
     this.router.navigate(['/workout/start', 'new']);
   }
 

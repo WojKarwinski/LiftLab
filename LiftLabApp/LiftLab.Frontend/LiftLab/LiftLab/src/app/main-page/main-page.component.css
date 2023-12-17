@@ -54,15 +54,24 @@
   color: #00beff;
 }
 .icon-history {
-  color: #ff5a9e;
+  color: #eb4c1c;
 }
 
 .icon-workoutmenu {
   color: #e1b941;
 }
 .icon-exercisemenu {
-  color: #ff5a9e;
+  color: #eb4c1c;
 }
 .icon-graphs {
   color: #00beff;
+}
+.mainImage {
+  width: 15vw;
+}
+.titleImage {
+  padding-left: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }

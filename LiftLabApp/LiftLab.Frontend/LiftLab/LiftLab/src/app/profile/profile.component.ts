@@ -91,8 +91,8 @@ export class ProfileComponent implements OnInit {
       {
         data: this.getWeightProgression('Squat'),
         label: 'Squat',
-        borderColor: 'rgba(255, 90, 158,1)', // Example color for Squat
-        backgroundColor: 'rgba(255, 90, 158,0.2)',
+        borderColor: 'rgba(255, 107, 107, 1)', // Example color for Squat
+        backgroundColor: 'rgba(255, 107, 107, 0.2)',
         borderWidth: 2,
       },
     ];
