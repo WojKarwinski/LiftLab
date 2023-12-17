@@ -53,6 +53,29 @@ export class WorkoutComponent implements OnInit {
     this.loadExercises();
   }
 
+  loadWorkoutForRepeating(workoutId: number): void {
+    this.liftLabService.getWorkoutById(workoutId).subscribe((workout) => {
+      // Clone the workout data to start a new workout
+      const newWorkout = JSON.parse(JSON.stringify(workout));
+
+      // Reset the ID to ensure it's saved as a new workout
+      newWorkout.id = null;
+
+      // Optionally, update the date to the current date
+      newWorkout.date = new Date().toISOString();
+
+      // Set the component's workout data to this new workout
+      this.workoutData = newWorkout;
+    });
+  }
+
+  loadWorkoutForEditing(workoutId: number): void {
+    this.liftLabService.getWorkoutById(workoutId).subscribe((workout) => {
+      // Load the existing workout data for editing
+      this.workoutData = workout;
+    });
+  }
+
   private loadExercises() {
     this.liftLabService.getAllExercises().subscribe((data) => {
       this.allExercises = data;
@@ -90,18 +113,23 @@ export class WorkoutComponent implements OnInit {
       // Filter out sets that are not checked
       exercise.sets = exercise.sets.filter((set) => set.checked);
     });
+
     this.timerService.stopTimer();
-    if (this.workoutData.id === 0) {
+
+    // Check if the workout is new (id is null or undefined) or an existing one (id is set)
+    if (this.workoutData.id == null) {
+      // Handle new workout
       this.liftLabService.createWorkout(this.workoutData).subscribe(
         (response) => {
           this.workoutStateService.setWorkoutActive(false);
           this.router.navigate(['/history']);
         },
         (error) => {
-          // Handle error
+          // Handle error, e.g., display an error message
         }
       );
     } else {
+      // Handle existing workout
       this.liftLabService
         .updateWorkout(this.workoutData.id, this.workoutData)
         .subscribe(
@@ -110,11 +138,12 @@ export class WorkoutComponent implements OnInit {
             this.router.navigate(['/history']);
           },
           (error) => {
-            // Handle errors here, e.g., show an error message
+            // Handle error, e.g., display an error message
           }
         );
     }
   }
+
   cancelWorkout(id: number): void {
     // Set the service property to false to show the workout menu again
     const modalRef = this.modalService.open(WarningModalComponent);

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataCacheService } from '../services/DataCache.service';
 import { WorkoutData } from '../interfaces/workout.interface';
 import { Router } from '@angular/router';
-
+import { LiftLabService } from '../services/LiftLab.service';
+import { WarningModalComponent } from '../warning-modal/warning-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-workout-history',
   templateUrl: './history.component.html',
@@ -10,10 +12,13 @@ import { Router } from '@angular/router';
 })
 export class HistoryComponent implements OnInit {
   workoutData: WorkoutData[] = [];
+  selectedWorkoutIndex: number | null = null;
 
   constructor(
     private dataCacheService: DataCacheService,
-    private router: Router
+    private router: Router,
+    private liftLabService: LiftLabService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -25,7 +30,39 @@ export class HistoryComponent implements OnInit {
   }
 
   startWorkoutFromHistory(workoutId: number) {
-    this.router.navigate(['/workout', workoutId]);
+    // Navigate to the workout start component with the workoutId as a parameter
+    this.router.navigate(['/workout/start', workoutId]);
+  }
+
+  editWorkout(workoutId: number) {
+    // Navigate to the workout edit component with the workoutId as a parameter
+    this.router.navigate(['/workout/edit', workoutId]);
+  }
+  deleteWorkout(workoutId: number): void {
+    // Open the confirmation modal
+    const modalRef = this.modalService.open(WarningModalComponent);
+    modalRef.result.then(
+      (result) => {
+        if (result === 'confirm') {
+          // User confirmed, proceed with deletion
+          this.liftLabService.deleteWorkout(workoutId).subscribe(
+            () => {
+              // Successfully deleted the workout, update the workoutData array to reflect the deletion
+              this.workoutData = this.workoutData.filter(
+                (workout) => workout.id !== workoutId
+              );
+            },
+            (error) => {
+              // Handle error scenario
+              // Maybe show an error message to the user
+            }
+          );
+        }
+      },
+      (reason) => {
+        // Modal dismissed, no action required or handle accordingly
+      }
+    );
   }
 
   findBestSet(sets: any[]): string {

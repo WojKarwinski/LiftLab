@@ -1,6 +1,63 @@
-<!-- Workout Frequency Chart -->
 <div class="profile">
-  <!-- Weight Progression Charts -->
+  <button class="cog-button" (click)="openExerciseModal()">
+    <fa-icon class="icon-cog" [icon]="faCog"></fa-icon>
+  </button>
+
+  <ng-template #exerciseModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Select an Exercise</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body modal-body-group">
+      <div class="modal-body-inner">
+        <div class="selectExerciseModal">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="Search by name..."
+            [(ngModel)]="searchTerm"
+          />
+          <button
+            class="btn btn-secondary mb-2"
+            (click)="toggleMuscleGroupDropdown()"
+          >
+            Select Muscle Group
+          </button>
+        </div>
+        <div
+          class="dropdown mb-2 dropdown-menu-group"
+          *ngIf="showMuscleGroupDropdown"
+        >
+          <div class="dropdown-menu show">
+            <button
+              class="dropdown-item"
+              *ngFor="let group of muscleGroups"
+              (click)="selectMuscleGroup(group)"
+            >
+              {{ group }}
+            </button>
+          </div>
+        </div>
+
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let exercise of filteredExercises"
+            [class.selected-exercise]="isSelectedExercise(exercise.name)"
+            (click)="addExerciseToChart(exercise)"
+          >
+            {{ exercise.name }} ({{ exercise.muscleGroup }})
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+
   <div *ngFor="let chartData of lineChartData">
     <p>
       Max Lifted Weight for {{ chartData.label || "N/A" }}:

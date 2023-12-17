@@ -1,7 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ChartDataset, ChartOptions } from 'chart.js';
-import { WorkoutData } from '../interfaces/workout.interface';
+import { ExerciseList, WorkoutData } from '../interfaces/workout.interface';
 import { DataCacheService } from '../services/DataCache.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +11,29 @@ import { DataCacheService } from '../services/DataCache.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  faCog = faCog;
+  @ViewChild('exerciseModal') exerciseModal: any;
+  allExercises: ExerciseList[] = []; // This should be populated with your exercises
+  selectedExercises: string[] = ['Bench Press', 'Squat', 'Deadlift']; // Selected exercises for chart
+  searchTerm: string = '';
+  muscleGroups = ['All', 'Chest', 'Back', 'Legs', 'Arms', 'Core'];
+  selectedMuscleGroup: string = 'All';
+  showMuscleGroupDropdown = false;
+  colors = [
+    {
+      solid: 'rgba(0, 191, 255, 1)', // Color for Bench Press
+      translucent: 'rgba(0, 191, 255, 0.2)',
+    },
+    {
+      solid: 'rgba(225, 185, 65, 1)', // Color for Deadlift
+      translucent: 'rgba(225, 185, 65, 0.2)',
+    },
+    {
+      solid: 'rgba(255, 107, 107, 1)', // Color for Squat
+      translucent: 'rgba(255, 107, 107, 0.2)',
+    },
+  ];
+
   public barChartOptions: ChartOptions = {
     // Configure your chart options here
   };
@@ -34,7 +59,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private dataCacheService: DataCacheService // Use DataCacheService
+    private dataCacheService: DataCacheService, // Use DataCacheService
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -44,8 +70,15 @@ export class ProfileComponent implements OnInit {
         this.workoutData = data;
         this.processWorkoutData();
       });
+    this.dataCacheService
+      .fetchExercisesIfNeeded()
+      .subscribe((data: ExerciseList[]) => {
+        this.allExercises = data;
+      });
   }
-
+  isSelectedExercise(exerciseName: string): boolean {
+    return this.selectedExercises.includes(exerciseName);
+  }
   processWorkoutData(): void {
     const workoutFrequency: { [key: string]: number } = {
       Sunday: 0,
@@ -73,32 +106,20 @@ export class ProfileComponent implements OnInit {
     this.updateChartData();
   }
   updateChartData(): void {
-    this.lineChartData = [
-      {
-        data: this.getWeightProgression('Bench Press'),
-        label: 'Bench Press',
-        borderColor: 'rgba(0, 191, 255, 1)', // Example color for Bench Press
-        backgroundColor: 'rgba(0, 191, 255, 0.2)', // Translucent background (area fill)
+    this.lineChartData = this.selectedExercises.map((exercise, index) => {
+      const color = this.colors[index % this.colors.length];
+      return {
+        data: this.getWeightProgression(exercise),
+        label: exercise,
+        borderColor: color.solid,
+        backgroundColor: color.translucent,
         borderWidth: 2,
-      },
-      {
-        data: this.getWeightProgression('Deadlift'),
-        label: 'Deadlift',
-        borderColor: 'rgba(225, 185, 65, 1)', // Example color for Deadlift
-        backgroundColor: 'rgba(225, 185, 65, 0.2)',
-        borderWidth: 2,
-      },
-      {
-        data: this.getWeightProgression('Squat'),
-        label: 'Squat',
-        borderColor: 'rgba(255, 107, 107, 1)', // Example color for Squat
-        backgroundColor: 'rgba(255, 107, 107, 0.2)',
-        borderWidth: 2,
-      },
-    ];
+      };
+    });
 
     this.changeDetector.detectChanges();
   }
+
   getWeightProgression(exerciseName: string): number[] {
     let weights = this.workoutData
       .flatMap((workout) => workout.exercises)
@@ -122,5 +143,55 @@ export class ProfileComponent implements OnInit {
     if (!exerciseName) return 0;
     const weights = this.getWeightProgression(exerciseName);
     return weights.length > 0 ? Math.max(...weights) : 0;
+  }
+
+  openExerciseModal() {
+    this.modalService.open(this.exerciseModal);
+  }
+
+  toggleMuscleGroupDropdown() {
+    this.showMuscleGroupDropdown = !this.showMuscleGroupDropdown;
+  }
+
+  selectMuscleGroup(group: string) {
+    this.selectedMuscleGroup = group;
+    this.showMuscleGroupDropdown = false;
+  }
+
+  get filteredExercises() {
+    return this.allExercises.filter((exercise) => {
+      const maxWeight = this.getMaxWeight(exercise.name);
+      return (
+        maxWeight > 0 &&
+        exercise.name.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
+        (this.selectedMuscleGroup === 'All' ||
+          exercise.muscleGroup === this.selectedMuscleGroup)
+      );
+    });
+  }
+  selectExercise(exercise: string) {
+    if (!this.selectedExercises.includes(exercise)) {
+      if (this.selectedExercises.length < 3) {
+        this.selectedExercises.push(exercise);
+      } else {
+        // Handle the case where more than three exercises are selected
+        // Perhaps show a message or replace the last one
+      }
+    }
+  }
+  addExerciseToChart(exercise: ExerciseList) {
+    const exerciseIndex = this.selectedExercises.indexOf(exercise.name);
+    if (exerciseIndex !== -1) {
+      // Exercise is already selected, remove it
+      this.selectedExercises.splice(exerciseIndex, 1);
+    } else {
+      // Exercise is not selected, add it
+      if (this.selectedExercises.length >= 3) {
+        // Optional: Remove the first exercise if there are already three selected
+        this.selectedExercises.shift();
+      }
+      this.selectedExercises.push(exercise.name);
+    }
+    this.updateChartData();
   }
 }

@@ -52,3 +52,23 @@ h3 {
   margin-bottom: 0;
   padding-bottom: 0;
 }
+.workout-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.start-workout-btn,
+.edit-workout-btn,
+.delete-workout-btn {
+  padding: 5px;
+  width: 30vw;
+  margin: 5px;
+  background-color: #e1b941;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.delete-workout-btn {
+  background-color: #eb4c1c !important;
+}
