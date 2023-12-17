@@ -1,7 +1,16 @@
 <div class="workout-list">
-  <h2 class="historyHeader">History</h2>
+  <div class="header-with-search">
+    <h2 class="historyHeader">History</h2>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterWorkouts()"
+      placeholder="Search workouts"
+      class="search-box"
+    />
+  </div>
   <div
-    *ngFor="let workout of workoutData; let i = index"
+    *ngFor="let workout of filterWorkouts(); let i = index"
     class="workout-history"
     (click)="selectedWorkoutIndex = selectedWorkoutIndex == i ? null : i"
   >

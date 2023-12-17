@@ -11,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
+  searchTerm: string = '';
   workoutData: WorkoutData[] = [];
   selectedWorkoutIndex: number | null = null;
 
@@ -28,7 +29,14 @@ export class HistoryComponent implements OnInit {
       });
     });
   }
-
+  filterWorkouts(): WorkoutData[] {
+    if (!this.searchTerm) {
+      return this.workoutData;
+    }
+    return this.workoutData.filter((workout) =>
+      workout.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
   startWorkoutFromHistory(workoutId: number) {
     this.router.navigate(['/workout/perform', workoutId]);
   }

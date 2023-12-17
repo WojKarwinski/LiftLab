@@ -72,3 +72,19 @@ h3 {
 .delete-workout-btn {
   background-color: #eb4c1c !important;
 }
+.header-with-search {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.search-box {
+  background-color: #f2f2f2;
+  border: 1px solid #e1b941;
+  color: #121212;
+  display: block;
+  width: 40vw;
+  margin-bottom: 0.5rem;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

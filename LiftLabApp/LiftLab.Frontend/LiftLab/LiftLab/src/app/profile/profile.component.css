@@ -90,6 +90,7 @@
 }
 .icon-cog {
   color: #e1b941;
+  font-size: 6vw;
 }
 .selected-exercise {
   background-color: #e1b941 !important;
