@@ -30,38 +30,28 @@ export class HistoryComponent implements OnInit {
   }
 
   startWorkoutFromHistory(workoutId: number) {
-    // Navigate to the workout start component with the workoutId as a parameter
-    this.router.navigate(['/workout/start', workoutId]);
+    this.router.navigate(['/workout/perform', workoutId]);
   }
 
   editWorkout(workoutId: number) {
-    // Navigate to the workout edit component with the workoutId as a parameter
     this.router.navigate(['/workout/edit', workoutId]);
   }
   deleteWorkout(workoutId: number): void {
-    // Open the confirmation modal
     const modalRef = this.modalService.open(WarningModalComponent);
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          // User confirmed, proceed with deletion
           this.liftLabService.deleteWorkout(workoutId).subscribe(
             () => {
-              // Successfully deleted the workout, update the workoutData array to reflect the deletion
               this.workoutData = this.workoutData.filter(
                 (workout) => workout.id !== workoutId
               );
             },
-            (error) => {
-              // Handle error scenario
-              // Maybe show an error message to the user
-            }
+            (error) => {}
           );
         }
       },
-      (reason) => {
-        // Modal dismissed, no action required or handle accordingly
-      }
+      (reason) => {}
     );
   }
 

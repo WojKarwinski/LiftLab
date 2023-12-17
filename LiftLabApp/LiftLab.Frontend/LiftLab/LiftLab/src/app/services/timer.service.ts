@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TimerService {
   private timerValue = 0;
-  private countDown: number | null = null; // countDown is either a number or null
+  private countDown: number | null = null;
   public timerValue$ = new Subject<number>();
 
-  constructor() { }
+  constructor() {}
   setTimer(seconds: number): void {
     this.timerValue = seconds;
     this.timerValue$.next(this.timerValue);
@@ -35,7 +35,7 @@ export class TimerService {
       clearInterval(this.countDown);
       this.countDown = null;
     }
-    this.timerValue$.next(this.timerValue); // Emit one last time to ensure the component updates
+    this.timerValue$.next(this.timerValue);
   }
 
   getCurrentTimerValue(): number {

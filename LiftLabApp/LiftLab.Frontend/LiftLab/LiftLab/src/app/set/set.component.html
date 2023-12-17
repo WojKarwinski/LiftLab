@@ -3,7 +3,6 @@
   <input type="number" [(ngModel)]="set.weight" />
   <input type="number" [(ngModel)]="set.reps" />
 
-  <!-- Slider and Value Display -->
   <p-slider
     (touchstart)="showSliderValue($event)"
     (touchend)="hideSliderValue()"
@@ -21,6 +20,4 @@
     [class.checked]="set.checked"
     (click)="toggleCheckbox(set)"
   ></div>
-
-  <!-- Add your confirm button and any other controls you need -->
 </div>

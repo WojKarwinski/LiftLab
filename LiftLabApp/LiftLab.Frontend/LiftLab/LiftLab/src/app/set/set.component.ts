@@ -11,10 +11,8 @@ export class SetComponent implements OnInit {
   @Output() removeSetEvent = new EventEmitter<void>();
   @Output() rpeSliderActive = new EventEmitter<boolean>();
   value!: number;
-  showValue: boolean = false; // Flag to show/hide the value
-  ngAfterViewInit(): void {
-    // Any DOM manipulation or access code that needs the view to be fully initialized
-  }
+  showValue: boolean = false;
+  ngAfterViewInit(): void {}
   constructor() {}
 
   ngOnInit(): void {}
@@ -30,9 +28,8 @@ export class SetComponent implements OnInit {
         const sliderRect = slider.getBoundingClientRect();
         const touch = event.touches[0];
 
-        // Calculate position relative to the slider
         const tooltipX = 260;
-        const tooltipY = sliderRect.top - 100; // Adjust '50' as needed
+        const tooltipY = sliderRect.top - 100;
 
         tooltip.style.left = tooltipX + 'px';
         tooltip.style.top = tooltipY + 'px';

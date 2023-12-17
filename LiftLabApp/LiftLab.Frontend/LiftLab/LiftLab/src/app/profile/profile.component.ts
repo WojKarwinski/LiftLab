@@ -13,30 +13,28 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 export class ProfileComponent implements OnInit {
   faCog = faCog;
   @ViewChild('exerciseModal') exerciseModal: any;
-  allExercises: ExerciseList[] = []; // This should be populated with your exercises
-  selectedExercises: string[] = ['Bench Press', 'Squat', 'Deadlift']; // Selected exercises for chart
+  allExercises: ExerciseList[] = [];
+  selectedExercises: string[] = ['Bench Press', 'Squat', 'Deadlift'];
   searchTerm: string = '';
   muscleGroups = ['All', 'Chest', 'Back', 'Legs', 'Arms', 'Core'];
   selectedMuscleGroup: string = 'All';
   showMuscleGroupDropdown = false;
   colors = [
     {
-      solid: 'rgba(0, 191, 255, 1)', // Color for Bench Press
+      solid: 'rgba(0, 191, 255, 1)',
       translucent: 'rgba(0, 191, 255, 0.2)',
     },
     {
-      solid: 'rgba(225, 185, 65, 1)', // Color for Deadlift
+      solid: 'rgba(225, 185, 65, 1)',
       translucent: 'rgba(225, 185, 65, 0.2)',
     },
     {
-      solid: 'rgba(255, 107, 107, 1)', // Color for Squat
+      solid: 'rgba(255, 107, 107, 1)',
       translucent: 'rgba(255, 107, 107, 0.2)',
     },
   ];
 
-  public barChartOptions: ChartOptions = {
-    // Configure your chart options here
-  };
+  public barChartOptions: ChartOptions = {};
 
   public barChartLabels = [
     'Sunday',
@@ -49,9 +47,7 @@ export class ProfileComponent implements OnInit {
   ];
   public barChartData: ChartDataset[] = [];
   public lineChartData: ChartDataset[] = [];
-  public lineChartOptions: ChartOptions = {
-    // Define your line chart options here
-  };
+  public lineChartOptions: ChartOptions = {};
 
   public lineChartLabels: string[] = ['Top 4', 'Top 3', 'Top 2', 'Top 1'];
 
@@ -59,7 +55,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private dataCacheService: DataCacheService, // Use DataCacheService
+    private dataCacheService: DataCacheService,
     private modalService: NgbModal
   ) {}
 
@@ -128,9 +124,8 @@ export class ProfileComponent implements OnInit {
       )
       .flatMap((exercise) => exercise.sets)
       .map((set) => set.weight)
-      .filter((weight) => weight > 0); // Filter out zero weights
+      .filter((weight) => weight > 0);
 
-    // Remove duplicates, sort in descending order, and get top four weights
     weights = Array.from(new Set(weights))
       .sort((a, b) => b - a)
       .slice(0, 4)
@@ -174,20 +169,15 @@ export class ProfileComponent implements OnInit {
       if (this.selectedExercises.length < 3) {
         this.selectedExercises.push(exercise);
       } else {
-        // Handle the case where more than three exercises are selected
-        // Perhaps show a message or replace the last one
       }
     }
   }
   addExerciseToChart(exercise: ExerciseList) {
     const exerciseIndex = this.selectedExercises.indexOf(exercise.name);
     if (exerciseIndex !== -1) {
-      // Exercise is already selected, remove it
       this.selectedExercises.splice(exerciseIndex, 1);
     } else {
-      // Exercise is not selected, add it
       if (this.selectedExercises.length >= 3) {
-        // Optional: Remove the first exercise if there are already three selected
         this.selectedExercises.shift();
       }
       this.selectedExercises.push(exercise.name);

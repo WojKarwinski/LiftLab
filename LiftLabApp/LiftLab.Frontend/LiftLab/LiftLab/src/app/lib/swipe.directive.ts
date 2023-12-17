@@ -5,11 +5,11 @@ import { Directive, Output, EventEmitter, HostListener } from '@angular/core';
 })
 export class SwipeDirective {
   @Output() swiping = new EventEmitter<number>();
-  @Output() swipeLeft = new EventEmitter<void>(); // Emit for a successful swipe left
-  @Output() swipeEnd = new EventEmitter<void>(); // Emit when swipe ends
+  @Output() swipeLeft = new EventEmitter<void>();
+  @Output() swipeEnd = new EventEmitter<void>();
 
   private touchStartX: number = 0;
-  private swipeThreshold: number = 150; // Threshold for a successful swipe
+  private swipeThreshold: number = 150;
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: TouchEvent): void {
@@ -29,9 +29,9 @@ export class SwipeDirective {
     const distance = this.touchStartX - touchEndX;
 
     if (distance > this.swipeThreshold) {
-      this.swipeLeft.emit(); // Emit if the swipe is long enough
+      this.swipeLeft.emit();
     } else {
-      this.swipeEnd.emit(); // Emit to reset the style
+      this.swipeEnd.emit();
     }
   }
 }

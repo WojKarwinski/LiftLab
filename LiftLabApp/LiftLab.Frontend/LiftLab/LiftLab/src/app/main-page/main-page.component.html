@@ -1,12 +1,11 @@
 <div class="main-page">
-  <!-- Main content area -->
   <div *ngIf="!workoutStarted" class="titleImage">
     <img class="mainImage" src="../../assets/bee2.png" />
     <header class="main-header">LiftLab</header>
   </div>
 
   <router-outlet></router-outlet>
-  <!-- Navigation bar -->
+
   <nav *ngIf="!workoutStarted" class="navigation-bar">
     <button class="icon-profile" (click)="navigate('/profile')">
       <fa-icon class="icon-profile" [icon]="faUser"></fa-icon> Profile

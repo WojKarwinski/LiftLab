@@ -1,24 +1,19 @@
 <div class="workout-container">
-  <!-- Timer button and Finish workout button -->
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- Timer button -->
     <div>
       <button class="btn btn-outline-light" (click)="open(timerModal)">
         <fa-icon [icon]="faHourglass3"></fa-icon>
         <span class="timer">{{ timerDisplay }}</span>
       </button>
     </div>
-    <!-- Finish workout button -->
     <div>
       <button class="btn btn-success" (click)="finishWorkout()">FINISH</button>
     </div>
   </div>
 
-  <!-- Modal definition -->
   <ng-template #timerModal let-modal>
     <div class="modal-dialog">
       <div class="modal-content">
-        <!-- Modal header -->
         <div class="modal-header">
           <h5 class="modal-title" id="timerModalLabel">Choose Timer</h5>
           <button
@@ -28,9 +23,7 @@
             (click)="modal.dismiss('Cross click')"
           ></button>
         </div>
-        <!-- Modal body -->
         <div class="modal-body">
-          <!-- Timer options -->
           <button
             class="btn btn-primary w-100 mb-2"
             (click)="setTimer(60); modal.close()"
@@ -60,7 +53,6 @@
     </div>
   </ng-template>
 
-  <!-- Workout title and dropdown menu for edit options -->
   <div class="workout-title-container">
     <ng-container *ngIf="!editMode; else editField">
       <h1 class="workout-title">{{ workoutData.name }}</h1>
@@ -78,7 +70,6 @@
     </div>
   </div>
 
-  <!-- Note Input -->
   <div *ngIf="noteMode">
     <textarea [(ngModel)]="workoutData.note" class="form-control"></textarea>
     <button (click)="saveNote()">Save Note</button>
@@ -90,7 +81,6 @@
     </div>
   </div>
 
-  <!-- Iterate over the exercises -->
   <div *ngFor="let exercise of workoutData.exercises">
     <app-exercise
       [exercise]="exercise"
@@ -109,7 +99,6 @@
     </button>
   </div>
 
-  <!-- Exercise Modal -->
   <ng-template #exerciseModal let-modal>
     <div class="modal-header">
       <h5 class="modal-title">Select an Exercise</h5>
@@ -130,7 +119,6 @@
             [(ngModel)]="searchTerm"
           />
 
-          <!-- Button to show dropdown -->
           <button
             class="btn btn-secondary mb-2"
             (click)="toggleMuscleGroupDropdown()"
@@ -138,7 +126,6 @@
             Select Muscle Group
           </button>
         </div>
-        <!-- Dropdown for muscle group selection -->
         <div
           class="dropdown mb-2 dropdown-menu-group"
           *ngIf="showMuscleGroupDropdown"
@@ -154,7 +141,6 @@
           </div>
         </div>
 
-        <!-- List of exercises -->
         <ul class="list-group">
           <li
             class="list-group-item"

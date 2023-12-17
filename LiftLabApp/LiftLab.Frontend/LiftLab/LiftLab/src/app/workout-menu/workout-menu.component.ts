@@ -28,12 +28,14 @@ export class WorkoutMenuComponent implements OnInit {
       .createWorkoutFromTemplate(template)
       .subscribe((response) => {
         this.workoutStateService.setWorkoutActive(true);
+
         this.router.navigate(['/workout/start', response.id]);
       });
   }
 
   startEmptyWorkout() {
     this.workoutStateService.setWorkoutActive(true);
+
     this.router.navigate(['/workout/start', 'new']);
   }
 

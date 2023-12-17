@@ -1,6 +1,6 @@
 .set-container {
   padding: 10px;
-  background-color: transparent; /* Dark background */
+  background-color: transparent;
   margin-bottom: 10px;
   border-radius: 8px;
   display: flex;
@@ -9,13 +9,13 @@
 }
 .set-container span {
   margin-right: 5px;
-  color: #e1b941; /* Light red accent for text */
+  color: #e1b941;
 }
 .set-container input {
-  background-color: #393e46; /* Dark grey background for input */
-  border: 1px solid #e1b941; /* Light red border */
+  background-color: #393e46;
+  border: 1px solid #e1b941;
   border-radius: 4px;
-  color: white; /* White text for contrast */
+  color: white;
   padding: 5px;
   margin-right: 5px;
   width: 60px;
@@ -23,26 +23,25 @@
 }
 .set-container input:focus {
   outline: none;
-  border-color: #e1b941; /* Light red focus border */
+  border-color: #e1b941;
 }
 .setNumber {
-  color: #e1b941; /* Light red color for set number */
+  color: #e1b941;
   padding-right: 5vw;
 }
 p-slider {
-  width: 15vw; /* Slider width */
-  /* Additional styling for the slider may be required */
+  width: 15vw;
 }
 .slider-value {
   position: fixed;
-  color: #e1b941; /* Light red text */
+  color: #e1b941;
   text-align: center;
-  font-size: 70px; /* Adjust as needed */
+  font-size: 70px;
   z-index: 100;
-  transform: translateX(-50%); /* Center horizontally relative to touch point */
+  transform: translateX(-50%);
 }
 .checkBox {
-  display: none; /* Hide the default checkbox */
+  display: none;
 }
 .custom-checkbox {
   display: inline-block;
@@ -51,11 +50,11 @@ p-slider {
   background: #393e46;
   border-radius: 5px;
   position: relative;
-  border: 1px solid #e1b941; /* Light red border */
+  border: 1px solid #e1b941;
   cursor: pointer;
 }
 .custom-checkbox.checked {
-  background: #e1b941; /* Light red background when checked */
+  background: #e1b941;
 }
 .custom-checkbox.checked::after {
   content: "";
@@ -69,7 +68,7 @@ p-slider {
   transform: rotate(45deg);
 }
 .set-container.glowing {
-  box-shadow: 0 0 10px #e1b941; /* Glowing effect in light red */
+  box-shadow: 0 0 10px #e1b941;
 }
 :host ::ng-deep .p-slider-handle {
   border-color: #e1b941;

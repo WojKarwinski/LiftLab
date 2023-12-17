@@ -21,8 +21,8 @@ export class ExerciseComponent implements OnInit {
   handleRpeSliderActive(active: boolean): void {
     this.isRpeSliderActive = active;
   }
-  @Input() exercise: any; // The exercise data passed in should be typed correctly
-  @Output() addSetEvent = new EventEmitter<number>(); // Emitting exercise ID
+  @Input() exercise: any;
+  @Output() addSetEvent = new EventEmitter<number>();
   @Output() removeExerciseEvent = new EventEmitter<number>();
   @Output() removeSetEvent = new EventEmitter<{
     exerciseId: any;
@@ -30,7 +30,7 @@ export class ExerciseComponent implements OnInit {
   }>();
   swipeStyles: any[] = [];
   ngOnInit(): void {
-    this.swipeStyles = this.exercise.sets.map(() => ({})); // Initialize swipe styles
+    this.swipeStyles = this.exercise.sets.map(() => ({}));
   }
   toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;

@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faHourglass3 } from '@fortawesome/free-solid-svg-icons';
 import { WorkoutStateService } from '../services/workout-state.service';
 import { TimerService } from '../services/timer.service';
 import { LiftLabService } from '../services/LiftLab.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   Exercise,
   ExerciseSet,
@@ -25,8 +24,8 @@ export class WorkoutComponent implements OnInit {
     name: 'New Workout',
     note: 'Empty Workout',
   } as WorkoutData;
-  allExercises: any[] = []; // Define a more specific type if possible
-  @ViewChild('exerciseModal', { static: true }) exerciseModal: any; // Define a more specific type if possible
+  allExercises: any[] = [];
+  @ViewChild('exerciseModal', { static: true }) exerciseModal: any;
 
   searchTerm: string = '';
   selectedMuscleGroup: string = 'All';
@@ -39,10 +38,10 @@ export class WorkoutComponent implements OnInit {
   showMuscleGroupDropdown: boolean = false;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private timerService: TimerService,
     private modalService: NgbModal,
-    private route: ActivatedRoute,
     private liftLabService: LiftLabService,
     private workoutStateService: WorkoutStateService
   ) {}
@@ -51,29 +50,6 @@ export class WorkoutComponent implements OnInit {
     this.subscribeToTimer();
     this.loadWorkoutData();
     this.loadExercises();
-  }
-
-  loadWorkoutForRepeating(workoutId: number): void {
-    this.liftLabService.getWorkoutById(workoutId).subscribe((workout) => {
-      // Clone the workout data to start a new workout
-      const newWorkout = JSON.parse(JSON.stringify(workout));
-
-      // Reset the ID to ensure it's saved as a new workout
-      newWorkout.id = null;
-
-      // Optionally, update the date to the current date
-      newWorkout.date = new Date().toISOString();
-
-      // Set the component's workout data to this new workout
-      this.workoutData = newWorkout;
-    });
-  }
-
-  loadWorkoutForEditing(workoutId: number): void {
-    this.liftLabService.getWorkoutById(workoutId).subscribe((workout) => {
-      // Load the existing workout data for editing
-      this.workoutData = workout;
-    });
   }
 
   private loadExercises() {
@@ -90,12 +66,46 @@ export class WorkoutComponent implements OnInit {
 
   private loadWorkoutData(): void {
     this.route.paramMap.subscribe((params) => {
-      const workoutId = Number(params.get('id'));
-      if (workoutId) {
+      const workoutId = params.get('id');
+      const currentRoute = this.router.url;
+
+      if (workoutId && workoutId !== 'new') {
         this.liftLabService
-          .getWorkoutById(workoutId)
-          .subscribe((data) => (this.workoutData = data));
+          .getWorkoutById(Number(workoutId))
+          .subscribe((data) => {
+            if (data && data.id) {
+              if (currentRoute.includes('/perform/')) {
+                const newWorkout = JSON.parse(JSON.stringify(data));
+                newWorkout.id = 0;
+                newWorkout.date = new Date().toISOString();
+                this.setAllSetsChecked(newWorkout);
+                this.workoutData = newWorkout;
+              } else {
+                this.setAllSetsChecked(data);
+                this.workoutData = data;
+              }
+            }
+          });
+      } else {
+        this.workoutData = this.createNewWorkoutData();
       }
+    });
+  }
+
+  private createNewWorkoutData(): WorkoutData {
+    return {
+      id: 0,
+      date: new Date().toISOString(),
+      name: 'New Workout',
+      note: '',
+      exercises: [],
+    };
+  }
+  private setAllSetsChecked(workout: WorkoutData): void {
+    workout.exercises.forEach((exercise) => {
+      exercise.sets.forEach((set) => {
+        set.checked = true;
+      });
     });
   }
 
@@ -110,26 +120,20 @@ export class WorkoutComponent implements OnInit {
 
   finishWorkout(): void {
     this.workoutData.exercises.forEach((exercise) => {
-      // Filter out sets that are not checked
       exercise.sets = exercise.sets.filter((set) => set.checked);
     });
 
     this.timerService.stopTimer();
 
-    // Check if the workout is new (id is null or undefined) or an existing one (id is set)
-    if (this.workoutData.id == null) {
-      // Handle new workout
+    if (this.workoutData.id == 0) {
       this.liftLabService.createWorkout(this.workoutData).subscribe(
         (response) => {
           this.workoutStateService.setWorkoutActive(false);
           this.router.navigate(['/history']);
         },
-        (error) => {
-          // Handle error, e.g., display an error message
-        }
+        (error) => {}
       );
     } else {
-      // Handle existing workout
       this.liftLabService
         .updateWorkout(this.workoutData.id, this.workoutData)
         .subscribe(
@@ -137,35 +141,27 @@ export class WorkoutComponent implements OnInit {
             this.workoutStateService.setWorkoutActive(false);
             this.router.navigate(['/history']);
           },
-          (error) => {
-            // Handle error, e.g., display an error message
-          }
+          (error) => {}
         );
     }
   }
 
   cancelWorkout(id: number): void {
-    // Set the service property to false to show the workout menu again
     const modalRef = this.modalService.open(WarningModalComponent);
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
           this.workoutStateService.setWorkoutActive(false);
 
-          // Call deleteWorkout from LiftLabService
           this.liftLabService.deleteWorkout(id).subscribe(
             (response) => {
               this.router.navigate(['/history']);
             },
-            (error) => {
-              // Handle error if needed
-            }
+            (error) => {}
           );
         }
       },
-      (reason) => {
-        // Modal dismissed, no action required or handle accordingly
-      }
+      (reason) => {}
     );
   }
 
@@ -199,21 +195,18 @@ export class WorkoutComponent implements OnInit {
 
   saveName(): void {
     if (this.workoutData.name.trim().length > 0) {
-      // Save or process the edited name
     }
     this.editMode = false;
   }
 
   saveNote(): void {
     if (this.workoutData.note.trim().length > 0) {
-      // Save or process the note
     }
     this.noteMode = false;
   }
 
   cancelEdit(): void {
     this.editMode = false;
-    // Optionally reset the name to original if edit is canceled
   }
 
   cancelNote(): void {
@@ -227,7 +220,6 @@ export class WorkoutComponent implements OnInit {
     if (exercise) {
       const newSetNumber = exercise.sets.length + 1;
 
-      // Create a new set with default values, including the 'rpe' property
       const newSet: ExerciseSet = {
         setNumber: newSetNumber,
         reps: 0,
@@ -276,7 +268,7 @@ export class WorkoutComponent implements OnInit {
       exerciseId: this.workoutData.exercises.length + 1,
       exerciseListId: selectedExercise.id,
       name: selectedExercise.name,
-      exerciseOrder: exerciseOrder, // Set the exerciseOrder property
+      exerciseOrder: exerciseOrder,
       sets: [{ setNumber: 1, reps: 0, weight: 0, rpe: 0, checked: false }],
     };
     this.workoutData.exercises.push(newExercise);

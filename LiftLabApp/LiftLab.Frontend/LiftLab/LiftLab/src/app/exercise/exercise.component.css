@@ -1,13 +1,11 @@
-/* Exercise Container Styles */
 .exercise-container {
-  background-color: transparent; /* dark background */
-  color: #ffffff; /* white text color */
+  background-color: transparent;
+  color: #ffffff;
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 8px;
 }
 
-/* Exercise Header */
 .exercise-header {
   display: flex;
   justify-content: space-between;
@@ -17,10 +15,9 @@
 
 .exercise-header h2 {
   font-size: 1.5rem;
-  color: #e1b941; /* light red for exercise title */
+  color: #e1b941;
 }
 
-/* Dropdown Styles */
 .dropdown {
   position: relative;
 }
@@ -28,11 +25,11 @@
 .dropdown button {
   background: transparent;
   border: none;
-  color: #ffffff; /* white color for the dropdown icon */
+  color: #ffffff;
 }
 
 .dropdown-menu {
-  background-color: #2c2c2c; /* light dark background */
+  background-color: #2c2c2c;
 }
 
 .dropdown-item {
@@ -40,10 +37,9 @@
 }
 
 .dropdown-item:hover {
-  background-color: #ff6b6b; /* light red hover effect */
+  background-color: #ff6b6b;
 }
 
-/* Sets Header */
 .sets-header {
   position: relative;
   right: 3%;
@@ -54,27 +50,21 @@
   justify-content: space-between;
 }
 
-/* Set Items */
 .app-set {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Adjust as per your content */
+  grid-template-columns: repeat(5, 1fr);
   align-items: center;
   padding: 5px 0;
-  border-bottom: 1px solid #ffffff; /* white border for separation */
+  border-bottom: 1px solid #ffffff;
 }
 
-/* Add Set Button */
 .button-container {
   text-align: center;
   margin-top: 20px;
 }
 
 .addSetButton {
-  background-image: linear-gradient(
-    to right,
-    #e1b941,
-    #dfad18
-  ); /* light red gradient */
+  background-image: linear-gradient(to right, #e1b941, #dfad18);
   border: none;
   padding: 10px 20px;
   font-size: 1rem;

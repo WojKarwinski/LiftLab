@@ -12,8 +12,8 @@
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 5px;
-  max-height: 40vh; /* Control the size of each workout component */
-  overflow-y: auto; /* Allow internal scrolling if content is too long */
+  max-height: 40vh;
+  overflow-y: auto;
 }
 .shortTime {
   display: flex;
