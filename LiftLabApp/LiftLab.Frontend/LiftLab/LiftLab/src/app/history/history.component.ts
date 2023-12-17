@@ -28,6 +28,11 @@ export class HistoryComponent implements OnInit {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       });
     });
+    this.liftLabService.getAllWorkouts().subscribe((data: WorkoutData[]) => {
+      this.workoutData = data.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+    });
   }
   filterWorkouts(): WorkoutData[] {
     if (!this.searchTerm) {
