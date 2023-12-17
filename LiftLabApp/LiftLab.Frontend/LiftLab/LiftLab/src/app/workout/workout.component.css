@@ -1,6 +1,6 @@
 /* Button Styles */
 .btn {
-  border-color: #ff6b6b; /* light red border */
+  border-color: #e1b941; /* light red border */
   color: #ffffff; /* white text */
 }
 
@@ -15,8 +15,8 @@
   margin: 20px;
   background-image: linear-gradient(
     to right,
-    #ff6b6b,
-    #ff8787
+    #e1b941,
+    #dfad18
   ); /* light red gradient */
   border: none;
 }
@@ -72,7 +72,7 @@
   pointer-events: none; /* Ensures click events pass through */
 }
 .modal-header .modal-title {
-  color: #ff6b6b; /* light red header */
+  color: #e1b941; /* light red header */
 }
 
 .btn-close {
@@ -100,13 +100,13 @@
 }
 
 .dropdown-menu div:hover {
-  background-color: #ff6b6b; /* light red hover effect */
+  background-color: #e1b941; /* light red hover effect */
 }
 
 /* Form Controls and Inputs */
 .form-control {
   background-color: #f2f2f2; /* light grey background */
-  border: 1px solid #ff6b6b; /* light red border */
+  border: 1px solid #e1b941; /* light red border */
   color: #121212; /* dark text for contrast */
 }
 

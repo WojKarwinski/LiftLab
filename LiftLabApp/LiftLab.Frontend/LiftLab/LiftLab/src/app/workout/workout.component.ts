@@ -11,6 +11,7 @@ import {
   ExerciseSet,
   WorkoutData,
 } from '../interfaces/workout.interface';
+import { WarningModalComponent } from '../warning-modal/warning-modal.component';
 
 @Component({
   selector: 'app-workout',
@@ -85,6 +86,10 @@ export class WorkoutComponent implements OnInit {
   }
 
   finishWorkout(): void {
+    this.workoutData.exercises.forEach((exercise) => {
+      // Filter out sets that are not checked
+      exercise.sets = exercise.sets.filter((set) => set.checked);
+    });
     this.timerService.stopTimer();
     if (this.workoutData.id === 0) {
       this.liftLabService.createWorkout(this.workoutData).subscribe(
@@ -112,15 +117,25 @@ export class WorkoutComponent implements OnInit {
   }
   cancelWorkout(id: number): void {
     // Set the service property to false to show the workout menu again
-    this.workoutStateService.setWorkoutActive(false);
+    const modalRef = this.modalService.open(WarningModalComponent);
+    modalRef.result.then(
+      (result) => {
+        if (result === 'confirm') {
+          this.workoutStateService.setWorkoutActive(false);
 
-    // Call deleteWorkout from LiftLabService
-    this.liftLabService.deleteWorkout(id).subscribe(
-      (response) => {
-        this.router.navigate(['/history']);
+          // Call deleteWorkout from LiftLabService
+          this.liftLabService.deleteWorkout(id).subscribe(
+            (response) => {
+              this.router.navigate(['/history']);
+            },
+            (error) => {
+              // Handle error if needed
+            }
+          );
+        }
       },
-      (error) => {
-        // Handle error if needed
+      (reason) => {
+        // Modal dismissed, no action required or handle accordingly
       }
     );
   }
@@ -189,6 +204,7 @@ export class WorkoutComponent implements OnInit {
         reps: 0,
         weight: 0,
         rpe: 0,
+        checked: false,
       };
       exercise.sets.push(newSet);
     }
@@ -232,7 +248,7 @@ export class WorkoutComponent implements OnInit {
       exerciseListId: selectedExercise.id,
       name: selectedExercise.name,
       exerciseOrder: exerciseOrder, // Set the exerciseOrder property
-      sets: [{ setNumber: 1, reps: 0, weight: 0, rpe: 0 }],
+      sets: [{ setNumber: 1, reps: 0, weight: 0, rpe: 0, checked: false }],
     };
     this.workoutData.exercises.push(newExercise);
     this.modalService.dismissAll();

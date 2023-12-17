@@ -17,7 +17,7 @@
 
 .exercise-header h2 {
   font-size: 1.5rem;
-  color: #ff6b6b; /* light red for exercise title */
+  color: #e1b941; /* light red for exercise title */
 }
 
 /* Dropdown Styles */
@@ -72,8 +72,8 @@
 .addSetButton {
   background-image: linear-gradient(
     to right,
-    #ff6b6b,
-    #ff8787
+    #e1b941,
+    #dfad18
   ); /* light red gradient */
   border: none;
   padding: 10px 20px;
@@ -82,13 +82,6 @@
   color: #ffffff;
 }
 
-.addSetButton:hover {
-  background-image: linear-gradient(
-    to right,
-    #ff5050,
-    #ff7070
-  ); /* slightly darker gradient on hover */
-}
 .dropdownMenuButton {
   top: 80%;
   right: 35%;

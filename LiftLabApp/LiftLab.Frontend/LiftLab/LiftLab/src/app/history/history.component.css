@@ -2,6 +2,9 @@
   padding: 10px;
   padding-bottom: 6vh;
 }
+.historyHeader {
+  color: #ffffff;
+}
 
 .workout-history {
   font-family: Arial, sans-serif;
@@ -20,6 +23,7 @@
 }
 h2,
 h3 {
+  color: #ff5a9e;
 }
 
 .exercise {

@@ -3,7 +3,7 @@
   <div *ngFor="let workout of workoutData" class="workout-history">
     <div class="nameDate">
       <h2>{{ workout.name }}</h2>
-      <p>{{ workout.date | date : "shortDate" }}</p>
+      <p>{{ workout.date | date : "dd/MM/yyyy" }}</p>
     </div>
     <div class="exerciseWeight">
       <p>Exercise</p>

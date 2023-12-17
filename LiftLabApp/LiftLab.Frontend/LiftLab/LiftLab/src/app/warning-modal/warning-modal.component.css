@@ -1,0 +1,32 @@
+/* warning-modal.component.css */
+
+.modal-warning-body {
+  padding: 10px;
+  background-color: #393e46; /* Dark grey background */
+  color: white; /* White text for contrast */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 50%;
+}
+
+.modal-warning-footer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #393e46;
+  border-top: 1px solid #e1b941; /* Light red border */
+}
+
+.modal-warning-footer .btn {
+  margin-left: 10px;
+  background-color: #e1b941; /* Dark grey background */
+  color: white; /* White text */
+  border-color: #e1b941; /* Light red border */
+}
+
+.btn-danger {
+  background-color: red !important; /* Dark grey background */
+  color: white; /* White text */
+  border-color: #e1b941; /* Light red border */
+}

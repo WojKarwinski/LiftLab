@@ -4,20 +4,21 @@
   <router-outlet></router-outlet>
   <!-- Navigation bar -->
   <nav *ngIf="!workoutStarted" class="navigation-bar">
-    <button (click)="navigate('/profile')">
-      <fa-icon [icon]="faUser"></fa-icon> Profile
+    <button class="icon-profile" (click)="navigate('/profile')">
+      <fa-icon class="icon-profile" [icon]="faUser"></fa-icon> Profile
     </button>
     <button (click)="navigate('/history')">
-      <fa-icon [icon]="faHistory"></fa-icon> History
+      <fa-icon class="icon-history" [icon]="faHistory"></fa-icon> History
     </button>
     <button (click)="navigate('/workoutmenu')">
-      <fa-icon [icon]="faPlusCircle"></fa-icon> Workout
+      <fa-icon class="icon-workoutmenu" [icon]="faPlusCircle"></fa-icon> Workout
     </button>
     <button (click)="navigate('/exercisemenu')">
-      <fa-icon [icon]="faDumbbell"></fa-icon> Exercises
+      <fa-icon class="icon-exercisemenu" [icon]="faDumbbell"></fa-icon>
+      Exercises
     </button>
     <button (click)="navigate('/graphs')">
-      <fa-icon [icon]="faChartLine"></fa-icon> Graphs
+      <fa-icon class="icon-graphs" [icon]="faChartLine"></fa-icon> Graphs
     </button>
   </nav>
 </div>

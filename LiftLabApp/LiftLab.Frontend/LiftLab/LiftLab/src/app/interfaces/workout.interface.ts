@@ -19,6 +19,7 @@ export interface ExerciseSet {
   reps: number;
   weight: number;
   rpe: number | null;
+  checked: boolean;
 }
 
 export interface ExerciseList {

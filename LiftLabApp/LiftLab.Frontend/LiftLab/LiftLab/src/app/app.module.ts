@@ -20,6 +20,7 @@ import { ExerciseMenuComponent } from './exercise-menu/exercise-menu.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NgChartsModule } from 'ng2-charts';
+import { WarningModalComponent } from './warning-modal/warning-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgChartsModule } from 'ng2-charts';
     ExerciseMenuComponent,
     GraphsComponent,
     MainPageComponent,
+    WarningModalComponent,
   ],
   imports: [
     FormsModule,

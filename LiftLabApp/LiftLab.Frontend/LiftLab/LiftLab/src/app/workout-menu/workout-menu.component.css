@@ -7,9 +7,12 @@
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  background-color: #007bff;
+  background-color: #e1b941;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+h2 {
+  color: #e1b941;
 }

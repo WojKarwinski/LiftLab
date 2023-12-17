@@ -12,14 +12,11 @@ export class LiftLabService {
   constructor(private http: HttpClient) {}
 
   getAllExercises(): Observable<any> {
-    console.log('start fetch exercises');
     return this.http.get<any>(`${this.apiUrl}/api/LiftLab/exercises`);
   }
 
   getWorkoutById(id: number): Observable<any> {
-    let rere = this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts/${id}`);
-    console.log(rere);
-    return rere;
+    return this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts/${id}`);
   }
 
   getWorkoutDays(): Observable<Set<string>> {
@@ -32,12 +29,9 @@ export class LiftLabService {
         )
       );
   }
-  // get all workouts
+
   getAllWorkouts(): Observable<any> {
-    console.log('start fetch');
-    let rere = this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts`);
-    console.log('rere');
-    return rere;
+    return this.http.get<any>(`${this.apiUrl}/api/LiftLab/workouts`);
   }
 
   getAllTemplates(): Observable<any> {

@@ -29,7 +29,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.subscription = this.workoutStateService
       .getWorkoutActive()
       .subscribe((isActive) => {
-        console.log('Workout Active State:', isActive);
         this.workoutStarted = isActive;
       });
   }

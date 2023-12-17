@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ChartDataset, ChartOptions } from 'chart.js';
-import { LiftLabService } from '../services/LiftLab.service';
 import { WorkoutData } from '../interfaces/workout.interface';
+import { DataCacheService } from '../services/DataCache.service';
 
 @Component({
   selector: 'app-profile',
@@ -34,16 +34,16 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private LiftLabService: LiftLabService
+    private dataCacheService: DataCacheService // Use DataCacheService
   ) {}
 
   ngOnInit(): void {
-    this.processWorkoutData();
-    this.LiftLabService.getAllWorkouts().subscribe((data: any) => {
-      console.log(data);
-      this.workoutData = data;
-      this.processWorkoutData();
-    });
+    this.dataCacheService
+      .fetchWorkoutsIfNeeded()
+      .subscribe((data: WorkoutData[]) => {
+        this.workoutData = data;
+        this.processWorkoutData();
+      });
   }
 
   processWorkoutData(): void {
@@ -77,22 +77,22 @@ export class ProfileComponent implements OnInit {
       {
         data: this.getWeightProgression('Bench Press'),
         label: 'Bench Press',
-        borderColor: 'rgba(255, 99, 132, 1)', // Example color for Bench Press
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Translucent background (area fill)
+        borderColor: 'rgba(0, 191, 255, 1)', // Example color for Bench Press
+        backgroundColor: 'rgba(0, 191, 255, 0.2)', // Translucent background (area fill)
         borderWidth: 2,
       },
       {
         data: this.getWeightProgression('Deadlift'),
         label: 'Deadlift',
-        borderColor: 'rgba(54, 162, 235, 1)', // Example color for Deadlift
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(225, 185, 65, 1)', // Example color for Deadlift
+        backgroundColor: 'rgba(225, 185, 65, 0.2)',
         borderWidth: 2,
       },
       {
         data: this.getWeightProgression('Squat'),
         label: 'Squat',
-        borderColor: 'rgba(75, 192, 192, 1)', // Example color for Squat
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(255, 90, 158,1)', // Example color for Squat
+        backgroundColor: 'rgba(255, 90, 158,0.2)',
         borderWidth: 2,
       },
     ];

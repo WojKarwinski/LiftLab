@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LiftLabService } from '../services/LiftLab.service';
+import { DataCacheService } from '../services/DataCache.service';
 import { WorkoutData } from '../interfaces/workout.interface';
 import { Router } from '@angular/router';
 
@@ -9,20 +9,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent implements OnInit {
-  constructor(private liftLabService: LiftLabService, private router: Router) {}
-
-  startWorkoutFromHistory(workoutId: number) {
-    this.router.navigate(['/workout', workoutId]);
-  }
-
   workoutData: WorkoutData[] = [];
 
+  constructor(
+    private dataCacheService: DataCacheService,
+    private router: Router
+  ) {}
+
   ngOnInit() {
-    this.liftLabService.getAllWorkouts().subscribe((data) => {
-      this.workoutData = data.sort((a: any, b: any) => {
+    this.dataCacheService.fetchWorkoutsIfNeeded().subscribe((data) => {
+      this.workoutData = data.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       });
     });
+  }
+
+  startWorkoutFromHistory(workoutId: number) {
+    this.router.navigate(['/workout', workoutId]);
   }
 
   findBestSet(sets: any[]): string {

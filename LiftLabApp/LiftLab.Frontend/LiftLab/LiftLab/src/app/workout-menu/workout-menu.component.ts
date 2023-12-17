@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LiftLabService } from '../services/LiftLab.service';
+import { DataCacheService } from '../services/DataCache.service';
 import { WorkoutStateService } from '../services/workout-state.service';
 import { Template } from '../interfaces/workout.interface';
+import { LiftLabService } from '../services/LiftLab.service';
 
 @Component({
   selector: 'app-workout-menu',
@@ -16,9 +17,10 @@ export class WorkoutMenuComponent implements OnInit {
   templates: Template[] = [];
 
   constructor(
+    private dataCacheService: DataCacheService,
     private liftLabService: LiftLabService,
     private router: Router,
-    private workoutStateService: WorkoutStateService // Injecting the service
+    private workoutStateService: WorkoutStateService
   ) {}
 
   startWorkoutFromMenu(template: any) {
@@ -35,9 +37,8 @@ export class WorkoutMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.liftLabService.getAllTemplates().subscribe((data) => {
+    this.dataCacheService.fetchTemplatesIfNeeded().subscribe((data) => {
       this.templates = data;
-      console.log(data);
     });
   }
 }

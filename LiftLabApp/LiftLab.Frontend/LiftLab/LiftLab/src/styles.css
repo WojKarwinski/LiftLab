@@ -28,7 +28,3 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
-
-.button:hover {
-  background-color: #1565c0;
-}

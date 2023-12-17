@@ -9,11 +9,11 @@
 }
 .set-container span {
   margin-right: 5px;
-  color: #ff6b6b; /* Light red accent for text */
+  color: #e1b941; /* Light red accent for text */
 }
 .set-container input {
   background-color: #393e46; /* Dark grey background for input */
-  border: 1px solid #ff6b6b; /* Light red border */
+  border: 1px solid #e1b941; /* Light red border */
   border-radius: 4px;
   color: white; /* White text for contrast */
   padding: 5px;
@@ -23,10 +23,10 @@
 }
 .set-container input:focus {
   outline: none;
-  border-color: #ff6b6b; /* Light red focus border */
+  border-color: #e1b941; /* Light red focus border */
 }
 .setNumber {
-  color: #ff6b6b; /* Light red color for set number */
+  color: #e1b941; /* Light red color for set number */
   padding-right: 5vw;
 }
 p-slider {
@@ -35,7 +35,7 @@ p-slider {
 }
 .slider-value {
   position: fixed;
-  color: #ff6b6b; /* Light red text */
+  color: #e1b941; /* Light red text */
   text-align: center;
   font-size: 70px; /* Adjust as needed */
   z-index: 100;
@@ -51,11 +51,11 @@ p-slider {
   background: #393e46;
   border-radius: 5px;
   position: relative;
-  border: 1px solid #ff6b6b; /* Light red border */
+  border: 1px solid #e1b941; /* Light red border */
   cursor: pointer;
 }
 .custom-checkbox.checked {
-  background: #ff6b6b; /* Light red background when checked */
+  background: #e1b941; /* Light red background when checked */
 }
 .custom-checkbox.checked::after {
   content: "";
@@ -69,14 +69,14 @@ p-slider {
   transform: rotate(45deg);
 }
 .set-container.glowing {
-  box-shadow: 0 0 10px #ff6b6b; /* Glowing effect in light red */
+  box-shadow: 0 0 10px #e1b941; /* Glowing effect in light red */
 }
 :host ::ng-deep .p-slider-handle {
-  border-color: #f14c4c;
+  border-color: #e1b941;
   height: 0px;
   width: 0;
   transform: translateX(175%);
 }
 :host ::ng-deep .p-slider-range {
-  background-color: #f14c4c;
+  background-color: #e1b941;
 }
