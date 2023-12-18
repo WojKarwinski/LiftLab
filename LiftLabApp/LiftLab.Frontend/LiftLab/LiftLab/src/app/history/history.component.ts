@@ -110,9 +110,9 @@ export class HistoryComponent implements OnInit {
   }
   createTemplate(workout: WorkoutData): void {
     const template: Template = {
-      id: 0, // Assuming new templates have id 0
+      id: 0,
       name: workout.name,
-      description: workout.note, // Using note as the description
+      description: workout.note,
       exercises: workout.exercises.map((exercise, index) => ({
         exerciseListId: exercise.exerciseListId,
         exerciseName: exercise.name,
@@ -123,11 +123,10 @@ export class HistoryComponent implements OnInit {
 
     this.liftLabService.createNewTemplate(template).subscribe(
       (response) => {
-        // Correctly calling the showSuccess method here
         this.showSuccessTemplate();
+        this.dataCacheService.refreshTemplates();
       },
       (error) => {
-        // Show error toast
         this.showError();
       }
     );

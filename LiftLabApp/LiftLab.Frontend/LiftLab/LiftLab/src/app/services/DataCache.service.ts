@@ -68,5 +68,15 @@ export class DataCacheService {
 
     return this.templatesSubject.asObservable();
   }
-  // Additional methods to update or refresh the exercises and workouts arrays as needed
+  refreshTemplates(): void {
+    this.liftLabService.getAllTemplates().subscribe(
+      (data) => {
+        this.templates = data;
+        this.templatesSubject.next(this.templates);
+      },
+      (error) => {
+        console.error('Error refreshing templates:', error);
+      }
+    );
+  }
 }
