@@ -13,7 +13,14 @@ namespace LiftLab.Domain
 
         public List<Workout> GetAllWorkouts()
         {
-            return _workoutsRepository.GetAllWorkouts();
+            try
+            {
+                return _workoutsRepository.GetAllWorkouts();
+            }catch (Exception ex)
+            {
+                throw new Exception("Error getting workouts", ex);
+            }
+            
         }
         public Workout GetWorkoutById(int workoutId)
         {
@@ -91,6 +98,16 @@ namespace LiftLab.Domain
         public Workout CreateWorkoutFromTemplate(WorkoutTemplate template)
         {
             return _workoutsRepository.CreateWorkoutFromTemplate(template);
+        }
+
+        public WorkoutTemplate CreateWorkoutTemplate(WorkoutTemplate template)
+        {
+            return _workoutsRepository.CreateWorkoutTemplate(template);
+        }
+
+        public void DeleteWorkoutTemplate(int id)
+        {
+            _workoutsRepository.DeleteWorkoutTemplate(id);
         }
     }
 }

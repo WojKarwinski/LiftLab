@@ -268,7 +268,7 @@ export class WorkoutComponent implements OnInit {
       exerciseId: this.workoutData.exercises.length + 1,
       exerciseListId: selectedExercise.id,
       name: selectedExercise.name,
-      exerciseOrder: exerciseOrder,
+      order: exerciseOrder,
       sets: [{ setNumber: 1, reps: 0, weight: 0, rpe: 0, checked: false }],
     };
     this.workoutData.exercises.push(newExercise);

@@ -24,7 +24,7 @@ public class WorkoutRepository : IWorkoutsRepository
             string query = @"
         SELECT 
             W.Id AS WorkoutId, W.Date, W.Name AS WorkoutName, W.Note,
-            E.Id AS ExerciseId, E.[Order] AS ExerciseOrder, EL.Name AS ExerciseName, EL.MuscleGroup,
+            E.Id AS ExerciseId, E.[Order] AS ExerciseOrder,EL.Id AS ExerciseListId, EL.Name AS ExerciseName, EL.MuscleGroup,
             S.SetNumber, S.Reps, S.Weight, S.Rpe
         FROM Workouts W
         LEFT JOIN Exercises E ON W.Id = E.WorkoutId
@@ -61,6 +61,7 @@ public class WorkoutRepository : IWorkoutsRepository
                                 exercise = new Exercise
                                 {
                                     ExerciseId = reader.GetInt32(reader.GetOrdinal("ExerciseId")),
+                                    ExerciseListId = reader.GetInt32(reader.GetOrdinal("ExerciseListId")),
                                     Order = reader.GetInt32(reader.GetOrdinal("ExerciseOrder")),
                                     Name = reader.GetString(reader.GetOrdinal("ExerciseName")),
                                     Sets = new List<Set>()
@@ -485,6 +486,54 @@ public class WorkoutRepository : IWorkoutsRepository
                 }
             }
             return workout;
+        }
+    }
+
+    public WorkoutTemplate CreateWorkoutTemplate(WorkoutTemplate template)
+    {
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = "INSERT INTO WorkoutTemplate (Name, Description) VALUES (@Name, @Description); SELECT SCOPE_IDENTITY()";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@Name", template.Name);
+                command.Parameters.AddWithValue("@Description", template.Description);
+                template.Id = Convert.ToInt32(command.ExecuteScalar());
+            }
+            foreach(WorkoutTemplateExerciseDetail exercise in template.Exercises)
+            {
+                query = "INSERT INTO WorkoutTemplateExercises (WorkoutTemplateId, ExerciseListId, [Order], Sets) VALUES (@WorkoutTemplateId, @ExerciseListId, @Order, @Sets)";
+                using(SqlCommand command = new(query, connection))
+                {
+                    command.Parameters.AddWithValue("@WorkoutTemplateId", template.Id);
+                    command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
+                    command.Parameters.AddWithValue("@Order", exercise.Order);
+                    command.Parameters.AddWithValue("@Sets", exercise.Sets);
+                    command.ExecuteNonQuery();
+                }
+            }
+            return template;
+        }
+    }
+
+    public void DeleteWorkoutTemplate(int id)
+    {
+        using(SqlConnection connection = new(_connectionString))
+        {
+            connection.Open();
+            string query = "DELETE FROM WorkoutTemplateExercises WHERE WorkoutTemplateId = @Id";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                command.ExecuteNonQuery();
+            }
+            query = "DELETE FROM WorkoutTemplate WHERE Id = @Id";
+            using(SqlCommand command = new(query, connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,6 +7,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./warning-modal.component.css'],
 })
 export class WarningModalComponent {
+  @Input() modalMessage: string = ''; // Add this line
+
   constructor(public activeModal: NgbActiveModal) {}
 
   dismiss() {

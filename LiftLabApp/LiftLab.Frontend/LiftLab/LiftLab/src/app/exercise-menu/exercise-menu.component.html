@@ -1,7 +1,16 @@
 <div class="exercise-list">
-  <h2>List of Exercises</h2>
+  <div class="exerciseSearch">
+    <h2>Exercises</h2>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterWorkouts()"
+      placeholder="Search workouts"
+      class="search-box"
+    />
+  </div>
   <ul>
-    <li class="exercise-item" *ngFor="let exercise of exercises">
+    <li class="exercise-item" *ngFor="let exercise of filterWorkouts()">
       <div class="exercise-info">
         <strong class="exercise-name">{{ exercise.name }}</strong>
         <span class="muscle-group">{{ exercise.muscleGroup }}</span>

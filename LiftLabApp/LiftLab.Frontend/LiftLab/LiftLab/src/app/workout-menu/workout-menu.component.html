@@ -6,12 +6,30 @@
   <div
     *ngFor="let template of templates"
     class="workout-history"
-    (click)="startWorkoutFromMenu(template)"
+    (click)="
+      selectedTemplateId =
+        selectedTemplateId == template.id ? null : template.id
+    "
   >
     <h2>{{ template.name }}</h2>
     <p>{{ template.description }}</p>
     <div class="exercise" *ngFor="let exercise of template.exercises">
       <span>{{ exercise.sets }}x {{ exercise.exerciseName }}</span>
+    </div>
+
+    <div *ngIf="selectedTemplateId == template.id" class="template-actions">
+      <button
+        (click)="performTemplate(template); $event.stopPropagation()"
+        class="perform-template-btn"
+      >
+        Perform Again
+      </button>
+      <button
+        (click)="deleteTemplate(template.id); $event.stopPropagation()"
+        class="delete-template-btn"
+      >
+        Delete Template
+      </button>
     </div>
   </div>
 </div>

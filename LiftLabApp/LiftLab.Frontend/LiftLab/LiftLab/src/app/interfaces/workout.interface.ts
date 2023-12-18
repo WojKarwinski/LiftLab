@@ -9,7 +9,7 @@ export interface WorkoutData {
 export interface Exercise {
   exerciseId: number;
   exerciseListId: number;
-  exerciseOrder: number;
+  order: number;
   name: string;
   sets: ExerciseSet[];
 }
@@ -30,14 +30,12 @@ export interface ExerciseList {
 
 export interface Template {
   id: 0;
-  name: 'string';
-  description: 'string';
-  exercises: [
-    {
-      exerciseListId: 0;
-      exerciseName: 'string';
-      sets: 0;
-      order: 0;
-    }
-  ];
+  name: string;
+  description: string;
+  exercises: {
+    exerciseListId: number;
+    exerciseName: string;
+    sets: number;
+    order: number;
+  }[];
 }

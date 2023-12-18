@@ -47,6 +47,12 @@
         Edit Workout
       </button>
       <button
+        (click)="createTemplate(workout); $event.stopPropagation()"
+        class="create-template-btn"
+      >
+        Create Template
+      </button>
+      <button
         (click)="deleteWorkout(workout.id); $event.stopPropagation()"
         class="delete-workout-btn"
       >

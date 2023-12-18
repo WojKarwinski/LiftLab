@@ -16,3 +16,26 @@
 h2 {
   color: #e1b941;
 }
+
+.perform-template-btn,
+.delete-template-btn {
+  width: 30vw;
+  margin: 5px;
+  background-color: #e1b941;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.perform-template-btn {
+  border: 2px solid #202020;
+}
+
+.delete-template-btn {
+  background-color: #eb4c1c !important;
+}
+.template-actions {
+  display: flex;
+  justify-content: space-between;
+}

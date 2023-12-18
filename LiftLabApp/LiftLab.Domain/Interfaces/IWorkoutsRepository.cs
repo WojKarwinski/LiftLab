@@ -24,5 +24,7 @@ namespace LiftLab.Domain.Interfaces
 
         List<WorkoutTemplate> GetAllWorkoutTemplates();
         Workout CreateWorkoutFromTemplate(WorkoutTemplate template);
+        WorkoutTemplate CreateWorkoutTemplate(WorkoutTemplate template);
+        void DeleteWorkoutTemplate(int id);
     }
 }

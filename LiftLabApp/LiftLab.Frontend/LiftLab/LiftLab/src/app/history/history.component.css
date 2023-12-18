@@ -7,7 +7,6 @@
 }
 
 .workout-history {
-  font-family: Arial, sans-serif;
   border: 2px solid gray;
   margin-bottom: 15px;
   padding: 10px;
@@ -59,6 +58,7 @@ h3 {
 
 .start-workout-btn,
 .edit-workout-btn,
+.create-template-btn,
 .delete-workout-btn {
   width: 30vw;
   margin: 5px;
@@ -67,6 +67,14 @@ h3 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.start-workout-btn,
+.create-template-btn {
+  border: 2px solid #202020;
+}
+.edit-workout-btn {
+  background-color: #4d4d4d !important;
+  border: 2px solid #e1b941;
 }
 .delete-workout-btn {
   background-color: #eb4c1c !important;
@@ -86,4 +94,45 @@ h3 {
   border: var(--bs-border-width) solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.modal-name-change-body {
+  padding: 10px;
+  background-color: #393e46;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-name-change-footer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #393e46;
+  border-top: 1px solid #e1b941;
+}
+
+.modal-name-change-footer .btn {
+  margin-left: 10px;
+  background-color: #e1b941;
+  color: white;
+  border-color: #e1b941;
+}
+
+.btn-primary {
+  background-color: blue !important;
+  color: white;
+  border-color: #e1b941;
+}
+
+.btn-secondary {
+  background-color: grey !important;
+  color: white;
+  border-color: #e1b941;
+}
+
+.form-control {
+  margin-top: 10px;
+  color: black;
 }

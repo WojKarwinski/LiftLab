@@ -9,12 +9,20 @@ import { DataCacheService } from '../services/DataCache.service';
 })
 export class ExerciseMenuComponent implements OnInit {
   exercises: ExerciseList[] = [];
-
+  searchTerm: string = '';
   constructor(private dataCacheService: DataCacheService) {}
 
   ngOnInit() {
     this.dataCacheService.fetchExercisesIfNeeded().subscribe((data) => {
       this.exercises = data;
     });
+  }
+  filterWorkouts(): ExerciseList[] {
+    if (!this.searchTerm) {
+      return this.exercises;
+    }
+    return this.exercises.filter((workout) =>
+      workout.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }
