@@ -1,6 +1,6 @@
 .workout-list {
   padding: 10px;
-  padding-bottom: 6vh;
+  padding-bottom: 8vh;
 }
 .historyHeader {
   color: #ffffff;
@@ -12,7 +12,6 @@
   padding: 10px;
   border-radius: 5px;
   max-height: 40vh;
-  overflow-y: auto;
 }
 .shortTime {
   display: flex;
@@ -26,7 +25,12 @@ h3 {
 }
 
 .exercise {
+  padding: 3px;
   border-radius: 5px;
+  height: 3vh;
+}
+.exercise:nth-child(odd) {
+  background-color: rgba(32, 32, 32, 0.4);
 }
 
 .setDiv {
