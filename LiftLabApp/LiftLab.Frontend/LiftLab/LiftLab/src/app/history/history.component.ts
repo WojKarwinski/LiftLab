@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LiftLabService } from '../services/LiftLab.service';
 import { WarningModalComponent } from '../warning-modal/warning-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-workout-history',
   templateUrl: './history.component.html',
@@ -19,7 +20,8 @@ export class HistoryComponent implements OnInit {
     private dataCacheService: DataCacheService,
     private router: Router,
     private liftLabService: LiftLabService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -62,9 +64,10 @@ export class HistoryComponent implements OnInit {
               this.workoutData = this.workoutData.filter(
                 (workout) => workout.id !== workoutId
               );
+              this.showSuccessDelete();
             },
             (error) => {
-              // Handle error here if necessary
+              this.showError();
             }
           );
         }
@@ -72,7 +75,25 @@ export class HistoryComponent implements OnInit {
       (reason) => {}
     );
   }
-
+  showSuccessTemplate() {
+    this.toastr.success('Template created', 'Success', {
+      timeOut: 2000,
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-center',
+    });
+  }
+  showSuccessDelete() {
+    this.toastr.success('Workout deleted', 'Success', {
+      timeOut: 2000,
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-center',
+    });
+  }
+  showError() {
+    this.toastr.error('Something went wrong');
+  }
   createTemplate(workout: WorkoutData): void {
     const template: Template = {
       id: 0, // Assuming new templates have id 0
@@ -88,10 +109,12 @@ export class HistoryComponent implements OnInit {
 
     this.liftLabService.createNewTemplate(template).subscribe(
       (response) => {
-        // Handle the response, maybe update UI or give user feedback
+        // Correctly calling the showSuccess method here
+        this.showSuccessTemplate();
       },
       (error) => {
-        // Handle any errors
+        // Show error toast
+        this.showError();
       }
     );
   }

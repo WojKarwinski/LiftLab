@@ -1,3 +1,4 @@
+@import "../node_modules/ngx-toastr/toastr.css";
 body {
   font-family: "Arial", sans-serif;
 
@@ -27,4 +28,12 @@ body {
   margin: 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+.toast-success {
+  background-color: #e1b941 !important;
+}
+ngx-toastr .toast.toast-success {
+  background-color: #e1b941 !important;
+  background-image: none !important;
+  color: #ffffff !important; /* Adjust text color as needed */
 }
