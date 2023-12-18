@@ -8,14 +8,14 @@ import {
   HostListener,
 } from '@angular/core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { ExerciseSelectionModalComponent } from '../exercise-selection-modal/exercise-selection-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrls: ['./exercise.component.css'],
 })
 export class ExerciseComponent implements OnInit {
-  @Output() replaceExerciseEvent = new EventEmitter<number>();
-
   faEllipsisV = faEllipsisV;
   isRpeSliderActive: boolean = false;
   isDropdownOpen = false;
@@ -25,6 +25,11 @@ export class ExerciseComponent implements OnInit {
   }
   @Input() exercise: any;
   @Output() addSetEvent = new EventEmitter<number>();
+  @Output() replaceExerciseEvent = new EventEmitter<{
+    oldExerciseId: number;
+    newExercise: any;
+  }>();
+
   @Output() removeExerciseEvent = new EventEmitter<number>();
   @Output() removeSetEvent = new EventEmitter<{
     exerciseId: any;
@@ -65,7 +70,16 @@ export class ExerciseComponent implements OnInit {
     this.removeExerciseEvent.emit(this.exercise.exerciseId);
   }
   replaceExercise(): void {
-    this.replaceExerciseEvent.emit(this.exercise.exerciseId);
+    const modalRef = this.modalService.open(ExerciseSelectionModalComponent);
+    modalRef.componentInstance.exerciseSelected.subscribe(
+      (selectedExercise: any) => {
+        this.replaceExerciseEvent.emit({
+          oldExerciseId: this.exercise.exerciseId,
+          newExercise: selectedExercise,
+        });
+        modalRef.close();
+      }
+    );
   }
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event): void {
@@ -73,5 +87,5 @@ export class ExerciseComponent implements OnInit {
       this.isDropdownOpen = false;
     }
   }
-  constructor(private eRef: ElementRef) {}
+  constructor(private eRef: ElementRef, private modalService: NgbModal) {}
 }

@@ -147,11 +147,9 @@ export class WorkoutComponent implements OnInit {
 
   cancelWorkout(id: number): void {
     if (this.workoutData.id !== 0) {
-      // If editing an existing workout, simply navigate back to history
       this.router.navigate(['/history']);
       this.workoutStateService.setWorkoutActive(false);
     } else {
-      // If creating a new workout, show a confirmation modal before deletion
       const modalRef = this.modalService.open(WarningModalComponent);
       modalRef.result.then(
         (result) => {
@@ -161,15 +159,11 @@ export class WorkoutComponent implements OnInit {
               (response) => {
                 this.router.navigate(['/history']);
               },
-              (error) => {
-                // Handle error if needed
-              }
+              (error) => {}
             );
           }
         },
-        (reason) => {
-          // Modal dismissed, no action required
-        }
+        (reason) => {}
       );
     }
   }
@@ -260,6 +254,25 @@ export class WorkoutComponent implements OnInit {
     );
     if (exerciseIndex !== -1) {
       this.workoutData.exercises.splice(exerciseIndex, 1);
+    }
+  }
+  replaceExerciseInWorkout(replacementInfo: {
+    oldExerciseId: number;
+    newExercise: any;
+  }): void {
+    const exerciseIndex = this.workoutData.exercises.findIndex(
+      (exercise) => exercise.exerciseId === replacementInfo.oldExerciseId
+    );
+    if (exerciseIndex !== -1) {
+      const newExercise: Exercise = {
+        exerciseId: replacementInfo.newExercise.id,
+        exerciseListId: replacementInfo.newExercise.listId,
+        name: replacementInfo.newExercise.name,
+        order: replacementInfo.newExercise.order,
+        sets: this.workoutData.exercises[exerciseIndex].sets,
+      };
+
+      this.workoutData.exercises[exerciseIndex] = newExercise;
     }
   }
 

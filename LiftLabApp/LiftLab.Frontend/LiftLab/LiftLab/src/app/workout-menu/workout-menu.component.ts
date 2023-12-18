@@ -33,7 +33,6 @@ export class WorkoutMenuComponent implements OnInit {
   deleteTemplate(templateId: number): void {
     const modalRef = this.modalService.open(WarningModalComponent);
 
-    // Set the message for the modal
     modalRef.componentInstance.modalMessage = 'delete the template';
 
     modalRef.result.then(
@@ -45,15 +44,11 @@ export class WorkoutMenuComponent implements OnInit {
                 this.templates = data;
               });
             },
-            (error) => {
-              // Handle error here if necessary
-            }
+            (error) => {}
           );
         }
       },
-      (reason) => {
-        // Handle the dismissal of the modal here if necessary
-      }
+      (reason) => {}
     );
   }
   onTemplateClick(workoutElement: HTMLElement, index: number): void {

@@ -5,14 +5,13 @@ import { LiftLabService } from '../services/LiftLab.service';
 @Component({
   selector: 'app-exercise-selection-modal',
   templateUrl: './exercise-selection-modal.component.html',
-  // styleUrls if necessary
 })
 export class ExerciseSelectionModalComponent implements OnInit {
   searchTerm: string = '';
   selectedMuscleGroup: string = 'All';
   muscleGroups: string[] = ['All', 'Chest', 'Back', 'Legs', 'Arms', 'Core'];
   showMuscleGroupDropdown: boolean = false;
-  allExercises: any[] = []; // Populate this with your exercise data
+  allExercises: any[] = [];
 
   @Output() exerciseSelected = new EventEmitter<any>();
 

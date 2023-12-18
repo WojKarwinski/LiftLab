@@ -51,8 +51,8 @@ import { ExerciseSelectionModalComponent } from './exercise-selection-modal/exer
     BsDropdownModule.forRoot(),
     HttpClientModule,
     NgChartsModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

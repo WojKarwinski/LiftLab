@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(private LiftLabService: LiftLabService, private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.showMainPage = !event.url.includes('/workout/start'); // Adjusted condition
+        this.showMainPage = !event.url.includes('/workout/start');
       }
     });
   }

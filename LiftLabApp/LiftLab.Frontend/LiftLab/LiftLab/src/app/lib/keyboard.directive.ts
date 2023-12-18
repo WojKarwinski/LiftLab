@@ -10,6 +10,6 @@ export class AdjustForKeyboardDirective {
   onFocus(target: any) {
     setTimeout(() => {
       target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 0); // Adjust this delay as needed
+    }, 0);
   }
 }

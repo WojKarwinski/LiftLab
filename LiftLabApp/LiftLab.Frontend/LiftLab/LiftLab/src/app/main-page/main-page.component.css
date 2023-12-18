@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100vh;
   min-height: calc(100vh - 15vw);
-  padding-bottom: 15vw;
+  padding: 4vh 0px 15vh 0px;
 }
 
 .router-outlet {
