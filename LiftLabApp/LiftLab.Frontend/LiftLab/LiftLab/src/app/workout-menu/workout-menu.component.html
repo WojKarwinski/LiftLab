@@ -4,12 +4,10 @@
   </button>
 
   <div
-    *ngFor="let template of templates"
+    *ngFor="let template of templates; let i = index"
     class="workout-history"
-    (click)="
-      selectedTemplateId =
-        selectedTemplateId == template.id ? null : template.id
-    "
+    #templateItem
+    (click)="onTemplateClick(templateItem, i)"
   >
     <h2>{{ template.name }}</h2>
     <p>{{ template.description }}</p>
@@ -17,7 +15,7 @@
       <span>{{ exercise.sets }}x {{ exercise.exerciseName }}</span>
     </div>
 
-    <div *ngIf="selectedTemplateId == template.id" class="template-actions">
+    <div *ngIf="selectedTemplateIndex == i" class="template-actions">
       <button
         (click)="performTemplate(template); $event.stopPropagation()"
         class="perform-template-btn"

@@ -14,6 +14,8 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./exercise.component.css'],
 })
 export class ExerciseComponent implements OnInit {
+  @Output() replaceExerciseEvent = new EventEmitter<number>();
+
   faEllipsisV = faEllipsisV;
   isRpeSliderActive: boolean = false;
   isDropdownOpen = false;
@@ -45,7 +47,6 @@ export class ExerciseComponent implements OnInit {
           transform: `translateX(-${distance}px)`,
           opacity: 1 - Math.min(distance / 160, 1),
         };
-        console.log(distance);
       }
       if (distance > 150) {
         this.removeSetEvent.emit({
@@ -53,7 +54,6 @@ export class ExerciseComponent implements OnInit {
           setIndex,
         });
         this.swipeStyles.splice(setIndex, 1);
-        console.log(distance);
       }
     }
   }
@@ -63,6 +63,9 @@ export class ExerciseComponent implements OnInit {
   }
   removeExercise(): void {
     this.removeExerciseEvent.emit(this.exercise.exerciseId);
+  }
+  replaceExercise(): void {
+    this.replaceExerciseEvent.emit(this.exercise.exerciseId);
   }
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event): void {

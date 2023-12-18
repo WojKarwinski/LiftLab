@@ -17,7 +17,7 @@ import { WarningModalComponent } from '../warning-modal/warning-modal.component'
 })
 export class WorkoutMenuComponent implements OnInit {
   templates: Template[] = [];
-  selectedTemplateId: number | null = null;
+  selectedTemplateIndex: number | null = null;
 
   constructor(
     private dataCacheService: DataCacheService,
@@ -56,7 +56,14 @@ export class WorkoutMenuComponent implements OnInit {
       }
     );
   }
-
+  onTemplateClick(workoutElement: HTMLElement, index: number): void {
+    this.selectedTemplateIndex =
+      this.selectedTemplateIndex === index ? null : index;
+    this.scrollToView(workoutElement);
+  }
+  private scrollToView(workoutElement: HTMLElement): void {
+    workoutElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
   startWorkoutFromMenu(template: any) {
     this.liftLabService
       .createWorkoutFromTemplate(template)

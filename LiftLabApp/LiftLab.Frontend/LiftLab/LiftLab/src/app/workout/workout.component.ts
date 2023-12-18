@@ -5,12 +5,13 @@ import { WorkoutStateService } from '../services/workout-state.service';
 import { TimerService } from '../services/timer.service';
 import { LiftLabService } from '../services/LiftLab.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WarningModalComponent } from '../warning-modal/warning-modal.component';
+import { ExerciseSelectionModalComponent } from '../exercise-selection-modal/exercise-selection-modal.component';
 import {
   Exercise,
   ExerciseSet,
   WorkoutData,
 } from '../interfaces/workout.interface';
-import { WarningModalComponent } from '../warning-modal/warning-modal.component';
 
 @Component({
   selector: 'app-workout',
@@ -50,13 +51,6 @@ export class WorkoutComponent implements OnInit {
   ngOnInit(): void {
     this.subscribeToTimer();
     this.loadWorkoutData();
-    this.loadExercises();
-  }
-
-  private loadExercises() {
-    this.liftLabService.getAllExercises().subscribe((data) => {
-      this.allExercises = data;
-    });
   }
 
   private subscribeToTimer(): void {
@@ -82,7 +76,10 @@ export class WorkoutComponent implements OnInit {
                 this.setAllSetsChecked(newWorkout);
                 this.workoutData = newWorkout;
               } else {
-                this.editingWorkout = true;
+                if (currentRoute.includes('/edit/')) {
+                  this.editingWorkout = true;
+                }
+
                 this.setAllSetsChecked(data);
                 this.workoutData = data;
               }
@@ -267,8 +264,13 @@ export class WorkoutComponent implements OnInit {
   }
 
   openExerciseModal(): void {
-    this.loadExercises();
-    this.modalService.open(this.exerciseModal);
+    const modalRef = this.modalService.open(ExerciseSelectionModalComponent);
+    modalRef.componentInstance.exerciseSelected.subscribe(
+      (selectedExercise: any) => {
+        this.addExerciseToWorkout(selectedExercise);
+        modalRef.close();
+      }
+    );
   }
 
   addExerciseToWorkout(selectedExercise: any): void {

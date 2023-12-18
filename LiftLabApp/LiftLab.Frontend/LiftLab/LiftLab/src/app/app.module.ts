@@ -23,6 +23,7 @@ import { WarningModalComponent } from './warning-modal/warning-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AdjustForKeyboardDirective } from './lib/keyboard.directive';
+import { ExerciseSelectionModalComponent } from './exercise-selection-modal/exercise-selection-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { AdjustForKeyboardDirective } from './lib/keyboard.directive';
     MainPageComponent,
     WarningModalComponent,
     AdjustForKeyboardDirective,
+    ExerciseSelectionModalComponent,
   ],
   imports: [
     FormsModule,
