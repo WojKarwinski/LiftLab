@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { DataCacheService } from '../services/DataCache.service';
 import { Template, WorkoutData } from '../interfaces/workout.interface';
 import { Router } from '@angular/router';
@@ -23,7 +23,8 @@ export class HistoryComponent implements OnInit {
     private liftLabService: LiftLabService,
     private modalService: NgbModal,
     private toastr: ToastrService,
-    private workoutStateService: WorkoutStateService
+    private workoutStateService: WorkoutStateService,
+    private el: ElementRef
   ) {}
 
   ngOnInit() {
@@ -78,6 +79,15 @@ export class HistoryComponent implements OnInit {
       },
       (reason) => {}
     );
+  }
+  onWorkoutClick(workoutElement: HTMLElement, index: number): void {
+    this.selectedWorkoutIndex =
+      this.selectedWorkoutIndex === index ? null : index;
+    this.scrollToView(workoutElement);
+  }
+
+  private scrollToView(workoutElement: HTMLElement): void {
+    workoutElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   showSuccessTemplate() {
     this.toastr.success('Template created', 'Success', {

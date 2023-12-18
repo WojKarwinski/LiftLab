@@ -152,6 +152,7 @@ export class WorkoutComponent implements OnInit {
     if (this.workoutData.id !== 0) {
       // If editing an existing workout, simply navigate back to history
       this.router.navigate(['/history']);
+      this.workoutStateService.setWorkoutActive(false);
     } else {
       // If creating a new workout, show a confirmation modal before deletion
       const modalRef = this.modalService.open(WarningModalComponent);

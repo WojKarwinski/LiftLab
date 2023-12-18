@@ -1,7 +1,7 @@
 <div class="set-container" [class.glowing]="set.checked">
   <span class="setNumber">{{ setNumber }}</span>
-  <input type="number" [(ngModel)]="set.weight" />
-  <input type="number" [(ngModel)]="set.reps" />
+  <input type="number" [(ngModel)]="set.weight" appAdjustForKeyboard />
+  <input type="number" [(ngModel)]="set.reps" appAdjustForKeyboard />
 
   <p-slider
     (touchstart)="showSliderValue($event)"

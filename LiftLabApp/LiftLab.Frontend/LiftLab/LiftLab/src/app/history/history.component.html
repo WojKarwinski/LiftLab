@@ -12,7 +12,8 @@
   <div
     *ngFor="let workout of filterWorkouts(); let i = index"
     class="workout-history"
-    (click)="selectedWorkoutIndex = selectedWorkoutIndex == i ? null : i"
+    #workoutItem
+    (click)="onWorkoutClick(workoutItem, i)"
   >
     <div class="nameDate">
       <h2>{{ workout.name }}</h2>

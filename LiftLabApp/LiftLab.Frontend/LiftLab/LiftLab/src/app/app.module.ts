@@ -22,6 +22,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { WarningModalComponent } from './warning-modal/warning-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AdjustForKeyboardDirective } from './lib/keyboard.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
     GraphsComponent,
     MainPageComponent,
     WarningModalComponent,
+    AdjustForKeyboardDirective,
   ],
   imports: [
     FormsModule,
