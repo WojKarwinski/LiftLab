@@ -6,9 +6,8 @@
         <span class="timer">{{ timerDisplay }}</span>
       </button>
     </div>
-    <div>
-      <button class="btn btn-success" (click)="finishWorkout()">FINISH</button>
-    </div>
+    <h2 *ngIf="editingWorkout" class="editTitle">Editing</h2>
+    <button class="btn btn-success" (click)="finishWorkout()">FINISH</button>
   </div>
 
   <ng-template #timerModal let-modal>

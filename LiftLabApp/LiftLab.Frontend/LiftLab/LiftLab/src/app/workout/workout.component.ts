@@ -18,6 +18,7 @@ import { WarningModalComponent } from '../warning-modal/warning-modal.component'
   styleUrls: ['./workout.component.css'],
 })
 export class WorkoutComponent implements OnInit {
+  editingWorkout: boolean = false;
   @Input() workoutData: WorkoutData = {
     id: 0,
     date: new Date().toISOString(),
@@ -81,6 +82,7 @@ export class WorkoutComponent implements OnInit {
                 this.setAllSetsChecked(newWorkout);
                 this.workoutData = newWorkout;
               } else {
+                this.editingWorkout = true;
                 this.setAllSetsChecked(data);
                 this.workoutData = data;
               }
@@ -147,22 +149,31 @@ export class WorkoutComponent implements OnInit {
   }
 
   cancelWorkout(id: number): void {
-    const modalRef = this.modalService.open(WarningModalComponent);
-    modalRef.result.then(
-      (result) => {
-        if (result === 'confirm') {
-          this.workoutStateService.setWorkoutActive(false);
-
-          this.liftLabService.deleteWorkout(id).subscribe(
-            (response) => {
-              this.router.navigate(['/history']);
-            },
-            (error) => {}
-          );
+    if (this.workoutData.id !== 0) {
+      // If editing an existing workout, simply navigate back to history
+      this.router.navigate(['/history']);
+    } else {
+      // If creating a new workout, show a confirmation modal before deletion
+      const modalRef = this.modalService.open(WarningModalComponent);
+      modalRef.result.then(
+        (result) => {
+          if (result === 'confirm') {
+            this.workoutStateService.setWorkoutActive(false);
+            this.liftLabService.deleteWorkout(id).subscribe(
+              (response) => {
+                this.router.navigate(['/history']);
+              },
+              (error) => {
+                // Handle error if needed
+              }
+            );
+          }
+        },
+        (reason) => {
+          // Modal dismissed, no action required
         }
-      },
-      (reason) => {}
-    );
+      );
+    }
   }
 
   closeModal(): void {

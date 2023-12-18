@@ -6,6 +6,7 @@ import { LiftLabService } from '../services/LiftLab.service';
 import { WarningModalComponent } from '../warning-modal/warning-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { WorkoutStateService } from '../services/workout-state.service';
 @Component({
   selector: 'app-workout-history',
   templateUrl: './history.component.html',
@@ -21,7 +22,8 @@ export class HistoryComponent implements OnInit {
     private router: Router,
     private liftLabService: LiftLabService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private workoutStateService: WorkoutStateService
   ) {}
 
   ngOnInit() {
@@ -45,10 +47,12 @@ export class HistoryComponent implements OnInit {
     );
   }
   startWorkoutFromHistory(workoutId: number) {
+    this.workoutStateService.setWorkoutActive(true);
     this.router.navigate(['/workout/perform', workoutId]);
   }
 
   editWorkout(workoutId: number) {
+    this.workoutStateService.setWorkoutActive(true);
     this.router.navigate(['/workout/edit', workoutId]);
   }
   deleteWorkout(workoutId: number): void {
@@ -77,7 +81,7 @@ export class HistoryComponent implements OnInit {
   }
   showSuccessTemplate() {
     this.toastr.success('Template created', 'Success', {
-      timeOut: 2000,
+      timeOut: 1500,
       closeButton: true,
       progressBar: true,
       positionClass: 'toast-top-center',
@@ -85,7 +89,7 @@ export class HistoryComponent implements OnInit {
   }
   showSuccessDelete() {
     this.toastr.success('Workout deleted', 'Success', {
-      timeOut: 2000,
+      timeOut: 1500,
       closeButton: true,
       progressBar: true,
       positionClass: 'toast-top-center',
