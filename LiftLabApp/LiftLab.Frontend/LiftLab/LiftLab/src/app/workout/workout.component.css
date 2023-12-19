@@ -128,3 +128,17 @@
 .workout-container {
   padding-bottom: 6vh;
 }
+.workout-header {
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #232526;
+  z-index: 1000;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.workout-container {
+  padding-top: 10vh;
+}

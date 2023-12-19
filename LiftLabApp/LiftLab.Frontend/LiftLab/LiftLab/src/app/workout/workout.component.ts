@@ -151,6 +151,7 @@ export class WorkoutComponent implements OnInit {
       this.workoutStateService.setWorkoutActive(false);
     } else {
       const modalRef = this.modalService.open(WarningModalComponent);
+      modalRef.componentInstance.modalMessage = 'cancel the workout';
       modalRef.result.then(
         (result) => {
           if (result === 'confirm') {
