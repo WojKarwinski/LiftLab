@@ -64,17 +64,17 @@ export class HistoryComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          this.liftLabService.deleteWorkout(workoutId).subscribe(
-            () => {
+          this.liftLabService.deleteWorkout(workoutId).subscribe({
+            next: () => {
               this.workoutData = this.workoutData.filter(
                 (workout) => workout.id !== workoutId
               );
               this.showSuccessDelete();
             },
-            (error) => {
+            error: () => {
               this.showError();
-            }
-          );
+            },
+          });
         }
       },
       (reason) => {}
@@ -121,15 +121,15 @@ export class HistoryComponent implements OnInit {
       })),
     };
 
-    this.liftLabService.createNewTemplate(template).subscribe(
-      (response) => {
+    this.liftLabService.createNewTemplate(template).subscribe({
+      next: (response) => {
         this.showSuccessTemplate();
         this.dataCacheService.refreshTemplates();
       },
-      (error) => {
+      error: (error) => {
         this.showError();
-      }
-    );
+      },
+    });
   }
 
   findBestSet(sets: any[]): string {

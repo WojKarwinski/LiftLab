@@ -1,5 +1,6 @@
 .profile {
-  margin: 0px 10px 0px 10px;
+  margin: -36px 10px 0px 10px;
+  margin-bottom: 10vh;
 }
 .modal-content {
   max-height: 60vh;
@@ -84,7 +85,7 @@
 .cog-button {
   position: relative;
   left: 85vw;
-  top: -7vh;
+  top: -4vh;
   background: none;
   border: none;
 }

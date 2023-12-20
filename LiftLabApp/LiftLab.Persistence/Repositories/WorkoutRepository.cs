@@ -1,5 +1,4 @@
-﻿using LiftLab.Domain;
-using LiftLab.Domain.Interfaces;
+﻿using LiftLab.Domain.Interfaces;
 using LiftLab.Domain.Model;
 using Microsoft.Data.SqlClient;
 
@@ -197,7 +196,6 @@ public class WorkoutRepository : IWorkoutsRepository
 
     public void UpdateWorkout(Workout workout)
     {
-        // first update the workout, then delete all exercises and sets, then add them back
         using(SqlConnection connection = new(_connectionString))
         {
             connection.Open();
@@ -255,7 +253,6 @@ public class WorkoutRepository : IWorkoutsRepository
 
     public void DeleteWorkout(int workoutId)
     {
-        //first delete the sets, then exercises, then workout
         using(SqlConnection connection = new(_connectionString))
         {
             connection.Open();
@@ -278,69 +275,6 @@ public class WorkoutRepository : IWorkoutsRepository
                 command.ExecuteNonQuery();
             }
         }
-    }
-
-    public void AddSet(int workoutId,int exerciseId, Set set)
-    {
-        // add set to the db
-        using(SqlConnection connection = new(_connectionString))
-        {
-            connection.Open();
-            string query = "INSERT INTO Sets (ExerciseId,WorkoutId, SetNumber, Reps, Weight, Rpe) VALUES (@ExerciseId,@WorkoutId, @SetNumber, @Reps, @Weight, @Rpe)";
-            using(SqlCommand command = new(query, connection))
-            {
-                command.Parameters.AddWithValue("@ExerciseId", exerciseId);
-                command.Parameters.AddWithValue("@WorkoutId", workoutId);
-                command.Parameters.AddWithValue("@SetNumber", set.SetNumber);
-                command.Parameters.AddWithValue("@Reps", set.Reps);
-                command.Parameters.AddWithValue("@Weight", set.Weight);
-                command.Parameters.AddWithValue("@Rpe", set.Rpe);
-                command.ExecuteNonQuery();
-            }
-        }
-
-    }
-
-    public void UpdateSet(int workoutId, Set set)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DeleteSet(int workoutId, int setNumber)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void AddExercise(int workoutId, Exercise exercise)
-    {
-        // add exercise to the db
-        using(SqlConnection connection = new(_connectionString))
-        {
-            connection.Open();
-            string query = "INSERT INTO Exercises (WorkoutId, ExerciseListId, ExerciseOrder) VALUES (@WorkoutId, @ExerciseListId, @ExerciseOrder)";
-            using(SqlCommand command = new(query, connection))
-            {
-                command.Parameters.AddWithValue("@WorkoutId", workoutId);
-                command.Parameters.AddWithValue("@ExerciseListId", exercise.ExerciseListId);
-                command.Parameters.AddWithValue("@ExerciseOrder", exercise.Order);
-                command.ExecuteNonQuery();
-            }
-        }
-    }
-
-    public void UpdateExercise(int workoutId, Exercise exercise)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DeleteExercise(int workoutId, int exerciseNumber)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void AddExerciseSet(int workoutId, int exerciseNumber, Set set)
-    {
-        throw new NotImplementedException();
     }
 
     public List<ExerciseList> GetAllExercises()
@@ -448,7 +382,6 @@ public class WorkoutRepository : IWorkoutsRepository
             }
             workout.Exercises.Add(newExercise);
         }
-        //do this in a sql query using transactions, so that if one fails, they all fail, don't use methods above
         using(SqlConnection connection = new(_connectionString))
         {
             connection.Open();

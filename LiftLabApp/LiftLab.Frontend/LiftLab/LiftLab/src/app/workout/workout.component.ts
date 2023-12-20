@@ -125,23 +125,21 @@ export class WorkoutComponent implements OnInit {
     this.timerService.stopTimer();
 
     if (this.workoutData.id == 0) {
-      this.liftLabService.createWorkout(this.workoutData).subscribe(
-        (response) => {
+      this.liftLabService.createWorkout(this.workoutData).subscribe({
+        next: (response) => {
           this.workoutStateService.setWorkoutActive(false);
           this.router.navigate(['/history']);
         },
-        (error) => {}
-      );
+      });
     } else {
       this.liftLabService
         .updateWorkout(this.workoutData.id, this.workoutData)
-        .subscribe(
-          (response) => {
+        .subscribe({
+          next: (response) => {
             this.workoutStateService.setWorkoutActive(false);
             this.router.navigate(['/history']);
           },
-          (error) => {}
-        );
+        });
     }
   }
 
@@ -156,12 +154,11 @@ export class WorkoutComponent implements OnInit {
         (result) => {
           if (result === 'confirm') {
             this.workoutStateService.setWorkoutActive(false);
-            this.liftLabService.deleteWorkout(id).subscribe(
-              (response) => {
+            this.liftLabService.deleteWorkout(id).subscribe({
+              next: (response) => {
                 this.router.navigate(['/history']);
               },
-              (error) => {}
-            );
+            });
           }
         },
         (reason) => {}

@@ -38,14 +38,15 @@ export class WorkoutMenuComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          this.liftLabService.deleteTemplate(templateId).subscribe(
-            (response) => {
-              this.liftLabService.getAllTemplates().subscribe((data) => {
-                this.templates = data;
+          this.liftLabService.deleteTemplate(templateId).subscribe({
+            next: (response) => {
+              this.liftLabService.getAllTemplates().subscribe({
+                next: (data) => {
+                  this.templates = data;
+                },
               });
             },
-            (error) => {}
-          );
+          });
         }
       },
       (reason) => {}
